@@ -1,29 +1,29 @@
 /*
 ************************************************************
 * COMPILERS COURSE - Algonquin College
-* Code version: Fall, 2025
-* Author: TO_DO
+* Code version: Winter, 2026
+* Author: David Jacob
 * Professors: Paulo Sousa
 ************************************************************
 #
 # ECHO "=---------------------------------------="
-# ECHO "|  COMPILERS - ALGONQUIN COLLEGE (F25)  |"
+# ECHO "|  COMPILERS - ALGONQUIN COLLEGE (W26)  |"
 # ECHO "=---------------------------------------="
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "    @@                             @@    ”
-# ECHO "    @@           %&@@@@@@@@@@@     @@    ”
-# ECHO "    @@       @%% (@@@@@@@@@  @     @@    ”
-# ECHO "    @@      @& @   @ @       @     @@    ”
-# ECHO "    @@     @ @ %  / /   @@@@@@     @@    ”
-# ECHO "    @@      & @ @  @@              @@    ”
-# ECHO "    @@       @/ @*@ @ @   @        @@    ”
-# ECHO "    @@           @@@@  @@ @ @      @@    ”
-# ECHO "    @@            /@@    @@@ @     @@    ”
-# ECHO "    @@     @      / /     @@ @     @@    ”
-# ECHO "    @@     @ @@   /@/   @@@ @      @@    ”
-# ECHO "    @@     @@@@@@@@@@@@@@@         @@    ”
 # ECHO "    @@                             @@    ”
-# ECHO "    @@         S O F I A           @@    ”
+# ECHO "    @@                             @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@@@@@@@@@@@@@      @@    ”
+# ECHO "    @@        @@@@@@@@@@@@@@       @@    ”
+# ECHO "    @@                             @@    ”
+# ECHO "    @@         U R I Z E N         @@    ”
 # ECHO "    @@                             @@    ”
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "                                         "
@@ -34,10 +34,10 @@
 /*
 ************************************************************
 * File name: MainCoder.c
-* Compiler: MS Visual Studio 2022
-* Course: CST 8152 – Compilers, Lab Section: [011, 012]
+* Compiler: MS Visual Studio 2026
+* Course: CST 8152 – Compilers, Lab Section: [301]
 * Assignment: A12, A22, A32.
-* Date: Sep 01 2025
+* Date: Jan 31 2026
 * Professor: Paulo Sousa
 * Purpose: This file is the main code for Buffer/Reader (A12)
 * Function list: (...).
@@ -104,32 +104,37 @@
 */
 
 // Main function to handle command-line arguments
-sofia_intg main1Coder(sofia_intg argc, sofia_strg* argv) {
+urizen_int main1Coder(urizen_int argc, urizen_str* argv) {
 	if (argc < 5) {
 		printf("Usage: %s [cypher=1|decypher=0] <input_file> <output_file>\n", argv[0]);
 		return EXIT_FAILURE;
 	}
-	sofia_strg operation = "";
-	sofia_strg inputFileName = "";
-	sofia_strg key = STR_LANGNAME;
-	sofia_strg outputFileName = "";
+	urizen_str operation = "";
+	urizen_str inputFileName = "";
+	urizen_str key = STR_LANGNAME;
+	urizen_str outputFileName = "";
+
 	if (argc > 4) {
-		operation = argv[2];
-		inputFileName = argv[3];
-		outputFileName = argv[4];
+
+		operation = argv[2]; /* operations on the 3rd row. */
+		inputFileName = argv[3]; /* input file name on the 4th row. */
+		outputFileName = argv[4]; /* output file name on the 5th row. */
+
 		// Call the appropriate function to file
-		if (atoi(operation) == CYPHER)
-			cypher(inputFileName, outputFileName, key);
+		if (atoi(operation) == CYPHER) /* converts the string "1" entered in the cmd line to an integer to cmpr to CYPHER. */
+			cypher(inputFileName, outputFileName, key); /* If the user entered 1, encrypt the input file. */
 		else if (atoi(operation) == DECYPHER)
 			decypher(inputFileName, outputFileName, key);
 		else {
 			errorPrint("%s%s%s", "Error: Unknown operation ", operation, ". Use 'cypher' or 'decypher'.\n");
 			return EXIT_FAILURE;
 		}
+
 		printf("Operation '%s' completed successfully.\n", operation);
+
 		// Call the other operation in memory
-		sofia_intg size = getSizeOfFile(outputFileName);
-		sofia_strg output;
+		urizen_int size = getSizeOfFile(outputFileName);
+		urizen_str output;
 		if (atoi(operation) == CYPHER)
 			output = vigenereMem(outputFileName, key, DECYPHER);
 		else 

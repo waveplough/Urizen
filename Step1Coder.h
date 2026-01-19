@@ -34,10 +34,10 @@
 /*
 ************************************************************
 * File name: Reader.h
-* Compiler: MS Visual Studio 2022
-* Course: CST 8152 – Compilers, Lab Section: [011, 012]
-* Assignment: A12.
-* Date: Sep 01 2025
+* Compiler: MS Visual Studio 2026
+* Course: CST 8152 – Compilers, Lab Section: [301]
+* Assignment: A1.
+* Date: Jan 31 2026
 * Professor: Paulo Sousa
 * Purpose: This file is the main header for Reader (.h)
 ************************************************************
@@ -68,11 +68,11 @@
 /* FUNCTIONS DECLARATION:  .................................. */
 
 /* General Operations */
-void vigenereFile(const sofia_strg inputFileName, const sofia_strg outputFileName, const sofia_strg key, sofia_intg encode);
-sofia_strg vigenereMem(const sofia_strg inputFileName, const sofia_strg key, sofia_intg encode);
+void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key, urizen_int encode);
+urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, urizen_int encode);
 
-void cypher(const sofia_strg inputFileName, const sofia_strg outputFileName, const sofia_strg key);
-void decypher(const sofia_strg inputFileName, const sofia_strg outputFileName, const sofia_strg key);
-sofia_intg getSizeOfFile(const sofia_strg filename);
+void cypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key);
+void decypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key);
+urizen_int getSizeOfFile(const urizen_str filename);
 
 #endif

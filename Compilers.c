@@ -1,43 +1,43 @@
 /*
 ************************************************************
 * COMPILERS COURSE - Algonquin College
-* Code version: Fall, 2025
-* Author: TO_DO
+* Code version: Winter, 2026
+* Author: David Jacob
 * Professors: Paulo Sousa
 ************************************************************
 #
 # ECHO "=---------------------------------------="
-# ECHO "|  COMPILERS - ALGONQUIN COLLEGE (F25)  |"
+# ECHO "|  COMPILERS - ALGONQUIN COLLEGE (W26)  |"
 # ECHO "=---------------------------------------="
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "    @@                             @@    ”
-# ECHO "    @@           %&@@@@@@@@@@@     @@    ”
-# ECHO "    @@       @%% (@@@@@@@@@  @     @@    ”
-# ECHO "    @@      @& @   @ @       @     @@    ”
-# ECHO "    @@     @ @ %  / /   @@@@@@     @@    ”
-# ECHO "    @@      & @ @  @@              @@    ”
-# ECHO "    @@       @/ @*@ @ @   @        @@    ”
-# ECHO "    @@           @@@@  @@ @ @      @@    ”
-# ECHO "    @@            /@@    @@@ @     @@    ”
-# ECHO "    @@     @      / /     @@ @     @@    ”
-# ECHO "    @@     @ @@   /@/   @@@ @      @@    ”
-# ECHO "    @@     @@@@@@@@@@@@@@@         @@    ”
 # ECHO "    @@                             @@    ”
-# ECHO "    @@         S O F I A           @@    ”
+# ECHO "    @@                             @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@@@@@@@@@@@@@      @@    ”
+# ECHO "    @@        @@@@@@@@@@@@@@       @@    ”
+# ECHO "    @@                             @@    ”
+# ECHO "    @@         U R I Z E N         @@    ”
 # ECHO "    @@                             @@    ”
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "                                         "
-# ECHO "[COMPILER SCRIPT .......................]"
+# ECHO "[CODER SCRIPT ..........................]"
 # ECHO "                                         "
 */
 
 /*
 ************************************************************
 * File name: compilers.c
-* Compiler: MS Visual Studio 2022
-* Course: CST 8152 – Compilers, Lab Section: [011, 012]
+* Compiler: MS Visual Studio 2026
+* Course: CST 8152 – Compilers, Lab Section: [301]
 * Assignment: A12, A22, A32.
-* Date: sEP 01 2025
+* Date: Jan 31 2026
 * Professor: Paulo Sousa
 * Purpose: This file is the main program of Compilers Project
 * Function list: main().
@@ -69,7 +69,7 @@
 * Function name: main
 * Purpose: Main function
 * Author: Paulo Sousa
-* History/Versions: Ver F25
+* History/Versions: Ver W26
 * Called functions: mainReader(), mainScanner(), mainParser()
 * Parameters: Command line arguments - argc, argv
 * Return value: Status
@@ -77,9 +77,9 @@
 *************************************************************
 */
 
-sofia_intg main(int argc, char** argv) {
+urizen_int main(int argc, char** argv) {
 
-	sofia_intg i;
+	urizen_int i;
 	printLogo();
 	if (DEBUG) {
 		for (i = 0; i < argc; ++i)
@@ -94,7 +94,7 @@ sofia_intg main(int argc, char** argv) {
 			PGM_WRT, "] - Writer\n");
 		return EXIT_FAILURE;
 	}
-	sofia_char option = argv[1][0];
+	urizen_char option = argv[1][0];
 	switch (option) {
 	case PGM_CDR:
 		printf("%s%c%s", "\n[Option '", PGM_CDR, "': Starting CODER .....]\n\n");
@@ -117,7 +117,7 @@ sofia_intg main(int argc, char** argv) {
 * Function name: printLogo
 * Purpose: Print Logo
 * Author: Paulo Sousa
-* History/Versions: Ver F25
+* History/Versions: Ver W26
 * Called functions: -
 * Parameters: -
 * Return value: (Null)
@@ -125,28 +125,28 @@ sofia_intg main(int argc, char** argv) {
 *************************************************************
 */
 
-sofia_void printLogo() {
+urizen_void printLogo() {
 	printf("%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
-		"\t=---------------------------------------=\n",
-		"\t|  COMPILERS - ALGONQUIN COLLEGE (S25)  |\n",
-		"\t=---------------------------------------=\n",
-		"\t    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    \n",
-		"\t    @@                             @@    \n",
-		"\t    @@           %&@@@@@@@@@@@     @@    \n",
-		"\t    @@       @%% (@@@@@@@@@  @     @@    \n",
-		"\t    @@      @& @   @ @       @     @@    \n",
-		"\t    @@     @ @ %  / /   @@@@@@     @@    \n",
-		"\t    @@      & @ @  @@              @@    \n",
-		"\t    @@       @/ @*@ @ @   @        @@    \n",
-		"\t    @@           @@@@  @@ @ @      @@    \n",
-		"\t    @@            /@@    @@@ @     @@    \n",
-		"\t    @@     @      / /     @@ @     @@    \n",
-		"\t    @@     @ @@   /@/   @@@ @      @@    \n",
-		"\t    @@     @@@@@@@@@@@@@@@         @@    \n",
-		"\t    @@                             @@    \n",
-		"\t    @@         S O F I A           @@    \n",
-		"\t    @@                             @@    \n",
-		"\t    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    \n",
+		"\t=---------------------------------------= \n",
+		"\t|  COMPILERS - ALGONQUIN COLLEGE (W26)  | \n",
+		"\t=---------------------------------------= \n",
+		"\t   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     \n",
+		"\t   @@                              @@     \n",
+		"\t   @@                              @@     \n",
+		"\t   @@                              @@     \n",
+		"\t   @@       @@@@        @@@@       @@     \n",
+		"\t   @@       @@@@        @@@@       @@     \n",
+		"\t   @@       @@@@        @@@@       @@     \n",
+		"\t   @@       @@@@        @@@@       @@     \n",
+		"\t   @@       @@@@        @@@@       @@     \n",
+		"\t   @@       @@@@        @@@@       @@     \n",
+		"\t   @@       @@@@        @@@@       @@     \n",
+		"\t   @@       @@@@@@@@@@@@@@@@       @@     \n",
+		"\t   @@        @@@@@@@@@@@@@@        @@     \n",
+		"\t   @@                              @@     \n",
+		"\t   @@         U R I Z E N          @@     \n",
+		"\t   @@                              @@     \n",
+		"\t   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     \n",
 		"\t                                         \n",
 		"\t[COMPILER SCRIPT .......................]\n",
 		"\t                                         \n"
@@ -162,12 +162,12 @@ sofia_void printLogo() {
 ************************************************************
 */
 
-sofia_void errorPrint(sofia_strg fmt, ...) {
+urizen_void errorPrint(urizen_str fmt, ...) {
 	/* Initialize variable list */
 	va_list ap;
 	va_start(ap, fmt);
 
-	(sofia_void)vfprintf(stderr, fmt, ap);
+	(urizen_void)vfprintf(stderr, fmt, ap);
 	va_end(ap);
 
 	/* Move to new line */

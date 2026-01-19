@@ -7,37 +7,37 @@
 ************************************************************
 #
 # ECHO "=---------------------------------------="
-# ECHO "|  COMPILERS - ALGONQUIN COLLEGE (F25)  |"
+# ECHO "|  COMPILERS - ALGONQUIN COLLEGE (W26)  |"
 # ECHO "=---------------------------------------="
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "    @@                             @@    ”
-# ECHO "    @@           %&@@@@@@@@@@@     @@    ”
-# ECHO "    @@       @%% (@@@@@@@@@  @     @@    ”
-# ECHO "    @@      @& @   @ @       @     @@    ”
-# ECHO "    @@     @ @ %  / /   @@@@@@     @@    ”
-# ECHO "    @@      & @ @  @@              @@    ”
-# ECHO "    @@       @/ @*@ @ @   @        @@    ”
-# ECHO "    @@           @@@@  @@ @ @      @@    ”
-# ECHO "    @@            /@@    @@@ @     @@    ”
-# ECHO "    @@     @      / /     @@ @     @@    ”
-# ECHO "    @@     @ @@   /@/   @@@ @      @@    ”
-# ECHO "    @@     @@@@@@@@@@@@@@@         @@    ”
 # ECHO "    @@                             @@    ”
-# ECHO "    @@         S O F I A           @@    ”
+# ECHO "    @@                             @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@@@@@@@@@@@@@      @@    ”
+# ECHO "    @@        @@@@@@@@@@@@@@       @@    ”
+# ECHO "    @@                             @@    ”
+# ECHO "    @@         U R I Z E N         @@    ”
 # ECHO "    @@                             @@    ”
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "                                         "
-# ECHO "[COMPILER SCRIPT .......................]"
+# ECHO "[CODER SCRIPT ..........................]"
 # ECHO "                                         "
 */
 
 /*
 ************************************************************
 * File name: Compilers.h
-* Compiler: MS Visual Studio 2022
-* Course: CST 8152 – Compilers, Lab Section: [011, 012]
+* Compiler: MS Visual Studio 2026
+* Course: CST 8152 – Compilers, Lab Section: [301]
 * Assignment: A1-A5.
-* Date: Jan 18 2026
+* Date: Jan 31 2026
 * Professor: Paulo Sousa
 * Purpose: This file defines the functions called by main function.
 * Function list: mainReader(), mainScanner(), mainParser().
@@ -60,7 +60,7 @@
 
 /* TO_DO: Adjust your language (cannot be "Sofia") */
 /* Language name */
-#define STR_LANGNAME	"Sofia"
+#define STR_LANGNAME	"Urizen"
 
 /* Logical constants - adapt for your language */
 #define SOFIA_TRUE  1
@@ -78,17 +78,17 @@ NOTE: Some types may not be directly used by your language,
 */
 
 /* TO_DO: Define your typedefs */
-typedef char			sofia_char;
-typedef char*			sofia_strg;
-typedef int				sofia_intg;
-typedef float			sofia_real;
-typedef void			sofia_void;
+typedef char			urizen_char;
+typedef char*			urizen_str;
+typedef int				urizen_int;
+typedef float			urizen_float;
+typedef void			urizen_void;
 
-typedef unsigned char	sofia_boln;
-typedef unsigned char	sofia_byte;
+typedef unsigned char	urizen_bool;
+typedef unsigned char	urizen_byte;
 
-typedef long			sofia_long;
-typedef double			sofia_doub;
+typedef long			urizen_long;
+typedef double			urizen_doub;
 
 /*
 ------------------------------------------------------------
@@ -114,10 +114,10 @@ Main functions signatures
 (Code will be updated during next assignments)
 ------------------------------------------------------------
 */
-sofia_intg main1Coder	(sofia_intg argc, sofia_strg* argv);
+urizen_int main1Coder	(urizen_int argc, urizen_str* argv);
 
-sofia_void printLogo();
-sofia_void errorPrint(sofia_strg fmt, ...);
+urizen_void printLogo();
+urizen_void errorPrint(urizen_str fmt, ...);
 
 #endif
 
