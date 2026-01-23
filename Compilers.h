@@ -63,8 +63,8 @@
 #define STR_LANGNAME	"Urizen"
 
 /* Logical constants - adapt for your language */
-#define SOFIA_TRUE  1
-#define SOFIA_FALSE 0
+#define URIZEN_TRUE  1
+#define URIZEN_FALSE 0
 
 #define INVALID NULL
 #define EOF_CHAR '\0'

@@ -102,10 +102,14 @@ void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileNam
 // Function to perform the Vigenère cipher (encoding or decoding)
 urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, urizen_int encode) {
 	// TO_DO define the return type and local variables
+	// TO_DO: Check defensive programming
+	// TO_DO: Use the logic to code/decode - consider the logic about visible chars only
 
 	FILE* inputFile;
 	urizen_size size = getSizeOfFile(inputFileName);
 	urizen_str output = (urizen_str)malloc(size + 1);
+	urizen_int i = 0,j = 0;
+	urizen_char offset;
 
 	inputFile = fopen(inputFileName, "r");
 
@@ -120,19 +124,34 @@ urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, uri
 		return output;
 	}
 
-	urizen_size itemsRead = fread(output, sizeof(urizen_char), size, inputFile);
+	urizen_size numChar = fread(output, sizeof(urizen_char), size, inputFile);
 
-	if (itemsRead != size) {
+	if (numChar != size) {
 		printf("ERROR: File %s could not be fully read\n", inputFileName);
 		return NULL;
 	}
 
+	/////////////////Encypt Characters////////////////////
 	
-	
+	while (i < size) {
+		if (j == strlen(key)) {
+			j = 0;
+		}
 
+		if (output[i] != '\n' && output[i] != ' ' && output[i] != '\r') {
+			offset = key[j] - ASCII_START;
+			if (output[i] + offset > ASCII_END) {
+				urizen_char out = output[i] + offset;
+				output[i] = out - ASCII_RANGE;
+			}
+			else {
+				output[i] += offset;
+			}
+			j++;
+		}
+		i++;
+	}
 
-	// TO_DO: Check defensive programming
-	// TO_DO: Use the logic to code/decode - consider the logic about visible chars only
 	return output;
 }
 
