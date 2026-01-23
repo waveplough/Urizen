@@ -1,29 +1,29 @@
 /*
 ************************************************************
 * COMPILERS COURSE - Algonquin College
-* Code version: Fall, 2025
-* Author: TO_DO
+* Code version: Winter, 2026
+* Author: David Jacob
 * Professors: Paulo Sousa
 ************************************************************
 #
 # ECHO "=---------------------------------------="
-# ECHO "|  COMPILERS - ALGONQUIN COLLEGE (F25)  |"
+# ECHO "|  COMPILERS - ALGONQUIN COLLEGE (W26)  |"
 # ECHO "=---------------------------------------="
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "    @@                             @@    ”
-# ECHO "    @@           %&@@@@@@@@@@@     @@    ”
-# ECHO "    @@       @%% (@@@@@@@@@  @     @@    ”
-# ECHO "    @@      @& @   @ @       @     @@    ”
-# ECHO "    @@     @ @ %  / /   @@@@@@     @@    ”
-# ECHO "    @@      & @ @  @@              @@    ”
-# ECHO "    @@       @/ @*@ @ @   @        @@    ”
-# ECHO "    @@           @@@@  @@ @ @      @@    ”
-# ECHO "    @@            /@@    @@@ @     @@    ”
-# ECHO "    @@     @      / /     @@ @     @@    ”
-# ECHO "    @@     @ @@   /@/   @@@ @      @@    ”
-# ECHO "    @@     @@@@@@@@@@@@@@@         @@    ”
 # ECHO "    @@                             @@    ”
-# ECHO "    @@         S O F I A           @@    ”
+# ECHO "    @@                             @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@@@@@@@@@@@@@      @@    ”
+# ECHO "    @@        @@@@@@@@@@@@@@       @@    ”
+# ECHO "    @@                             @@    ”
+# ECHO "    @@         U R I Z E N         @@    ”
 # ECHO "    @@                             @@    ”
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "                                         "
@@ -73,6 +73,6 @@ urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, uri
 
 void cypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key);
 void decypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key);
-urizen_int getSizeOfFile(const urizen_str filename);
+urizen_size getSizeOfFile(const urizen_str filename);
 
 #endif

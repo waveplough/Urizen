@@ -81,6 +81,7 @@ NOTE: Some types may not be directly used by your language,
 typedef char			urizen_char;
 typedef char*			urizen_str;
 typedef int				urizen_int;
+typedef size_t			urizen_size;
 typedef float			urizen_float;
 typedef void			urizen_void;
 

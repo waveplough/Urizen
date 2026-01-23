@@ -1,2 +1,8 @@
-﻿  Main1Coder.c
-  Urizen.vcxproj -> C:\Users\David Jacob\Compilers\source\repos\Urizen\x64\Debug\Urizen.exe
+﻿  Step1Coder.c
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(80,3): warning C4098: 'vigenereFile': 'void' function returning a value
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(84,3): warning C4098: 'vigenereFile': 'void' function returning a value
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(74,14): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(75,15): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(118,23): warning C4133: 'function': incompatible types - from 'FILE *' to 'const urizen_str'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(111,14): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(149,14): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.

@@ -65,8 +65,35 @@
 
 // Function to perform the Vigenère cipher (encoding or decoding)
 void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key, urizen_int encode) {
-	// TO_DO: Define the input and output files (ex: FILE* inputFile, FILE* outputFile
-	// TO_DO: Use defensive programming (checking files)
+
+	/* Input and output file pointers. */
+	FILE* inputFile;
+	FILE* outputFile;
+
+	/* Create a file for reading and writing. */
+	inputFile = fopen(inputFileName, "r"); 
+	outputFile = fopen(outputFileName, "w"); 
+
+	/* Null checks */
+	if (!inputFile) {
+		printf("ERROR: The input file %s could not be reached.\n",inputFileName);
+		return NULL;
+	}
+	else if (!outputFile) {
+		printf("ERROR: The output file %s could not be reached.\n",outputFileName);
+		return NULL;
+	}
+
+	if (encode) {
+		/* Encrypt - Pass vigenereMem with encode set to 1. */
+	}
+	else {
+		/* Decrypt - pass vigenereMem with encode set to 0. */
+	}
+
+
+	// TO_DO: Define the input and output files (ex: FILE* inputFile, FILE* outputFile [x]
+	// TO_DO: Use defensive programming (checking files) [x]
 	// TO_DO: Define local variables
 	// TO_DO: Logic: check if it is encode / decode to change the char (using Vigenere algorithm) - next function
 	// TO_DO: Close the files
@@ -75,7 +102,35 @@ void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileNam
 // Function to perform the Vigenère cipher (encoding or decoding)
 urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, urizen_int encode) {
 	// TO_DO define the return type and local variables
-	urizen_str output = NULL;
+
+	FILE* inputFile;
+	urizen_size size = getSizeOfFile(inputFileName);
+	urizen_str output = (urizen_str)malloc(size + 1);
+
+	inputFile = fopen(inputFileName, "r");
+
+	/* Check defensive programming. */
+	if (!inputFile) {
+		printf("ERROR: The input file %s could not be reached.\n",inputFileName);
+		return NULL;
+	}
+
+	/* If the file is empty simply return nothing. */
+	if (size == 0) {
+		return output;
+	}
+
+	urizen_size itemsRead = fread(output, sizeof(urizen_char), size, inputFile);
+
+	if (itemsRead != size) {
+		printf("ERROR: File %s could not be fully read\n", inputFileName);
+		return NULL;
+	}
+
+	
+	
+
+
 	// TO_DO: Check defensive programming
 	// TO_DO: Use the logic to code/decode - consider the logic about visible chars only
 	return output;
@@ -83,7 +138,7 @@ urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, uri
 
 // Function to encode (cypher)
 void cypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key) {
-    vigenereFile(inputFileName, outputFileName, key, CYPHER);
+    vigenereFile(inputFileName, outputFileName, key, CYPHER); /* vigFile controller selects */
 }
 
 // Function to decode (decypher)
@@ -92,8 +147,13 @@ void decypher(const urizen_str inputFileName, const urizen_str outputFileName, c
 }
 
 // TO_DO: Get file size (util method)
-urizen_int getSizeOfFile(const urizen_str filename) {
+urizen_size getSizeOfFile(const urizen_str filename) {
 	urizen_int size = 0;
+	FILE* inputFile;
+
+	inputFile = fopen(filename, "r");
+	fseek(inputFile, 0, SEEK_END);
+	size = ftell(inputFile);
     // TO_DO: Use the logic to get the size of the file
     return size;
 }

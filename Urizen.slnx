@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Urizen.vcxproj" />
+  <Project Path="Urizen.vcxproj" Id="0de2a46e-86c7-4566-a542-8454a42d4123" />
 </Solution>
