@@ -50,7 +50,7 @@
  * - Review the functions to use "Defensive Programming".
  *.............................................................................
  */
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -63,6 +63,7 @@
 #include "Step1Coder.h"
 #endif
 
+
 // Function to perform the Vigenère cipher (encoding or decoding)
 void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key, urizen_int encode) {
 
@@ -70,9 +71,13 @@ void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileNam
 	FILE* inputFile;
 	FILE* outputFile;
 
+	urizen_str output;
+	urizen_size size;
+
+
 	/* Create a file for reading and writing. */
-	inputFile = fopen(inputFileName, "r"); 
-	outputFile = fopen(outputFileName, "w"); 
+	inputFile = fopen(inputFileName, "rb"); 
+	outputFile = fopen(outputFileName, "wb"); 
 
 	/* Null checks */
 	if (!inputFile) {
@@ -85,12 +90,16 @@ void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileNam
 	}
 
 	if (encode) {
-		/* Encrypt - Pass vigenereMem with encode set to 1. */
+		output = vigenereMem(inputFileName, key, CYPHER);
+		size = getSizeOfFile(inputFileName);
+		fwrite(output, sizeof(char), size, outputFile);
 	}
 	else {
-		/* Decrypt - pass vigenereMem with encode set to 0. */
+		vigenereMem(inputFileName, key, DECYPHER);
 	}
 
+	fclose(inputFile);
+	fclose(outputFile);
 
 	// TO_DO: Define the input and output files (ex: FILE* inputFile, FILE* outputFile [x]
 	// TO_DO: Use defensive programming (checking files) [x]
@@ -111,7 +120,7 @@ urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, uri
 	urizen_int i = 0,j = 0;
 	urizen_char offset;
 
-	inputFile = fopen(inputFileName, "r");
+	inputFile = fopen(inputFileName, "rb");
 
 	/* Check defensive programming. */
 	if (!inputFile) {
@@ -121,23 +130,23 @@ urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, uri
 
 	/* If the file is empty simply return nothing. */
 	if (size == 0) {
+		printf("Warning: File %s is empty.\n",inputFileName);
 		return output;
 	}
 
-	urizen_size numChar = fread(output, sizeof(urizen_char), size, inputFile);
-
-	if (numChar != size) {
-		printf("ERROR: File %s could not be fully read\n", inputFileName);
+	if (fread(output, sizeof(urizen_char), size, inputFile) != size) {
+		printf("ERROR: the input file %s could not be read.\n", inputFileName);
 		return NULL;
 	}
 
 	/////////////////Encypt Characters////////////////////
 	
 	while (i < size) {
+		/* If key length has been reached point it to 0 once more. */
 		if (j == strlen(key)) {
 			j = 0;
 		}
-
+		/* Only shift if it is a visible character. */
 		if (output[i] != '\n' && output[i] != ' ' && output[i] != '\r') {
 			offset = key[j] - ASCII_START;
 			if (output[i] + offset > ASCII_END) {
@@ -170,9 +179,18 @@ urizen_size getSizeOfFile(const urizen_str filename) {
 	urizen_int size = 0;
 	FILE* inputFile;
 
-	inputFile = fopen(filename, "r");
-	fseek(inputFile, 0, SEEK_END);
+	inputFile = fopen(filename, "rb");
+
+	if (!inputFile) {
+		printf("ERROR: The input file %s could not be reached.\n", filename);
+		return 1;
+	}
+
+	if (fseek(inputFile, 0, SEEK_END)) {
+		printf("ERROR: fseek operation failed for %s\n", filename);
+	}
 	size = ftell(inputFile);
+	fclose(inputFile);
     // TO_DO: Use the logic to get the size of the file
     return size;
 }

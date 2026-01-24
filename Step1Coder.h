@@ -65,6 +65,7 @@
 #define CYPHER 1
 #define DECYPHER 0
 
+
 /* FUNCTIONS DECLARATION:  .................................. */
 
 /* General Operations */

@@ -60,7 +60,7 @@
 
 /* TO_DO: Adjust your language (cannot be "Sofia") */
 /* Language name */
-#define STR_LANGNAME	"Urizen"
+#define STR_LANGNAME "Urizen"
 
 /* Logical constants - adapt for your language */
 #define URIZEN_TRUE  1
