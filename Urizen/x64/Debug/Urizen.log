@@ -1,4 +1,2 @@
 ﻿  Step1Coder.c
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(85,3): warning C4098: 'vigenereFile': 'void' function returning a value
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(89,3): warning C4098: 'vigenereFile': 'void' function returning a value
   Urizen.vcxproj -> C:\Users\David Jacob\Compilers\source\repos\Urizen\x64\Debug\Urizen.exe
