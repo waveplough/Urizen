@@ -112,10 +112,12 @@ void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileNam
 urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, urizen_int encode) {
 
 	FILE* inputFile;
-	urizen_size size;
+	urizen_int size;
 	urizen_str output;
-	urizen_int i = 0, j = 0;
+
 	urizen_char offset;
+	urizen_int i = 0;
+	urizen_int j = 0;
 
 	/* Check key first (cheap check) */
 	if (!key || strlen(key) == 0) {
@@ -124,7 +126,7 @@ urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, uri
 	}
 
 	/* Get file size */
-	size = getSizeOfFile(inputFileName);
+	size = (urizen_int)getSizeOfFile(inputFileName);
 
 	if (size == 0) {
 		printf("Warning: File %s is empty.\n", inputFileName);
@@ -147,7 +149,7 @@ urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, uri
 	}
 
 	/* Read file */
-	if (fread(output, sizeof(urizen_char), size, inputFile) != size) {
+	if ((urizen_int)fread(output, sizeof(urizen_char), size, inputFile) != size) {
 		printf("ERROR: the input file %s could not be read.\n", inputFileName);
 		free(output);
 		fclose(inputFile);
@@ -157,52 +159,51 @@ urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, uri
 	output[size] = '\0';
 	fclose(inputFile);
 
-	/////////////////Encypt Characters////////////////////
-	if (encode) {
-		while (i < size) {
-			/* If key length has been reached point it to 0 once more. */
-			if (j == strlen(key)) {
-				j = 0;
-			}
-			/* Only shift if it is a visible character. */
-			if (output[i] != '\n' && output[i] != '\r') {
-				offset = key[j] - ASCII_START;
-				int sum = output[i] + offset;
+	output = vigenereImpl(output, key, encode, size);
+
+	return output;
+}
+
+/* Implements the vigenere cypher. */
+urizen_str vigenereImpl(urizen_str output,const urizen_str key,urizen_int encode, urizen_int size) {
+	urizen_char offset;
+	urizen_int i = 0;
+	urizen_int j = 0;
+
+	while (i < size) {
+
+		if (j == (urizen_int)strlen(key)) {
+			j = 0;
+		}
+
+		if (output[i] != '\n' && output[i] != '\r' ) {
+			offset = key[j] - ASCII_START + 1;
+			if (encode) {
+				urizen_int sum = output[i] + offset;
 				if (sum > ASCII_END) {
 					output[i] = sum - ASCII_RANGE;
 				}
 				else {
 					output[i] = sum;
 				}
-				j++;
 			}
-			i++;
-		}
-	}
-	else {
-		while (i < size) {
-			/* If key length has been reached point it to 0 once more. */
-			if (j == strlen(key)) {
-				j = 0;
-			}
-			/* Only shift if it is a visible character. */
-			if (output[i] != '\n' && output[i] != '\r') {
-				offset = key[j] - ASCII_START;
-				int  diff = output[i] - offset;
+			else {
+				urizen_int diff = output[i] - offset;
 				if (diff < ASCII_START) {
 					output[i] = diff + ASCII_RANGE;
 				}
 				else {
-					output[i]  = diff;
+					output[i] = diff;
 				}
-				j++;
 			}
-			i++;
+			j++;
 		}
-
+		i++;
+		
 	}
 
 	return output;
+
 }
 
 // Function to encode (cypher)
@@ -224,11 +225,13 @@ urizen_size getSizeOfFile(const urizen_str filename) {
 
 	if (!inputFile) {
 		printf("ERROR: The input file %s could not be reached.\n", filename);
-		return 1;
+		return 0;
 	}
 
 	if (fseek(inputFile, 0, SEEK_END)) {
 		printf("ERROR: fseek operation failed for %s\n", filename);
+		fclose(inputFile);
+		return 0;
 	}
 	size = ftell(inputFile);
 	fclose(inputFile);

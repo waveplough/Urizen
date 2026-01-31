@@ -71,6 +71,7 @@
 /* General Operations */
 void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key, urizen_int encode);
 urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, urizen_int encode);
+urizen_str vigenereImpl(urizen_str output, urizen_str key, urizen_int encode, urizen_int size);
 
 void cypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key);
 void decypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key);

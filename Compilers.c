@@ -125,7 +125,7 @@ urizen_int main(int argc, char** argv) {
 *************************************************************
 */
 
-urizen_void printLogo() {
+urizen_void printLogo(urizen_void) {
 	printf("%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
 		"\t=---------------------------------------= \n",
 		"\t|  COMPILERS - ALGONQUIN COLLEGE (W26)  | \n",

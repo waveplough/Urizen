@@ -117,7 +117,7 @@ Main functions signatures
 */
 urizen_int main1Coder	(urizen_int argc, urizen_str* argv);
 
-urizen_void printLogo();
+urizen_void printLogo(urizen_void);
 urizen_void errorPrint(urizen_str fmt, ...);
 
 #endif

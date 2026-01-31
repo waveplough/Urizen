@@ -1,2 +1,9 @@
 ﻿  Step1Coder.c
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(118,14): warning C4101: 'offset': unreferenced local variable
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(120,13): warning C4189: 'j': local variable is initialized but not referenced
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(119,13): warning C4189: 'i': local variable is initialized but not referenced
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(184,22): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(187,18): warning C4242: '=': conversion from 'urizen_int' to 'char', possible loss of data
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(193,23): warning C4244: '=': conversion from 'int' to 'char', possible loss of data
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(196,18): warning C4242: '=': conversion from 'urizen_int' to 'char', possible loss of data
   Urizen.vcxproj -> C:\Users\David Jacob\Compilers\source\repos\Urizen\x64\Debug\Urizen.exe
