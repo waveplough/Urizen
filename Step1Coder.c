@@ -115,10 +115,6 @@ urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, uri
 	urizen_int size;
 	urizen_str output;
 
-	urizen_char offset;
-	urizen_int i = 0;
-	urizen_int j = 0;
-
 	/* Check key first (cheap check) */
 	if (!key || strlen(key) == 0) {
 		printf("ERROR: The key is empty, enter a valid key.\n");
@@ -181,19 +177,19 @@ urizen_str vigenereImpl(urizen_str output,const urizen_str key,urizen_int encode
 			if (encode) {
 				urizen_int sum = output[i] + offset;
 				if (sum > ASCII_END) {
-					output[i] = sum - ASCII_RANGE;
+					output[i] = (urizen_char)(sum - ASCII_RANGE);
 				}
 				else {
-					output[i] = sum;
+					output[i] = (urizen_char)sum;
 				}
 			}
 			else {
 				urizen_int diff = output[i] - offset;
 				if (diff < ASCII_START) {
-					output[i] = diff + ASCII_RANGE;
+					output[i] = (urizen_char)(diff + ASCII_RANGE);
 				}
 				else {
-					output[i] = diff;
+					output[i] = (urizen_char)diff;
 				}
 			}
 			j++;

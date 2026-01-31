@@ -140,7 +140,7 @@ urizen_int main1Coder(urizen_int argc, urizen_str* argv) {
 		else 
 			output = vigenereMem(outputFileName, key, CYPHER);
 		//printf("OUTPUT:\n%s\n", output);
-		for (int i = 0; i < size; i++) {
+		for (urizen_int i = 0; i < size; i++) {
 			printf("%c", output[i]);
 		}
 	}
