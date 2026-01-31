@@ -115,6 +115,9 @@ urizen_int main1Coder(urizen_int argc, urizen_str* argv) {
 	urizen_str outputFileName = "";
 
 	if (argc > 4) {
+		urizen_int size;
+		urizen_str output;
+		urizen_int i;
 
 		operation = argv[2]; /* operations on the 3rd row. */
 		inputFileName = argv[3]; /* input file name on the 4th row. */
@@ -133,16 +136,20 @@ urizen_int main1Coder(urizen_int argc, urizen_str* argv) {
 		printf("Operation '%s' completed successfully.\n", operation);
 
 		// Call the other operation in memory
-		urizen_int size = getSizeOfFile(outputFileName);
-		urizen_str output;
+		size = (urizen_int)getSizeOfFile(outputFileName);
+
 		if (atoi(operation) == CYPHER)
 			output = vigenereMem(outputFileName, key, DECYPHER);
 		else 
 			output = vigenereMem(outputFileName, key, CYPHER);
-		//printf("OUTPUT:\n%s\n", output);
-		for (urizen_int i = 0; i < size; i++) {
-			printf("%c", output[i]);
+
+		if (output) {
+			for ( i = 0; i < size; i++) {
+				printf("%c", output[i]);
+			}
+			free(output);
 		}
+		
 	}
 	return EXIT_SUCCESS;
 }

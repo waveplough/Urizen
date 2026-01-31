@@ -80,6 +80,8 @@
 urizen_int main(int argc, char** argv) {
 
 	urizen_int i;
+	urizen_char option;
+
 	printLogo();
 	if (DEBUG) {
 		for (i = 0; i < argc; ++i)
@@ -94,7 +96,7 @@ urizen_int main(int argc, char** argv) {
 			PGM_WRT, "] - Writer\n");
 		return EXIT_FAILURE;
 	}
-	urizen_char option = argv[1][0];
+	option = argv[1][0];
 	switch (option) {
 	case PGM_CDR:
 		printf("%s%c%s", "\n[Option '", PGM_CDR, "': Starting CODER .....]\n\n");

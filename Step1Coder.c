@@ -66,7 +66,7 @@
 
 
 // Function to perform the Vigenère cipher (encoding or decoding)
-void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key, urizen_int encode) {
+urizen_void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key, urizen_int encode) {
 
 	/* output file pointers. */
 	FILE* outputFile;
@@ -84,26 +84,16 @@ void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileNam
 		return;
 	}
 
-	if (encode) {
-		output = vigenereMem(inputFileName, key, CYPHER);
-		if (!output) {
-			fclose(outputFile);
-			return;
-		}
-		size = getSizeOfFile(inputFileName);
-		fwrite(output, sizeof(char), size, outputFile);
-		free(output);
+	output = vigenereMem(inputFileName, key, encode ? CYPHER : DECYPHER);
+
+	if (!output) {
+		fclose(outputFile);
+		return;
 	}
-	else {
-		output = vigenereMem(inputFileName, key, DECYPHER);
-		if (!output) { 
-			fclose(outputFile);
-			return;
-		}
-		size = getSizeOfFile(inputFileName);
-		fwrite(output, sizeof(char), size, outputFile);
-		free(output);
-	}
+
+	size = getSizeOfFile(inputFileName);
+	fwrite(output, sizeof(urizen_char), size, outputFile);
+	free(output);
 
 	fclose(outputFile);
 }
@@ -165,10 +155,11 @@ urizen_str vigenereImpl(urizen_str output,const urizen_str key,urizen_int encode
 	urizen_char offset;
 	urizen_int i = 0;
 	urizen_int j = 0;
+	urizen_int keyLen = (urizen_int)strlen(key);
 
 	while (i < size) {
 
-		if (j == (urizen_int)strlen(key)) {
+		if (j == keyLen) {
 			j = 0;
 		}
 
@@ -203,12 +194,12 @@ urizen_str vigenereImpl(urizen_str output,const urizen_str key,urizen_int encode
 }
 
 // Function to encode (cypher)
-void cypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key) {
+urizen_void cypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key) {
     vigenereFile(inputFileName, outputFileName, key, CYPHER); /* vigFile controller selects */
 }
 
 // Function to decode (decypher)
-void decypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key) {
+urizen_void decypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key) {
     vigenereFile(inputFileName, outputFileName, key, DECYPHER);
 }
 
@@ -230,6 +221,11 @@ urizen_size getSizeOfFile(const urizen_str filename) {
 		return 0;
 	}
 	size = ftell(inputFile);
+
+	if (size < 0) {
+		return 0;
+	}
+
 	fclose(inputFile);
 
     return size;
