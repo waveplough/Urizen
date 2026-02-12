@@ -36,7 +36,7 @@
 * File name: compilers.c
 * Compiler: MS Visual Studio 2026
 * Course: CST 8152 – Compilers, Lab Section: [301]
-* Assignment: A12, A22, A32.
+* Assignment: A1
 * Date: Jan 31 2026
 * Professor: Paulo Sousa
 * Purpose: This file is the main program of Compilers Project
@@ -102,6 +102,9 @@ urizen_int main(int argc, char** argv) {
 		printf("%s%c%s", "\n[Option '", PGM_CDR, "': Starting CODER .....]\n\n");
 		main1Coder(argc, argv);
 		break;
+	case PGM_RDR:
+		printf("%s%c%s", "\n[Option '", PGM_RDR, "': Starting READER .....]\n\n");
+		main2Reader(argc, argv);
 	default:
 		printf("%s%c%s%c%s%c%s%c%s%c%s", "OPTIONS:\n* [",
 			PGM_CDR, "] - Coder\n* [",

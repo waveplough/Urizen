@@ -36,7 +36,7 @@
 * File name: MainCoder.c
 * Compiler: MS Visual Studio 2026
 * Course: CST 8152 – Compilers, Lab Section: [301]
-* Assignment: A12, A22, A32.
+* Assignment: A1
 * Date: Jan 31 2026
 * Professor: Paulo Sousa
 * Purpose: This file is the main code for Buffer/Reader (A12)

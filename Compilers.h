@@ -36,7 +36,7 @@
 * File name: Compilers.h
 * Compiler: MS Visual Studio 2026
 * Course: CST 8152 – Compilers, Lab Section: [301]
-* Assignment: A1-A5.
+* Assignment: A1
 * Date: Jan 31 2026
 * Professor: Paulo Sousa
 * Purpose: This file defines the functions called by main function.
@@ -116,6 +116,7 @@ Main functions signatures
 ------------------------------------------------------------
 */
 urizen_int main1Coder	(urizen_int argc, urizen_str* argv);
+urizen_int main2Reader   (urizen_int argc, urizen_str* argv);
 
 urizen_void printLogo(urizen_void);
 urizen_void errorPrint(urizen_str fmt, ...);

@@ -36,7 +36,7 @@
 * File name: Reader.c
 * Compiler: MS Visual Studio 2026
 * Course: CST 8152 – Compilers, Lab Section: [301]
-* Assignment: A12.
+* Assignment: A1.
 * Date: Jan 31 2026
 * Professor: Paulo Sousa
 * Purpose: This file is the main code for Buffer/Reader (A12)
@@ -149,7 +149,8 @@ urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, uri
 		return NULL;
 	}
 	/* Set null terminator so that that function such as printf know when the string ends. */
-	output[size] = '\0';
+	output[size] = EOF_CHAR;
+
 	/* Close the file. */
 	fclose(inputFile);
 

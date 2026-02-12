@@ -1,5 +1,38 @@
-﻿  Main1Coder.c
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Main1Coder.c(157,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Main1Coder.c(157,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Main1Coder.c(156) : note: index 'i' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Main1Coder.c(157,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Main1Coder.c(157) : note: feeds call on this line
+﻿  Main2Reader.c
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(135,15): warning C4131: 'readerCreate': uses old-style declarator
+  (compiling source file 'Main2Reader.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Main2Reader.c(146,93): warning C4100: 'factor': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Main2Reader.c(146,74): warning C4100: 'size': unreferenced parameter
+  Step2Reader.c
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(135,15): warning C4131: 'readerCreate': uses old-style declarator
+  (compiling source file 'Step2Reader.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(91,58): warning C4100: 'factor': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(128,76): warning C4100: 'ch': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(129,13): warning C4189: 'tempReader': local variable is initialized but not referenced
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(130,13): warning C4189: 'newSize': local variable is initialized but not referenced
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(160,45): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(181,44): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(201,46): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(222,47): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(243,73): warning C4100: 'mark': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(243,47): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(264,44): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(286,69): warning C4100: 'fileName': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(286,43): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(307,47): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(328,47): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(349,47): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(371,47): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(393,75): warning C4100: 'pos': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(393,49): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(413,49): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(434,49): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(455,49): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(476,46): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(521,49): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(539,48): warning C4100: 'readerPointer': unreferenced parameter
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(560,41): warning C4100: 'readerPointer': unreferenced parameter
+  Generating Code...
   Urizen.vcxproj -> C:\Users\David Jacob\Compilers\source\repos\Urizen\x64\Debug\Urizen.exe
