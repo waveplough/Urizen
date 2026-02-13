@@ -159,18 +159,47 @@ BufferPointer readerCreate(urizen_int size, urizen_float factor) {
 BufferPointer readerAddChar(BufferPointer const readerPointer, urizen_char ch) {
 	urizen_str tempReader = NULL;
 	urizen_int newSize = 0;
+
 	/* TO_DO: Defensive programming */
+	if (!readerPointer) {
+		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
+		return NULL;
+	}
+
+	/* ensure you aren't attempting to read past eof */
+	if (feof(ch)) {
+		printf("%s:%d | error: feof has been reached\n", __FILE__, __LINE__);
+		return NULL;
+	}
+
 	/* TO_DO: Test the inclusion of chars */
 	if (readerPointer->position.write * (urizen_int)sizeof(urizen_char) < readerPointer->size) {
 		/* TO_DO: Buffer not full: set flag */
+		readerPointer->flags.isFull = URIZEN_FALSE;
 	}
 	else {
+		urizen_int ratio;
+
 		/* TO_DO: Reset Full flag */
+		readerPointer->flags.isFull = URIZEN_TRUE;
+
 		/* TO_DO: Adjust the size to be duplicated */
+		ratio = (urizen_float)(1.0 + readerPointer->factor);
+		newSize = (urizen_int)(readerPointer->size * ratio);
+
 		/* TO_DO: Defensive programming */
+		if (newSize <=0 || newSize > READER_MAX_SIZE) {
+			printf("%s:%d | warning: error increasing reader size\n", __FILE__, __LINE__);
+			return NULL;
+		}
 	}
 	/* TO_DO: Add the char */
+	readerPointer->content[readerPointer->position.write] = ch;
+	readerPointer->position.write++;
+
 	/* TO_DO: Updates histogram */
+	readerPointer->histogram[ch]++;
+	
 	return readerPointer;
 }
 
@@ -321,20 +350,30 @@ urizen_int readerPrint(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_int readerLoad(BufferPointer const readerPointer, urizen_str fileName) {
+	char c = 0;
+
 	/* TO_DO: Defensive programming */
 	if (!readerPointer) {
-		printf("%s:%d | error: NULL pointer found\n", __FILE__, __LINE__);
+		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
+		return READER_ERROR;
 	}
 
 	/* TO_DO: Loads the file */
 	FILE* f = fopen(fileName, "rb");
 
+	/* if the file can't be opened */
 	if (!f) {
 		printf("%s:%d | error: file could not be opened\n", __FILE__, __LINE__);
+		return READER_ERROR;
 	}
 
 	/* TO_DO: Creates the string calling vigenereMem(fileName, STR_LANGNAME, DECYPHER) */
 	urizen_str clearText = vigenereMem(fileName, STR_LANGNAME, DECYPHER);
+
+	/* read character by character until you reach EOF */
+	while ((c = fgetc(clearText)) != EOF) {
+		readerAddChar(readerPointer, c); /* for each character, call readerAddChar to validate and add it to content */
+	}
 
 	return 0;
 }
@@ -419,6 +458,9 @@ urizen_bool readerRestore(BufferPointer const readerPointer) {
 */
 urizen_char readerGetChar(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
+	if (!readerPointer) {
+		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
+	}
 	/* TO_DO: Returns size in the read position and updates read */
 	return '\0';
 }

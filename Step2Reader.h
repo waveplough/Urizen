@@ -104,17 +104,17 @@
 
 /* Offset declaration */
 typedef struct position {
-	urizen_int write;					/* the offset to the add chars (in chars) */
-	urizen_int read;					/* the offset to the get a char position (in chars) */
-	urizen_int mark;					/* the offset to the mark position (in chars) */
+	urizen_int		write;					/* the offset to the add chars (in chars) */
+	urizen_int		read;					/* the offset to the get a char position (in chars) */
+	urizen_int		mark;					/* the offset to the mark position (in chars) */
 } Position;
 
 /* Flags declaration */
 typedef struct flag {
-	urizen_bool isEmpty;					/* checks if there is no content */
-	urizen_bool isFull;					/* the content is using all size */
-	urizen_bool isRead;					/* all content was read */
-	urizen_bool isMoved;					/* the content was moved in reallocation */
+	urizen_bool		isEmpty;					/* checks if there is no content */
+	urizen_bool		isFull;					/* the content is using all size */
+	urizen_bool		isRead;					/* all content was read */
+	urizen_bool		isMoved;					/* the content was moved in reallocation */
 } Flag;
 
 /* Buffer structure */
