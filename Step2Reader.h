@@ -95,7 +95,8 @@
 */
 
 #define NCHAR				128			/* Chars from 0 to 127 */
-
+#define ASCII_FIRST			  0
+#define ASCII_LAST			127
 #define CHARSEOF			(-1)		/* EOF Code for Reader */
 
 /* STRUCTURES DEFINITION: SUFIXED BY LANGUAGE NAME .................................. */
@@ -149,7 +150,7 @@ urizen_int		readerChecksum(BufferPointer const);
 urizen_char		readerGetChar(BufferPointer const);
 urizen_str		readerGetContent(BufferPointer const, urizen_int);
 urizen_int		readerGetPosRead(BufferPointer const);
-urizen_int		readerGetPosWrte(BufferPointer const);
+urizen_int		readerGetPosWrite(BufferPointer const);
 urizen_int		readerGetPosMark(BufferPointer const);
 urizen_int		readerGetSize(BufferPointer const);
 urizen_void		readerPrintFlags(BufferPointer const);
