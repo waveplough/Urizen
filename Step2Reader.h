@@ -133,7 +133,7 @@ typedef struct bufferReader {
 /* FUNCTIONS DECLARATION:  .................................. */
 
 /* General Operations */
-BufferPointer	readerCreate(sofia_intg, sofia_real);
+BufferPointer	readerCreate(urizen_int, urizen_float);
 BufferPointer	readerAddChar(BufferPointer const, urizen_char);
 urizen_bool		readerClear(BufferPointer const);
 urizen_bool		readerFree(BufferPointer const);

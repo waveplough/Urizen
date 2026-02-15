@@ -247,9 +247,9 @@ urizen_void displayBuffer(BufferPointer ptr_Buffer) {
 	printf("The size of the buffer is:  %d\n",
 		readerGetSize(ptr_Buffer));
 	printf("The current size of the buffer is:  %d\n",
-		readerGetPosWrte(ptr_Buffer));
+		readerGetPosWrite(ptr_Buffer));
 	printf("The first symbol in the buffer is:  %c\n",
-		readerGetPosWrte(ptr_Buffer) ? *readerGetContent(ptr_Buffer, 0) : ' ');
+		readerGetPosWrite(ptr_Buffer) ? *readerGetContent(ptr_Buffer, 0) : ' ');
 	printf("The value of the flags:\n");
 	readerPrintFlags(ptr_Buffer);
 	printf("Checksum: %d\n", readerChecksum(ptr_Buffer));
