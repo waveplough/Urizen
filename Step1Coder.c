@@ -91,6 +91,7 @@ urizen_void vigenereFile(const urizen_str inputFileName, const urizen_str output
 		fclose(outputFile);
 		return;
 	}
+
 	/* retrieve the size of the file. */
 	size = getSizeOfFile(inputFileName);
 

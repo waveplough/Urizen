@@ -216,10 +216,12 @@ BufferPointer readerAddChar(BufferPointer const readerPointer, urizen_char ch) {
 		}
 
 		readerPointer->content = tempReader;
+		readerPointer->factor = ratio;
 		readerPointer->size = newSize;
 
-		readerPointer->flags.isFull = URIZEN_FALSE;
+		printf("\nThe new size is %d bytes\n\n", newSize);
 
+		readerPointer->flags.isFull = URIZEN_FALSE;
 	}
 
 	/* TO_DO: Add the char */
@@ -385,9 +387,23 @@ urizen_bool readerSetMark(BufferPointer const readerPointer, urizen_int mark) {
 *************************************************************
 */
 urizen_int readerPrint(BufferPointer const readerPointer) {
+	int i = 0;
+	int num = 0;
 	/* TO_DO: Defensive programming (including invalid chars) */
+	if (!readerPointer) {
+		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
+		return READER_ERROR;
+	}
 	/* TO_DO: Print the buffer content */
-	return 0;
+	while(readerPointer->content[i]) {
+		printf("%c", readerPointer->content[i]);
+		num++;
+		i++;
+	}
+
+	printf("\n\n");
+
+	return num;
 }
 
 /*
@@ -407,7 +423,7 @@ urizen_int readerPrint(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_int readerLoad(BufferPointer const readerPointer, urizen_str fileName) {
-	char c = 0;
+	int c = 0;
 	int num = 0;
 
 	/* TO_DO: Defensive programming */
@@ -430,8 +446,11 @@ urizen_int readerLoad(BufferPointer const readerPointer, urizen_str fileName) {
 
 	/* read character by character until you reach EOF */
 	while ((c = fgetc(f)) != EOF) {
-		readerAddChar(readerPointer, c); /* for each character, call readerAddChar to validate and add it to content */
-		num++;
+		/* for each character, call readerAddChar to validate and add it to content */
+		if (readerAddChar(readerPointer, (urizen_char)c) != NULL) { 
+			num++;
+		}
+		
 	}
 	
 	fclose(f);
