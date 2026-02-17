@@ -244,7 +244,7 @@ urizen_int isNumber(const urizen_str ns) {
 */
 urizen_void displayBuffer(BufferPointer ptr_Buffer) {
 	printf("\nPrinting buffer parameters:\n\n");
-	printf("The size of the buffer is:  %d\n",
+	printf("The capacity of the buffer is:  %d\n",
 		readerGetSize(ptr_Buffer));
 	printf("The current size of the buffer is:  %d\n",
 		readerGetPosWrite(ptr_Buffer));

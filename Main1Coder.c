@@ -115,7 +115,7 @@ urizen_int main1Coder(urizen_int argc, urizen_str* argv) {
 	clock_t end = 0;
 
 	if (argc < 5) {
-		printf("Usage: %s [cypher=1|decypher=0] <input_file> <output_file>\n", argv[0]);
+		printf("Usage: %s [1=Coder|2=Reader] [cypher=1|decypher=0] <input_file> <output_file>\n", argv[0]);
 		return EXIT_FAILURE;
 	}
 

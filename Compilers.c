@@ -105,6 +105,7 @@ urizen_int main(int argc, char** argv) {
 	case PGM_RDR:
 		printf("%s%c%s", "\n[Option '", PGM_RDR, "': Starting READER .....]\n\n");
 		main2Reader(argc, argv);
+		break;
 	default:
 		printf("%s%c%s%c%s%c%s%c%s%c%s", "OPTIONS:\n* [",
 			PGM_CDR, "] - Coder\n* [",
