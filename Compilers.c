@@ -64,18 +64,18 @@
  * ............................................................................
  */
 
-/*
-***********************************************************
-* Function name: main
-* Purpose: Main function
-* Author: Paulo Sousa
-* History/Versions: Ver W26
-* Called functions: mainReader(), mainScanner(), mainParser()
-* Parameters: Command line arguments - argc, argv
-* Return value: Status
-* Algorithm: -
-*************************************************************
-*/
+ /*
+ ***********************************************************
+ * Function name: main
+ * Purpose: Main function
+ * Author: Paulo Sousa
+ * History/Versions: Ver W26
+ * Called functions: mainReader(), mainScanner(), mainParser()
+ * Parameters: Command line arguments - argc, argv
+ * Return value: Status
+ * Algorithm: -
+ *************************************************************
+ */
 
 urizen_int main(int argc, char** argv) {
 

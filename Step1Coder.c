@@ -65,7 +65,7 @@
 #endif
 
 
-/* Function to perform the Vigenère cipher(encoding or decoding) */
+ /* Function to perform the Vigenère cipher(encoding or decoding) */
 urizen_void vigenereFile(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key, urizen_int encode) {
 
 	/* Declare variable at the top of the block. */
@@ -75,11 +75,11 @@ urizen_void vigenereFile(const urizen_str inputFileName, const urizen_str output
 
 
 	/* Create a file for reading and writing. */
-	outputFile = fopen(outputFileName, "wb"); 
+	outputFile = fopen(outputFileName, "wb");
 
 	/* Null check */
 	if (!outputFile) {
-		printf("ERROR: The output file %s could not be reached.\n",outputFileName);
+		printf("ERROR: The output file %s could not be reached.\n", outputFileName);
 		return;
 	}
 
@@ -162,7 +162,7 @@ urizen_str vigenereMem(const urizen_str inputFileName, const urizen_str key, uri
 }
 
 /* Implements the vigenere cypher. */
-urizen_str vigenereImpl(urizen_str output,const urizen_str key,urizen_int encode, urizen_int size) {
+urizen_str vigenereImpl(urizen_str output, const urizen_str key, urizen_int encode, urizen_int size) {
 	/* Declare variable at the top of the block. */
 	urizen_char offset;
 	urizen_int i = 0;
@@ -176,7 +176,7 @@ urizen_str vigenereImpl(urizen_str output,const urizen_str key,urizen_int encode
 			j = 0;
 		}
 		/* Encrypt all characters besides new lines and carriage returns. */
-		if (output[i] != '\n' && output[i] != '\r' ) {
+		if (output[i] != '\n' && output[i] != '\r') {
 			/* Calculate the offset by subtracting the value of the first visible ASCII character's index @ASCII_START from the key's index. */
 			offset = key[j] - ASCII_START + 1;
 			if (encode) {
@@ -208,7 +208,7 @@ urizen_str vigenereImpl(urizen_str output,const urizen_str key,urizen_int encode
 			j++;
 		}
 		i++;
-		
+
 	}
 
 	return output;
@@ -217,12 +217,12 @@ urizen_str vigenereImpl(urizen_str output,const urizen_str key,urizen_int encode
 
 /* Function to encode(cypher) */
 urizen_void cypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key) {
-    vigenereFile(inputFileName, outputFileName, key, CYPHER); /* vigFile controller selects */
+	vigenereFile(inputFileName, outputFileName, key, CYPHER); /* vigFile controller selects */
 }
 
 /* Function to decode(decypher) */
 urizen_void decypher(const urizen_str inputFileName, const urizen_str outputFileName, const urizen_str key) {
-    vigenereFile(inputFileName, outputFileName, key, DECYPHER);
+	vigenereFile(inputFileName, outputFileName, key, DECYPHER);
 }
 
 /* Computes the file size(util method) */
@@ -257,5 +257,5 @@ urizen_size getSizeOfFile(const urizen_str filename) {
 	/* Close the input file. */
 	fclose(inputFile);
 
-    return (urizen_size)size;
+	return (urizen_size)size;
 }

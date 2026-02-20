@@ -52,7 +52,7 @@
  * The #define _CRT_SECURE_NO_WARNINGS should be used in MS Visual Studio projects
  * to suppress the warnings about using "unsafe" functions like fopen()
  * and standard sting library functions defined in string.h.
- * The define directive does not have any effect on other compiler projects 
+ * The define directive does not have any effect on other compiler projects
  * (Gcc, VSCode, Codeblocks, etc.).
  *.............................................................................
  */
@@ -87,24 +87,24 @@
  * (see "Compilers.h")
  */
 
-/*
- * -------------------------------------------------------------
- *  Function declarations
- * -------------------------------------------------------------
- */
+ /*
+  * -------------------------------------------------------------
+  *  Function declarations
+  * -------------------------------------------------------------
+  */
 
-/*
-************************************************************
-* Coder starting method
-* Params:
-*	- Mode: Cypher/decypher
-*	- Input: Filename
-*   - Key: Encrypt word
-*	- Output: Filename
-************************************************************
-*/
+  /*
+  ************************************************************
+  * Coder starting method
+  * Params:
+  *	- Mode: Cypher/decypher
+  *	- Input: Filename
+  *   - Key: Encrypt word
+  *	- Output: Filename
+  ************************************************************
+  */
 
-/* Main function to handle command - line arguments */
+  /* Main function to handle command - line arguments */
 urizen_int main1Coder(urizen_int argc, urizen_str* argv) {
 
 	urizen_str operation = "";
@@ -151,18 +151,17 @@ urizen_int main1Coder(urizen_int argc, urizen_str* argv) {
 
 		if (atoi(operation) == CYPHER)
 			output = vigenereMem(outputFileName, key, DECYPHER);
-		else 
+		else
 			output = vigenereMem(outputFileName, key, CYPHER);
 
 		if (output) {
-			for ( i = 0; i < size; i++) {
+			for (i = 0; i < size; i++) {
 				printf("%c", output[i]);
 			}
 			printf("\n");
 			free(output);
 		}
-		
+
 	}
 	return EXIT_SUCCESS;
 }
-

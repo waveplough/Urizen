@@ -57,7 +57,7 @@
 #ifndef CODER_H_
 #define CODER_H_
 
-/* ASCII range for visible characters */
+ /* ASCII range for visible characters */
 #define ASCII_START 32
 #define ASCII_END 126
 #define ASCII_RANGE (ASCII_END - ASCII_START + 1)

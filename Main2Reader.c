@@ -52,7 +52,7 @@
  * The #define _CRT_SECURE_NO_WARNINGS should be used in MS Visual Studio projects
  * to suppress the warnings about using "unsafe" functions like fopen()
  * and standard sting library functions defined in string.h.
- * The define directive does not have any effect on other compiler projects 
+ * The define directive does not have any effect on other compiler projects
  * (Gcc, VSCode, Codeblocks, etc.).
  *.............................................................................
  */
@@ -90,11 +90,11 @@
  * (see "Compilers.h")
  */
 
-/*
- * -------------------------------------------------------------
- *  Function declarations
- * -------------------------------------------------------------
- */
+ /*
+  * -------------------------------------------------------------
+  *  Function declarations
+  * -------------------------------------------------------------
+  */
 urizen_void displayBuffer(BufferPointer ptr_Buffer);
 urizen_long getFileSize(urizen_str fname);
 urizen_int isNumber(const urizen_str ns);
@@ -262,4 +262,3 @@ urizen_void displayBuffer(BufferPointer ptr_Buffer) {
 	if (!readerPrint(ptr_Buffer))
 		printf("Empty buffer\n");
 }
-

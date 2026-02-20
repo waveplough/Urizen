@@ -1,0 +1,5 @@
+
+Date: Feb 17 2026  Time: 12:54:03
+Runtime error at line 130 in file main2reader.c
+compilers: Missing parameters.
+Usage: <Option=2> <SourceFile>
