@@ -195,11 +195,18 @@ BufferPointer readerAddChar(BufferPointer const readerPointer, urizen_char ch) {
 		ratio = (urizen_float)(1.0 + readerPointer->factor);
 		newSize = (urizen_int)(readerPointer->size * ratio);
 
+
 		/* Defensive programming */
-		if (newSize <= 0 || newSize > READER_MAX_SIZE) {
+		if (newSize <= 0) {
 			printf("%s:%d | warning: error increasing reader size\n", __FILE__, __LINE__);
 			return NULL;
 		}
+
+		/* If new size exceeds the readers max size, truncate the value to match it. */
+		if (newSize > READER_MAX_SIZE) {
+			newSize -= (newSize - READER_MAX_SIZE);
+		} 
+		
 
 		/* Realloc content memory and check if the memory address was duplicated. */
 		tempReader = (urizen_str)realloc(readerPointer->content, newSize);
@@ -466,6 +473,13 @@ urizen_int readerLoad(BufferPointer const readerPointer, urizen_str inputFileNam
 
 	/* read character by character until you reach EOF */
 	while ((c = fgetc(fOut)) != EOF) {
+
+		/* If max size is reached, break out of the loop */
+		if (readerGetPosWrite(readerPointer) >= READER_MAX_SIZE) {
+			printf("warning: max size has been reached\n");
+			break;
+		}
+
 		/* for each character, call readerAddChar to validate and add it to content */
 		if (readerAddChar(readerPointer, (urizen_char)c) != NULL) {
 			num++;
