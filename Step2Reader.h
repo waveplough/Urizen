@@ -113,8 +113,8 @@ typedef struct position {
 /* Flags declaration */
 typedef struct flag {
 	urizen_bool		isEmpty;					/* checks if there is no content */
-	urizen_bool		isFull;					/* the content is using all size */
-	urizen_bool		isRead;					/* all content was read */
+	urizen_bool		isFull;						/* the content is using all size */
+	urizen_bool		isRead;						/* all content was read */
 	urizen_bool		isMoved;					/* the content was moved in reallocation */
 } Flag;
 

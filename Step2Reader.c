@@ -249,9 +249,22 @@ BufferPointer readerAddChar(BufferPointer const readerPointer, urizen_char ch) {
 */
 urizen_bool readerClear(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
+	if (!readerPointer) {
+		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
+		return URIZEN_FALSE;
+	}
+
 	/* TO_DO: Adjust positions to zero */
+	readerPointer->position.read = 0;
+	readerPointer->position.write = 0;
+
 	/* TO_DO: Adjust flags original */
-	return URIZEN_FALSE;
+	readerPointer->flags.isEmpty = URIZEN_TRUE; /* TO_DO: The created flag must be signalized as EMP */
+	readerPointer->flags.isFull = URIZEN_FALSE;
+	readerPointer->flags.isMoved = URIZEN_FALSE;
+	readerPointer->flags.isRead = URIZEN_FALSE;
+
+	return URIZEN_TRUE;
 }
 
 /*
@@ -354,14 +367,20 @@ urizen_bool readerIsEmpty(BufferPointer const readerPointer) {
 */
 urizen_bool readerSetMark(BufferPointer const readerPointer, urizen_int mark) {
 	/* TO_DO: Defensive programming */
+	if (!readerPointer) {
+		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
+		return URIZEN_FALSE;
+	}
+
 	/* TO_DO: Adjust mark */
-	if (!readerPointer || mark < 0 || mark > readerPointer->position.write) {
-		return READER_ERROR;
+	if ( mark < 0 || mark > readerPointer->position.write) {
+		printf("%s:%d | warning: 'mark' out of bounds\n", __FILE__, __LINE__);
+		return URIZEN_FALSE;
 	}
 
 	readerPointer->position.mark = mark;
 
-	return URIZEN_FALSE;
+	return URIZEN_TRUE;
 }
 
 
@@ -568,8 +587,23 @@ urizen_char readerGetChar(BufferPointer const readerPointer) {
 		return READER_ERROR;
 	}
 
+	/* check if read position is invalid */
+	if (readerPointer->position.read < 0) {
+		printf("%s:%d | warning: read position cannot be negative\n", __FILE__, __LINE__);
+		return READER_ERROR;
+	}
+
+	/* check if read position has reached EOF */
+	if (readerPointer->position.read == readerPointer->position.write) {
+		readerPointer->flags.isRead = URIZEN_TRUE;
+		return EOF_CHAR;
+	}
+
+	/* if it hasn't reached EOF thrn set the isRead flag to false */
+	readerPointer->flags.isRead = URIZEN_FALSE;
+
 	/* TO_DO: Returns size in the read position and updates read */
-	return '\0';
+	return readerPointer->content[readerPointer->position.read++];
 }
 
 
@@ -650,11 +684,6 @@ urizen_int readerGetPosWrite(BufferPointer const readerPointer) {
 		return READER_ERROR;
 	}
 
-	if (readerPointer->position.write < 0) {
-		printf("%s:%d | warning: 'write' should be positive\n", __FILE__, __LINE__);
-		return READER_ERROR;
-	}
-
 	/* TO_DO: Return write */
 	return readerPointer->position.write;
 
@@ -677,8 +706,13 @@ urizen_int readerGetPosWrite(BufferPointer const readerPointer) {
 */
 urizen_int readerGetPosMark(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
+	if (!readerPointer) {
+		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
+		return READER_ERROR;
+	}
+
 	/* TO_DO: Return mark */
-	return 0;
+	return readerPointer->position.mark;
 }
 
 
@@ -700,11 +734,6 @@ urizen_int readerGetSize(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
-		return READER_ERROR;
-	}
-
-	if (readerPointer->size < 0) {
-		printf("%s:%d | warning: 'size' should be positive\n", __FILE__, __LINE__);
 		return READER_ERROR;
 	}
 
@@ -814,12 +843,6 @@ urizen_int readerNumErrors(BufferPointer const readerPointer) {
 	/* TO_DO: Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
-		return READER_ERROR;
-	}
-
-	/* validate the number */
-	if (readerPointer->numReaderErrors < 0) {
-		printf("%s:%d | warning: 'numReaderErrors' should be positive\n", __FILE__, __LINE__);
 		return READER_ERROR;
 	}
 
