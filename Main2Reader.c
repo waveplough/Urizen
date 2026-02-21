@@ -120,7 +120,7 @@ urizen_int main2Reader(urizen_int argc, urizen_str* argv) {
 	urizen_float factor = READER_DEFAULT_FACTOR; /*originally 0.0f*/
 
 	/* Missing file name or/and mode parameter */
-	if (argc <= 3) {
+	if (argc != 4) {
 		errorPrint("\nDate: %s  Time: %s", __DATE__, __TIME__);
 		errorPrint("\nRuntime error at line %d in file %s\n", __LINE__, __FILE__);
 		errorPrint("%s\b\b\b\b%s%s", argv[0], ": ", "Missing parameters.");
@@ -264,4 +264,6 @@ urizen_void displayBuffer(BufferPointer ptr_Buffer) {
 	readerRecover(ptr_Buffer);
 	if (!readerPrint(ptr_Buffer))
 		printf("Empty buffer\n");
+
+	validateTokens(ptr_Buffer);
 }

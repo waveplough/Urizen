@@ -126,6 +126,10 @@ C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(895,10): warnin
       C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(895,10):
       consider using '%ld' in the format string
   
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(932,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(932,10):
+      consider using '%ld' in the format string
+  
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(834,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(834,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(830) : note: index 'i' range checked by comparison on this line
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(834,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(834) : note: feeds call on this line

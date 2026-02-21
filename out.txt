@@ -24,7 +24,7 @@
 
 [Option '1': Starting CODER .....]
 
-Operation '1' completed successfully in 0.004000 seconds.
+Operation '1' completed successfully in 0.001000 seconds.
 
 set numbers {10 20 30 40 50}
 set sum 0
@@ -37,7 +37,7 @@ proc factorial {n} {
     if {$n <= 1} {
         return 1
     } else {
-        return [expr {$n * [factorial [expr {$n - 1}]]}]
+        ret}urn [expr {$n * [factorial [expr {$n - 1}]]}]
     }
 }
 
@@ -90,7 +90,7 @@ Now reading file DECRYPTED.txt .....please wait
 Printing buffer parameters:
 
 The capacity of the buffer is:  505
-The current size of the buffer is:  346
+The current size of the buffer is:  347
 The current maxLimit of the buffer is:  2000
 The first symbol in the buffer is:  s
 The value of the flags:
@@ -98,13 +98,13 @@ Flag.isEmpty = 0
 Flag.isFull = 0
 Flag.isMoved = 1
 Flag.isRead = 0
-Checksum: 25959
+Checksum: 26084
 Reader statistics : 
 Char [0x00] = 1 Char [0x0A] = 16 Char [0x0D] = 16 Char [ ] = 81 Char ["] = 4 Char [$] = 8 Char [*] = 1 Char [+] = 1 Char [-] = 1 Char [0] = 6 
 Char [1] = 4 Char [2] = 1 Char [3] = 1 Char [4] = 1 Char [5] = 5 Char [:] = 2 Char [<] = 1 Char [=] = 1 Char [F] = 1 Char [T] = 1 
 Char [[] = 5 Char []] = 5 Char [a] = 11 Char [b] = 3 Char [c] = 8 Char [e] = 17 Char [f] = 9 Char [h] = 3 Char [i] = 7 Char [l] = 5 
 Char [m] = 10 Char [n] = 11 Char [o] = 8 Char [p] = 6 Char [r] = 16 Char [s] = 17 Char [t] = 15 Char [u] = 14 Char [x] = 3 Char [{] = 10 
-Char [}] = 10 
+Char [}] = 11 
 Number of errors: 0
 
 Printing buffer contents:
@@ -120,10 +120,12 @@ proc factorial {n} {
     if {$n <= 1} {
         return 1
     } else {
-        return [expr {$n * [factorial [expr {$n - 1}]]}]
+        ret}urn [expr {$n * [factorial [expr {$n - 1}]]}]
     }
 }
 
 set fact5 [factorial 5]
 puts "Factorial of 5 is: $fact5"
 
+VALIDATOR:
+warning: the number of curly braces is uneven

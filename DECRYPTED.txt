@@ -9,7 +9,7 @@ proc factorial {n} {
     if {$n <= 1} {
         return 1
     } else {
-        return [expr {$n * [factorial [expr {$n - 1}]]}]
+        ret}urn [expr {$n * [factorial [expr {$n - 1}]]}]
     }
 }
 

@@ -912,3 +912,50 @@ urizen_int readerChecksum(BufferPointer readerPointer) {
 	// Return the checksum
 	return checksum;
 }
+
+urizen_void validateTokens(BufferPointer const readerPointer) {
+
+	urizen_bool flag = URIZEN_FALSE;
+	
+	const urizen_int sqrL = '[';
+	const urizen_int sqrR = ']';
+
+	const urizen_int parL = '(';
+	const urizen_int parR = ')';
+
+	const urizen_int quotes = '\"';
+
+	const urizen_int curlyL = '{';
+	const urizen_int curlyR = '}';
+
+	if (!readerPointer) {
+		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
+		return;
+	}
+
+	printf("VALIDATOR:\n");
+
+	if (readerPointer->histogram[sqrL] != readerPointer->histogram[sqrR]) {
+		flag = URIZEN_TRUE;
+		printf("warning: the number of square brackets is uneven\n");
+	}
+	if (readerPointer->histogram[parL] != readerPointer->histogram[parR]) {
+		flag = URIZEN_TRUE;
+		printf("warning: the number of parenthesis is uneven\n");
+	}
+	if ((readerPointer->histogram[quotes] % 2) != 0) {
+		flag = URIZEN_TRUE;
+		printf("warning: the number of quotes is uneven\n");
+	}
+	if (readerPointer->histogram[curlyL] != readerPointer->histogram[curlyR]) {
+		flag = URIZEN_TRUE;
+		printf("warning: the number of curly braces is uneven\n");
+	}
+
+	if (!flag) {
+		printf("\n* * * Code is valid * * *\n");
+	}
+	
+
+	
+}

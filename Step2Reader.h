@@ -157,5 +157,6 @@ urizen_int		readerGetSize(BufferPointer const);
 urizen_void		readerPrintFlags(BufferPointer const);
 urizen_void		readerPrintStat(BufferPointer const);
 urizen_int		readerNumErrors(BufferPointer const);
+urizen_void		validateTokens(BufferPointer const);
 
 #endif
