@@ -1,3 +1,28 @@
-x64\Debug\Urizen.exe 1 1 sample.txt output.txt
-x64\Debug\Urizen.exe 1 0 output.txt decrypt.txt
-pause
+:: A2 SCRIPT
+echo off
+echo '--------------------------------------------'
+echo '-      ALGONQUIN COLLEGE - COM - 26W       -'
+echo '--------------------------------------------'
+echo '-                                          -'
+echo '-    ====                                  -'
+echo '-   =                                      -'
+echo '-  =       ==   = =  ==  = =   =   ==  ==  -'
+echo '-   =     =  = = = = = = = =   ==  =  ==   -'
+echo '-    ====  ==  = = = =   = === === =   ==  -'
+echo '-                                          -'
+echo '--------------------------------------------'
+echo '-  [A1: Coder - Team: David Jacob]   -'
+echo '--------------------------------------------'
+
+echo COMPILER LOADING....
+
+del ENCRYPTED.txt DECRYPTED.txt out.txt err.txt 2>nul
+gcc Main1Coder.c Main2Reader.c Compilers.c Step1Coder.c Step2Reader.c -o UrizenEXE
+timeout /t 1 /nobreak >nul 
+UrizenEXE 1 1 CLEAR.txt ENCRYPTED.txt > out.txt 2> err.txt
+timeout /t 1 /nobreak >nul
+UrizenEXE 2 ENCRYPTED.txt >> out.txt 2>> err.txt
+timeout /t 1 /nobreak >nul
+dir out.txt err.txt
+type out.txt
+exit

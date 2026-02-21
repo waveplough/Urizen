@@ -127,7 +127,7 @@ urizen_int main2Reader(urizen_int argc, urizen_str* argv) {
 		exit(EXIT_FAILURE);
 	}
 
-	/* TODO: Update all other options about parameters */
+	/* Update all other options about parameters */
 	startReader(program, input, size, factor);
 
 	/* Return success */
@@ -151,7 +151,7 @@ urizen_void startReader(urizen_str program, urizen_str input, urizen_int size, u
 	urizen_int loadSize = 0;	/* the size of the file loaded in the buffer */
 
 	/* Create buffer */
-	pBuffer = readerCreate(READER_DEFAULT_SIZE, READER_DEFAULT_FACTOR);
+	pBuffer = readerCreate(size, factor);
 
 	if (pBuffer == NULL) {
 		errorPrint("%s%s", program, ": Cannot allocate buffer - Use: buffer <input>.");

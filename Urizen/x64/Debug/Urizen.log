@@ -11,130 +11,122 @@ C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(166,10): warnin
       C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(166,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(172,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(172,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(178,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(178,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(189,25): warning C4244: '=': conversion from 'urizen_float' to 'urizen_int', possible loss of data
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(194,11): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(194,11):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(200,11): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(200,11):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(202,11): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(202,11):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(208,11): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(208,11):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(212,27): warning C4244: '=': conversion from 'urizen_int' to 'urizen_float', possible loss of data
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(226,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(226,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(255,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(255,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(250,45): warning C4100: 'readerPointer': unreferenced parameter
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(275,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(275,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(290,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(290,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(307,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(307,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(322,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(322,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(333,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(333,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(348,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(348,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(359,10): warning C4245: 'return': conversion from 'int' to 'urizen_bool', signed/unsigned mismatch
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(387,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(387,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(373,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(373,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(426,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(426,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(379,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(379,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(440,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(440,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(408,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(408,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(476,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(476,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(447,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(447,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(505,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(505,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(461,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(461,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(510,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(510,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(497,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(497,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(538,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(538,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(526,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(526,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(567,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(567,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(531,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(531,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(572,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(572,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(559,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(559,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(602,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(602,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(588,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(588,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(607,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(607,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(594,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(594,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(632,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(632,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(630,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(630,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(657,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(657,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(635,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(635,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(662,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(662,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(660,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(660,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(686,49): warning C4100: 'readerPointer': unreferenced parameter
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(710,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(710,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(685,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(685,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(715,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(715,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(712,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(712,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(743,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(743,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(738,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(738,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(780,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(780,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(766,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(766,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(824,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(824,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(803,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(803,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(830,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(830,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(847,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(847,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(856,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(856,10):
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(873,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
+      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(873,10):
       consider using '%ld' in the format string
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(222,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(222,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(221) : note: index 'pos' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(222,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(222) : note: feeds memory load on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(789,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(789,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(785) : note: index 'i' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(789,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(789) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(788,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(788,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(785) : note: index 'i' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(788,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(788) : note: feeds call on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(812,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(812,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(808) : note: index 'i' range checked by comparison on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(812,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(812) : note: feeds call on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(811,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(811,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(808) : note: index 'i' range checked by comparison on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(811,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(811) : note: feeds call on this line
   Urizen.vcxproj -> C:\Users\David Jacob\Compilers\source\repos\Urizen\x64\Debug\Urizen.exe

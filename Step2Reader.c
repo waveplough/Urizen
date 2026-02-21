@@ -93,33 +93,33 @@ BufferPointer readerCreate(urizen_int size, urizen_float factor) {
 	BufferPointer readerPointer = NULL;
 	int i = 0;
 
-	/* TO_DO: Defensive programming: size */
+	/* Defensive programming: size */
 	if (size <= 0 || factor <= 0) {
 		printf("%s:%d error: the size '%d' and factor '%f' must be positive\n", __FILE__, __LINE__, size, factor);
 		return NULL;
 	}
-	/* TO_DO: readerPointer allocation */
+	/* readerPointer allocation */
 	readerPointer = calloc(1, sizeof(Buffer));
 
-	/* TO_DO: content allocation */
+	/* content allocation */
 	urizen_str content = malloc(size * sizeof(char));
 
-	/* TO_DO: Defensive programming: content // TO_DO: Defensive programming: readerPointer*/
+	/* Defensive programming: */
 	if (!readerPointer || !content) {
 		printf("%s:%d error: couldn't allocate memory for either readerPointer or content\n", __FILE__, __LINE__);
 		return NULL;
 	}
 
-	/* TO_DO: Initialize the histogram */
+	/* Initialize the histogram */
 	for (i = 0; i < NCHAR; i++) {
 		readerPointer->histogram[i] = 0; /* set every value to 0 */
 	}
 
-	/* TO_DO: Initialize errors */
+	/* Initialize errors */
 	readerPointer->numReaderErrors = 0;
 	readerPointer->checkSum = 0;
 
-	/* TO_DO: Update the properties */
+	/* Update the properties */
 	readerPointer->content = content;
 	readerPointer->size = size;
 
@@ -130,8 +130,8 @@ BufferPointer readerCreate(urizen_int size, urizen_float factor) {
 	readerPointer->factor = factor;
 
 
-	/* TO_DO: Initialize flags */
-	readerPointer->flags.isEmpty = URIZEN_TRUE; /* TO_DO: The created flag must be signalized as EMP */
+	/* Initialize flags */
+	readerPointer->flags.isEmpty = URIZEN_TRUE; /* The created flag must be signalized as EMP */
 	readerPointer->flags.isFull = URIZEN_FALSE;
 	readerPointer->flags.isMoved = URIZEN_FALSE;
 	readerPointer->flags.isRead = URIZEN_FALSE;
@@ -159,37 +159,43 @@ BufferPointer readerCreate(urizen_int size, urizen_float factor) {
 BufferPointer readerAddChar(BufferPointer const readerPointer, urizen_char ch) {
 	urizen_str tempReader = NULL;
 	urizen_int newSize = 0;
-	urizen_int pos = readerGetPosWrite(readerPointer);
+	urizen_int pos;
 
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return NULL;
 	}
 
-	if (ch < ASCII_FIRST || ch > ASCII_LAST) {
+	pos = readerGetPosWrite(readerPointer);
+
+	if (pos < 0 && pos >= readerPointer->size) {
+		return NULL;
+	}
+
+	if (ch < ASCII_FIRST) {
 		readerPointer->numReaderErrors++;
 		printf("%s:%d | valid ASCII values range from [0-127]\n", __FILE__, __LINE__);
 		return NULL;
 	}
 
 
-	/* TO_DO: Test the inclusion of chars */
+	/* Test the inclusion of chars */
 	if (readerPointer->position.write * (urizen_int)sizeof(urizen_char) < readerPointer->size) {
-		/* TO_DO: Buffer not full: set flag */
+		/* Buffer not full: set flag */
 		readerPointer->flags.isFull = URIZEN_FALSE;
 	}
 	else {
-		urizen_int ratio;
+		urizen_float ratio;
 
-		/* TO_DO: Reset Full flag */
+		/* Reset Full flag */
 		readerPointer->flags.isFull = URIZEN_TRUE;
-
-		/* TO_DO: Adjust the size to be duplicated */
+		
+		/* Adjust the size to be duplicated */
 		ratio = (urizen_float)(1.0 + readerPointer->factor);
 		newSize = (urizen_int)(readerPointer->size * ratio);
 
-		/* TO_DO: Defensive programming */
+		/* Defensive programming */
 		if (newSize <= 0 || newSize > READER_MAX_SIZE) {
 			printf("%s:%d | warning: error increasing reader size\n", __FILE__, __LINE__);
 			return NULL;
@@ -209,26 +215,22 @@ BufferPointer readerAddChar(BufferPointer const readerPointer, urizen_char ch) {
 		}
 
 		readerPointer->content = tempReader;
-		readerPointer->factor = ratio;
 		readerPointer->size = newSize;
 
-		printf("\nThe new size is %d bytes\n\n", newSize);
+		printf("\n..............\n");
+		printf("* New size: %d bytes", newSize);
+		printf("\n..............");
 
 		readerPointer->flags.isFull = URIZEN_FALSE;
 	}
 
-	/* TO_DO: Add the char */
-	if (pos >= 0 && pos <= readerPointer->size) {
-		readerPointer->content[pos] = ch;
-		readerPointer->position.write++;
-	}
-	else {
-		printf("%s:%d | warning: write out of bounds\n", __FILE__, __LINE__);
-		return NULL;
-	}
+	/* Add the char */
+	readerPointer->content[pos] = ch;
+	readerPointer->position.write++;
+	
 
-	/* TO_DO: Updates histogram */
-	readerPointer->histogram[ch]++;
+	/* Updates histogram */
+	readerPointer->histogram[(urizen_int)ch]++;
 
 	return readerPointer;
 }
@@ -248,18 +250,18 @@ BufferPointer readerAddChar(BufferPointer const readerPointer, urizen_char ch) {
 *************************************************************
 */
 urizen_bool readerClear(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return URIZEN_FALSE;
 	}
 
-	/* TO_DO: Adjust positions to zero */
+	/* Adjust positions to zero */
 	readerPointer->position.read = 0;
 	readerPointer->position.write = 0;
 
-	/* TO_DO: Adjust flags original */
-	readerPointer->flags.isEmpty = URIZEN_TRUE; /* TO_DO: The created flag must be signalized as EMP */
+	/* Adjust flags original */
+	readerPointer->flags.isEmpty = URIZEN_TRUE; /* The created flag must be signalized as EMP */
 	readerPointer->flags.isFull = URIZEN_FALSE;
 	readerPointer->flags.isMoved = URIZEN_FALSE;
 	readerPointer->flags.isRead = URIZEN_FALSE;
@@ -283,7 +285,7 @@ urizen_bool readerClear(BufferPointer const readerPointer) {
 */
 urizen_bool readerFree(BufferPointer const readerPointer) {
 
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return URIZEN_FALSE;
@@ -315,13 +317,13 @@ urizen_bool readerFree(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_bool readerIsFull(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return URIZEN_FALSE;
 	}
 
-	/* TO_DO: Check flag if buffer is FUL */
+	/* Check flag if buffer is FUL */
 	return readerPointer->flags.isFull ? URIZEN_TRUE : URIZEN_FALSE;
 }
 
@@ -341,12 +343,12 @@ urizen_bool readerIsFull(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_bool readerIsEmpty(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return URIZEN_FALSE;
 	}
-	/* TO_DO: Check flag if buffer is EMP */
+	/* Check flag if buffer is EMP */
 	return readerPointer->flags.isEmpty ? URIZEN_TRUE : URIZEN_FALSE;
 }
 
@@ -366,13 +368,13 @@ urizen_bool readerIsEmpty(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_bool readerSetMark(BufferPointer const readerPointer, urizen_int mark) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return URIZEN_FALSE;
 	}
 
-	/* TO_DO: Adjust mark */
+	/* Adjust mark */
 	if ( mark < 0 || mark > readerPointer->position.write) {
 		printf("%s:%d | warning: 'mark' out of bounds\n", __FILE__, __LINE__);
 		return URIZEN_FALSE;
@@ -401,14 +403,14 @@ urizen_bool readerSetMark(BufferPointer const readerPointer, urizen_int mark) {
 urizen_int readerPrint(BufferPointer const readerPointer) {
 	int i = 0;
 	int num = 0;
-	/* TO_DO: Defensive programming (including invalid chars) */
+	/* Defensive programming (including invalid chars) */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return READER_ERROR;
 	}
-	/* TO_DO: Print the buffer content */
+	/* Print the buffer content */
 	while (readerPointer->content[i]) {
-		printf("%c", readerPointer->content[i]);
+		printf("%c",readerPointer->content[i]);
 		num++;
 		i++;
 	}
@@ -438,15 +440,15 @@ urizen_int readerLoad(BufferPointer const readerPointer, urizen_str inputFileNam
 	int c = 0;
 	int num = 0;
 	const urizen_str key = STR_LANGNAME;
-	const urizen_str outputFileName = "DECRYPT.txt";
+	const urizen_str outputFileName = "DECRYPTED.txt";
 
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return READER_ERROR;
 	}
 
-	/* TO_DO: Loads and decrypt the input file */
+	/* Loads and decrypt the input file */
 	vigenereFile(inputFileName, outputFileName, key, DECYPHER);
 
 	printf("\nFile decrypted!\n");
@@ -490,13 +492,13 @@ urizen_int readerLoad(BufferPointer const readerPointer, urizen_str inputFileNam
 *************************************************************
 */
 urizen_bool readerRecover(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return URIZEN_FALSE;
 	}
 
-	/* TO_DO: Adjust read and mark to zero */
+	/* Adjust read and mark to zero */
 	readerPointer->position.mark = 0;
 	readerPointer->position.read = 0;
 
@@ -519,7 +521,7 @@ urizen_bool readerRecover(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_bool readerRetract(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return URIZEN_FALSE;
@@ -530,7 +532,7 @@ urizen_bool readerRetract(BufferPointer const readerPointer) {
 		return URIZEN_FALSE;
 	}
 
-	/* TO_DO: Retract (return 1 pos read) */
+	/* Retract (return 1 pos read) */
 	--readerPointer->position.read;
 
 	return URIZEN_TRUE;
@@ -552,13 +554,13 @@ urizen_bool readerRetract(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_bool readerRestore(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return URIZEN_FALSE;
 	}
 
-	/* TO_DO: Restore read to mark */
+	/* Restore read to mark */
 	readerPointer->position.read = readerPointer->position.mark;
 
 	return URIZEN_TRUE;
@@ -581,7 +583,7 @@ urizen_bool readerRestore(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_char readerGetChar(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return READER_ERROR;
@@ -602,7 +604,7 @@ urizen_char readerGetChar(BufferPointer const readerPointer) {
 	/* if it hasn't reached EOF thrn set the isRead flag to false */
 	readerPointer->flags.isRead = URIZEN_FALSE;
 
-	/* TO_DO: Returns size in the read position and updates read */
+	/* Returns size in the read position and updates read */
 	return readerPointer->content[readerPointer->position.read++];
 }
 
@@ -623,7 +625,7 @@ urizen_char readerGetChar(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_str readerGetContent(BufferPointer const readerPointer, urizen_int pos) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return NULL;
@@ -634,7 +636,7 @@ urizen_str readerGetContent(BufferPointer const readerPointer, urizen_int pos) {
 		return NULL;
 	}
 
-	/* TO_DO: Return content (string) */
+	/* Return content (string) */
 	return &(readerPointer->content[pos]);
 }
 
@@ -653,12 +655,12 @@ urizen_str readerGetContent(BufferPointer const readerPointer, urizen_int pos) {
 *************************************************************
 */
 urizen_int readerGetPosRead(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return READER_ERROR;
 	}
-	/* TO_DO: Return read */
+	/* Return read */
 	return readerPointer->position.read;
 }
 
@@ -678,13 +680,13 @@ urizen_int readerGetPosRead(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_int readerGetPosWrite(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return READER_ERROR;
 	}
 
-	/* TO_DO: Return write */
+	/* Return write */
 	return readerPointer->position.write;
 
 }
@@ -705,13 +707,13 @@ urizen_int readerGetPosWrite(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_int readerGetPosMark(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return READER_ERROR;
 	}
 
-	/* TO_DO: Return mark */
+	/* Return mark */
 	return readerPointer->position.mark;
 }
 
@@ -731,13 +733,13 @@ urizen_int readerGetPosMark(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_int readerGetSize(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return READER_ERROR;
 	}
 
-	/* TO_DO: Return size */
+	/* Return size */
 	return readerPointer->size;
 }
 
@@ -759,13 +761,13 @@ urizen_int readerGetSize(BufferPointer const readerPointer) {
 #undef FLAGS_
 #ifndef FLAGS_
 urizen_void readerPrintFlags(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return;
 	}
 
-	/* TO_DO: Return flags */
+	/* Return flags */
 	printf(
 		"Flag.isEmpty = %d\n"
 		"Flag.isFull = %d\n"
@@ -796,13 +798,13 @@ urizen_void readerPrintFlags(BufferPointer const readerPointer) {
 urizen_void readerPrintStat(BufferPointer const readerPointer) {
 	int printed = 0;
 
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return;
 	}
 
-	/* TO_DO: Print statistics */
+	/* Print statistics */
 	for (urizen_int i = 0; i < 128; i++) {
 		if (readerPointer->histogram[i] > 0) {
 
@@ -840,13 +842,13 @@ urizen_void readerPrintStat(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_int readerNumErrors(BufferPointer const readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return READER_ERROR;
 	}
 
-	/* TO_DO: Return the number of errors */
+	/* Return the number of errors */
 	return readerPointer->numReaderErrors;
 }
 
@@ -866,7 +868,7 @@ urizen_int readerNumErrors(BufferPointer const readerPointer) {
 */
 
 urizen_int readerChecksum(BufferPointer readerPointer) {
-	/* TO_DO: Defensive programming */
+	/* Defensive programming */
 	if (!readerPointer || !readerPointer->content) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' or 'content' is NULL\n", __FILE__, __LINE__);
 		return READER_ERROR;

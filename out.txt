@@ -1,4 +1,48 @@
-'running READER --------------------------------------------' 
+	=---------------------------------------= 
+	|  COMPILERS - ALGONQUIN COLLEGE (W26)  | 
+	=---------------------------------------= 
+	   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     
+	   @@                              @@     
+	   @@                              @@     
+	   @@                              @@     
+	   @@       @@@@        @@@@       @@     
+	   @@       @@@@        @@@@       @@     
+	   @@       @@@@        @@@@       @@     
+	   @@       @@@@        @@@@       @@     
+	   @@       @@@@        @@@@       @@     
+	   @@       @@@@        @@@@       @@     
+	   @@       @@@@        @@@@       @@     
+	   @@       @@@@@@@@@@@@@@@@       @@     
+	   @@        @@@@@@@@@@@@@@        @@     
+	   @@                              @@     
+	   @@         U R I Z E N          @@     
+	   @@                              @@     
+	   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     
+	                                         
+	[COMPILER SCRIPT .......................]
+	                                         
+
+[Option '1': Starting CODER .....]
+
+Operation '1' completed successfully in 0.000000 seconds.
+
+set numbers {10 20 30 40 50}
+set sum 0
+foreach num $numbers {
+    set sum [expr {$sum + $num}]
+}
+puts "The sum of the numbers is: $sum"
+
+proc factorial {n} {
+    if {$n <= 1} {
+        return 1
+    } else {
+        return [expr {$n * [factorial [expr {$n - 1}]]}]
+    }
+}
+
+set fact5 [factorial 5]
+puts "Factorial of 5 is: $fact5"
 	=---------------------------------------= 
 	|  COMPILERS - ALGONQUIN COLLEGE (W26)  | 
 	=---------------------------------------= 
@@ -25,49 +69,60 @@
 
 [Option '2': Starting READER .....]
 
-Reading file INPUT.txt ....Please wait
+Reading file ENCRYPTED.txt ....Please wait
 
-The new size is 125 bytes
+File decrypted!
 
+Now reading file DECRYPTED.txt .....please wait
 
-The new size is 150 bytes
-
-
-The new size is 175 bytes
-
-
+..............
+* New size: 150 bytes
+..............
+..............
+* New size: 225 bytes
+..............
+..............
+* New size: 337 bytes
+..............
+..............
+* New size: 505 bytes
+..............
 Printing buffer parameters:
 
-The initial capacity of the buffer is: 100
-The buffer grows in increments of: 25
-The buffer increased 3 times
-The capacity of the buffer is:  175
-The current size of the buffer is:  165
-The first symbol in the buffer is:  e
+The capacity of the buffer is:  505
+The current size of the buffer is:  346
+The first symbol in the buffer is:  s
 The value of the flags:
 Flag.isEmpty = 1
 Flag.isFull = 0
 Flag.isMoved = 1
 Flag.isRead = 0
-Checksum: 13532
+Checksum: 33171
 Reader statistics : 
-Char [0x00] = 1 Char [0x0A] = 10 Char [0x0D] = 10 Char [ ] = 18 Char [!] = 1 Char ["] = 4 Char [#] = 2 Char [&] = 2 Char [(] = 2 Char [)] = 2 
-Char [0] = 1 Char [;] = 2 Char [E] = 1 Char [H] = 1 Char [S] = 1 Char [T] = 1 Char [a] = 10 Char [c] = 4 Char [d] = 5 Char [e] = 11 
-Char [f] = 1 Char [g] = 2 Char [h] = 2 Char [i] = 6 Char [l] = 8 Char [m] = 3 Char [n] = 8 Char [o] = 9 Char [p] = 3 Char [r] = 12 
-Char [s] = 2 Char [t] = 7 Char [u] = 2 Char [w] = 1 Char [x] = 2 Char [y] = 2 Char [{] = 3 Char [}] = 3 
+Char [0x00] = 1 Char [0x0A] = 16 Char [0x0D] = 16 Char [ ] = 81 Char ["] = 4 Char [$] = 8 Char [*] = 1 Char [+] = 1 Char [-] = 1 Char [0] = 6 
+Char [1] = 4 Char [2] = 1 Char [3] = 1 Char [4] = 1 Char [5] = 5 Char [:] = 2 Char [<] = 1 Char [=] = 1 Char [F] = 1 Char [T] = 1 
+Char [[] = 5 Char []] = 5 Char [a] = 11 Char [b] = 3 Char [c] = 8 Char [e] = 17 Char [f] = 9 Char [h] = 3 Char [i] = 7 Char [l] = 5 
+Char [m] = 10 Char [n] = 11 Char [o] = 8 Char [p] = 6 Char [r] = 16 Char [s] = 17 Char [t] = 15 Char [u] = 14 Char [x] = 3 Char [{] = 10 
+Char [}] = 10 
 Number of errors: 0
 
 Printing buffer contents:
 
-elpmaxE aifoS #
-tcerroc "yllacixel" si margorp ehT
-# rorre yna etareneg ton dluohs dna
-{ )(&niam tni
-{ atad
+set numbers {10 20 30 40 50}
+set sum 0
+foreach num $numbers {
+    set sum [expr {$sum + $num}]
 }
-{ edoc
-;)"!dlrow olleH"(&tnirp
-;0 nruter
+puts "The sum of the numbers is: $sum"
+
+proc factorial {n} {
+    if {$n <= 1} {
+        return 1
+    } else {
+        return [expr {$n * [factorial [expr {$n - 1}]]}]
+    }
 }
-}
+
+set fact5 [factorial 5]
+puts "Factorial of 5 is: $fact5"
 
