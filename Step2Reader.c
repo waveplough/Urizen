@@ -288,7 +288,7 @@ urizen_bool readerFree(BufferPointer const readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return URIZEN_FALSE;
 	}
-
+	/* free the content buffer */
 	if (readerPointer->content) {
 		free(readerPointer->content);
 		readerPointer->content = NULL;
@@ -525,8 +525,8 @@ urizen_bool readerRetract(BufferPointer const readerPointer) {
 		return URIZEN_FALSE;
 	}
 
-	if (readerPointer->position.read < 0) {
-		printf("%s:%d | warning: read position cannot be negative\n", __FILE__, __LINE__);
+	if (readerPointer->position.read == 0) {
+		printf("%s:%d | warning: cannot retract past the beginning\n", __FILE__, __LINE__);
 		return URIZEN_FALSE;
 	}
 
@@ -659,7 +659,7 @@ urizen_int readerGetPosRead(BufferPointer const readerPointer) {
 		return READER_ERROR;
 	}
 	/* TO_DO: Return read */
-	return 0;
+	return readerPointer->position.read;
 }
 
 
