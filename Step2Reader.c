@@ -88,7 +88,7 @@
  *************************************************************
  */
 
-BufferPointer readerCreate(urizen_int size, urizen_float factor) {
+BufferPointer readerCreate(urizen_int size, urizen_float factor, urizen_int maxLimit) {
 
 	BufferPointer readerPointer = NULL;
 	int i = 0;
@@ -122,6 +122,7 @@ BufferPointer readerCreate(urizen_int size, urizen_float factor) {
 	/* Update the properties */
 	readerPointer->content = content;
 	readerPointer->size = size;
+	readerPointer->maxLimit = maxLimit;
 
 	readerPointer->position.mark = 0;
 	readerPointer->position.read = 0;
@@ -169,7 +170,8 @@ BufferPointer readerAddChar(BufferPointer const readerPointer, urizen_char ch) {
 
 	pos = readerGetPosWrite(readerPointer);
 
-	if (pos < 0 && pos >= readerPointer->size) {
+	/* if the write position is negative return null. */
+	if (pos < 0) {
 		return NULL;
 	}
 
@@ -203,8 +205,8 @@ BufferPointer readerAddChar(BufferPointer const readerPointer, urizen_char ch) {
 		}
 
 		/* If new size exceeds the readers max size, truncate the value to match it. */
-		if (newSize > READER_MAX_SIZE) {
-			newSize -= (newSize - READER_MAX_SIZE);
+		if (newSize > readerPointer->maxLimit) {
+			newSize -= (newSize - readerPointer->maxLimit);
 		} 
 		
 
@@ -415,6 +417,7 @@ urizen_int readerPrint(BufferPointer const readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return READER_ERROR;
 	}
+
 	/* Print the buffer content */
 	while (readerPointer->content[i]) {
 		printf("%c",readerPointer->content[i]);
@@ -475,8 +478,8 @@ urizen_int readerLoad(BufferPointer const readerPointer, urizen_str inputFileNam
 	while ((c = fgetc(fOut)) != EOF) {
 
 		/* If max size is reached, break out of the loop */
-		if (readerGetPosWrite(readerPointer) >= READER_MAX_SIZE) {
-			printf("warning: max size has been reached\n");
+		if (readerGetPosWrite(readerPointer) >= readerPointer->maxLimit - 1) {
+			printf("\nwarning: max size has been reached\n");
 			break;
 		}
 
@@ -485,6 +488,11 @@ urizen_int readerLoad(BufferPointer const readerPointer, urizen_str inputFileNam
 			num++;
 		}
 
+	}
+
+	/* check the number of chars and set isEmpty as false if it exceeds 0 */
+	if (num > 0) {
+		readerPointer->flags.isEmpty = URIZEN_FALSE;
 	}
 
 	fclose(fOut);

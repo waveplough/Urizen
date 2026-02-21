@@ -9,9 +9,9 @@ echo '-   =                                      -'
 echo '-  =       ==   = =  ==  = =   =   ==  ==  -'
 echo '-   =     =  = = = = = = = =   ==  =  ==   -'
 echo '-    ====  ==  = = = =   = === === =   ==  -'
-echo '-                                          -'
+echo '-(too lazy to change this intricate ASCII) -'
 echo '--------------------------------------------'
-echo '-  [A1: Coder - Team: David Jacob]   -'
+echo '-  [A2: Reader - Team: David Jacob]   
 echo '--------------------------------------------'
 
 echo COMPILER LOADING....
@@ -21,7 +21,7 @@ gcc Main1Coder.c Main2Reader.c Compilers.c Step1Coder.c Step2Reader.c -o UrizenE
 timeout /t 1 /nobreak >nul 
 UrizenEXE 1 1 CLEAR.txt ENCRYPTED.txt > out.txt 2> err.txt
 timeout /t 1 /nobreak >nul
-UrizenEXE 2 ENCRYPTED.txt >> out.txt 2>> err.txt
+UrizenEXE 2 ENCRYPTED.txt 2000 >> out.txt 2>> err.txt
 timeout /t 1 /nobreak >nul
 dir out.txt err.txt
 type out.txt

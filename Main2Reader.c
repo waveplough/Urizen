@@ -98,7 +98,7 @@
 urizen_void displayBuffer(BufferPointer ptr_Buffer);
 urizen_long getFileSize(urizen_str fname);
 urizen_int isNumber(const urizen_str ns);
-urizen_void startReader(urizen_str, urizen_str, urizen_int, urizen_float);
+urizen_void startReader(urizen_str, urizen_str, urizen_int, urizen_float, urizen_int);
 
 /*
 ************************************************************
@@ -115,20 +115,21 @@ urizen_int main2Reader(urizen_int argc, urizen_str* argv) {
 	/* Create source input buffer */
 	urizen_str program = argv[0];
 	urizen_str input = argv[2];
+	urizen_int maxLimit = atoi(argv[3]);
 	urizen_int size = READER_DEFAULT_SIZE; /*originally 0.*/
 	urizen_float factor = READER_DEFAULT_FACTOR; /*originally 0.0f*/
 
 	/* Missing file name or/and mode parameter */
-	if (argc <= 2) {
+	if (argc <= 3) {
 		errorPrint("\nDate: %s  Time: %s", __DATE__, __TIME__);
 		errorPrint("\nRuntime error at line %d in file %s\n", __LINE__, __FILE__);
 		errorPrint("%s\b\b\b\b%s%s", argv[0], ": ", "Missing parameters.");
-		errorPrint("Usage: <Option=2> <SourceFile>");
+		errorPrint("Usage: <Option=2> <SourceFile> <maxLimit>");
 		exit(EXIT_FAILURE);
 	}
 
 	/* Update all other options about parameters */
-	startReader(program, input, size, factor);
+	startReader(program, input, size, factor, maxLimit);
 
 	/* Return success */
 	return (EXIT_SUCCESS);
@@ -145,13 +146,13 @@ urizen_int main2Reader(urizen_int argc, urizen_str* argv) {
 *	- Increment: buffer increment.
 ************************************************************
 */
-urizen_void startReader(urizen_str program, urizen_str input, urizen_int size, urizen_float factor) {
+urizen_void startReader(urizen_str program, urizen_str input, urizen_int size, urizen_float factor, urizen_int maxLimit) {
 
 	BufferPointer pBuffer;		/* pointer to Buffer structure */
 	urizen_int loadSize = 0;	/* the size of the file loaded in the buffer */
 
 	/* Create buffer */
-	pBuffer = readerCreate(size, factor);
+	pBuffer = readerCreate(size, factor, maxLimit);
 
 	if (pBuffer == NULL) {
 		errorPrint("%s%s", program, ": Cannot allocate buffer - Use: buffer <input>.");
@@ -248,6 +249,8 @@ urizen_void displayBuffer(BufferPointer ptr_Buffer) {
 		readerGetSize(ptr_Buffer));
 	printf("The current size of the buffer is:  %d\n",
 		readerGetPosWrite(ptr_Buffer));
+	printf("The current maxLimit of the buffer is:  %d\n",
+		ptr_Buffer->maxLimit);
 	printf("The first symbol in the buffer is:  %c\n",
 		readerGetPosWrite(ptr_Buffer) ? *readerGetContent(ptr_Buffer, 0) : ' ');
 	printf("The value of the flags:\n");

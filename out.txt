@@ -24,7 +24,7 @@
 
 [Option '1': Starting CODER .....]
 
-Operation '1' completed successfully in 0.000000 seconds.
+Operation '1' completed successfully in 0.004000 seconds.
 
 set numbers {10 20 30 40 50}
 set sum 0
@@ -91,13 +91,14 @@ Printing buffer parameters:
 
 The capacity of the buffer is:  505
 The current size of the buffer is:  346
+The current maxLimit of the buffer is:  2000
 The first symbol in the buffer is:  s
 The value of the flags:
-Flag.isEmpty = 1
+Flag.isEmpty = 0
 Flag.isFull = 0
 Flag.isMoved = 1
 Flag.isRead = 0
-Checksum: 33171
+Checksum: 25959
 Reader statistics : 
 Char [0x00] = 1 Char [0x0A] = 16 Char [0x0D] = 16 Char [ ] = 81 Char ["] = 4 Char [$] = 8 Char [*] = 1 Char [+] = 1 Char [-] = 1 Char [0] = 6 
 Char [1] = 4 Char [2] = 1 Char [3] = 1 Char [4] = 1 Char [5] = 5 Char [:] = 2 Char [<] = 1 Char [=] = 1 Char [F] = 1 Char [T] = 1 
