@@ -122,7 +122,7 @@ typedef struct flag {
 typedef struct bufferReader {
 	urizen_str		content;			/* pointer to the beginning of character array (character buffer) */
 	urizen_int		size;				/* current dynamic memory size (in bytes) allocated to character buffer */
-	urizen_int		maxLimit;			/* the maximum size the reader can expand to */
+	urizen_long		maxLimit;			/* the maximum size the reader can expand to */
 	urizen_float	factor;				/* factor for increase the buffer */
 	Flag			flags;				/* contains character array reallocation flag and end-of-buffer flag */
 	Position		position;			/* Offset / position field */
@@ -134,7 +134,7 @@ typedef struct bufferReader {
 /* FUNCTIONS DECLARATION:  .................................. */
 
 /* General Operations */
-BufferPointer	readerCreate(urizen_int, urizen_float, urizen_int);
+BufferPointer	readerCreate(urizen_int, urizen_float, urizen_long);
 BufferPointer	readerAddChar(BufferPointer const, urizen_char);
 urizen_bool		readerClear(BufferPointer const);
 urizen_bool		readerFree(BufferPointer const);

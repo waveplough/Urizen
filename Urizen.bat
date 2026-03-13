@@ -21,7 +21,7 @@ gcc Main1Coder.c Main2Reader.c Compilers.c Step1Coder.c Step2Reader.c -o UrizenE
 timeout /t 1 /nobreak >nul 
 UrizenEXE 1 1 CLEAR.txt ENCRYPTED.txt > out.txt 2> err.txt
 timeout /t 1 /nobreak >nul
-UrizenEXE 2 ENCRYPTED.txt 2000 >> out.txt 2>> err.txt
+UrizenEXE 2 ENCRYPTED.txt 200000000000000000 >> out.txt 2>> err.txt
 timeout /t 1 /nobreak >nul
 dir out.txt err.txt
 type out.txt

@@ -88,10 +88,10 @@
  *************************************************************
  */
 
-BufferPointer readerCreate(urizen_int size, urizen_float factor, urizen_int maxLimit) {
+BufferPointer readerCreate(urizen_int size, urizen_float factor, urizen_long maxLimit) {
 
 	BufferPointer readerPointer = NULL;
-	int i = 0;
+	urizen_int i = 0;
 
 	/* Defensive programming: size */
 	if (size <= 0 || factor <= 0) {
@@ -102,7 +102,7 @@ BufferPointer readerCreate(urizen_int size, urizen_float factor, urizen_int maxL
 	readerPointer = calloc(1, sizeof(Buffer));
 
 	/* content allocation */
-	urizen_str content = malloc(size * sizeof(char));
+	urizen_str content = malloc(size * sizeof(urizen_char));
 
 	/* Defensive programming: */
 	if (!readerPointer || !content) {
@@ -410,8 +410,8 @@ urizen_bool readerSetMark(BufferPointer const readerPointer, urizen_int mark) {
 *************************************************************
 */
 urizen_int readerPrint(BufferPointer const readerPointer) {
-	int i = 0;
-	int num = 0;
+	urizen_int i = 0;
+	urizen_int num = 0;
 	/* Defensive programming (including invalid chars) */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
@@ -447,8 +447,8 @@ urizen_int readerPrint(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_int readerLoad(BufferPointer const readerPointer, urizen_str inputFileName) {
-	int c = 0;
-	int num = 0;
+	urizen_int c = 0;
+	urizen_int num = 0;
 	const urizen_str key = STR_LANGNAME;
 	const urizen_str outputFileName = "DECRYPTED.txt";
 
@@ -818,7 +818,7 @@ urizen_void readerPrintFlags(BufferPointer const readerPointer) {
 *************************************************************
 */
 urizen_void readerPrintStat(BufferPointer const readerPointer) {
-	int printed = 0;
+	urizen_int printed = 0;
 
 	/* Defensive programming */
 	if (!readerPointer) {
@@ -903,7 +903,6 @@ urizen_int readerChecksum(BufferPointer readerPointer) {
 	for (urizen_int i = 0; i < readerPointer->size; i++) {
 		// Add the value of the character to the checksum 
 		checksum += (urizen_int)readerPointer->content[i];
-
 	}
 
 	// Update the checksum field of the reader
@@ -914,20 +913,25 @@ urizen_int readerChecksum(BufferPointer readerPointer) {
 }
 
 urizen_void validateTokens(BufferPointer const readerPointer) {
-
+	/* flag that is set if there is an error */
 	urizen_bool flag = URIZEN_FALSE;
-	
+
+	/* square brackets */
 	const urizen_int sqrL = '[';
 	const urizen_int sqrR = ']';
 
+	/* square parenthesis */
 	const urizen_int parL = '(';
 	const urizen_int parR = ')';
 
+	/* quotes */
 	const urizen_int quotes = '\"';
 
+	/* curly braces */
 	const urizen_int curlyL = '{';
 	const urizen_int curlyR = '}';
 
+	/* defensive programming */
 	if (!readerPointer) {
 		printf("%s:%d | error: BufferPointer 'readerPointer' is NULL\n", __FILE__, __LINE__);
 		return;
@@ -935,6 +939,7 @@ urizen_void validateTokens(BufferPointer const readerPointer) {
 
 	printf("VALIDATOR:\n");
 
+	/* Check if symmetries are off */
 	if (readerPointer->histogram[sqrL] != readerPointer->histogram[sqrR]) {
 		flag = URIZEN_TRUE;
 		printf("warning: the number of square brackets is uneven\n");

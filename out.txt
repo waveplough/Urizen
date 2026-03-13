@@ -91,7 +91,7 @@ Printing buffer parameters:
 
 The capacity of the buffer is:  505
 The current size of the buffer is:  347
-The current maxLimit of the buffer is:  2000
+The current maxLimit of the buffer is:  2147483647
 The first symbol in the buffer is:  s
 The value of the flags:
 Flag.isEmpty = 0
