@@ -1,35 +1,35 @@
 /*
 ************************************************************
 * COMPILERS COURSE - Algonquin College
-* Code version: Fall, 2025
-* Author: TO_DO
+* Code version: Winter, 2026
+* Author: David Jacob
 * Professors: Paulo Sousa
 ************************************************************
 #
 # ECHO "=---------------------------------------="
-# ECHO "|  COMPILERS - ALGONQUIN COLLEGE (F24)  |"
+# ECHO "|  COMPILERS - ALGONQUIN COLLEGE (W26)  |"
 # ECHO "=---------------------------------------="
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "    @@                             @@    ”
-# ECHO "    @@           %&@@@@@@@@@@@     @@    ”
-# ECHO "    @@       @%% (@@@@@@@@@  @     @@    ”
-# ECHO "    @@      @& @   @ @       @     @@    ”
-# ECHO "    @@     @ @ %  / /   @@@@@@     @@    ”
-# ECHO "    @@      & @ @  @@              @@    ”
-# ECHO "    @@       @/ @*@ @ @   @        @@    ”
-# ECHO "    @@           @@@@  @@ @ @      @@    ”
-# ECHO "    @@            /@@    @@@ @     @@    ”
-# ECHO "    @@     @      / /     @@ @     @@    ”
-# ECHO "    @@     @ @@   /@/   @@@ @      @@    ”
-# ECHO "    @@     @@@@@@@@@@@@@@@         @@    ”
 # ECHO "    @@                             @@    ”
-# ECHO "    @@         S O F I A           @@    ”
+# ECHO "    @@                             @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@@@@@@@@@@@@@      @@    ”
+# ECHO "    @@        @@@@@@@@@@@@@@       @@    ”
+# ECHO "    @@                             @@    ”
+# ECHO "    @@         U R I Z E N         @@    ”
 # ECHO "    @@                             @@    ”
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "                                         "
-# ECHO "[READER SCRIPT .........................]"
+# ECHO "[SCANNER SCRIPT ........................]"
 # ECHO "                                         "
-*/
+*/ 
 
 /*
 ************************************************************
@@ -89,7 +89,7 @@ enum TOKENS {
 };
 
 /* TO_DO: Define the list of keywords */
-static sofia_strg tokenStrTable[NUM_TOKENS] = {
+static urizen_str tokenStrTable[NUM_TOKENS] = {
 	"ERR_T",
 	"MNID_T",
 	"INL_T",
@@ -113,39 +113,39 @@ typedef enum SourceEndOfFile { SEOF_0, SEOF_255 } EofOperator;
 
 /* TO_DO: Data structures for declaring the token and its attributes */
 typedef union TokenAttribute {
-	sofia_intg codeType;      /* integer attributes accessor */
+	urizen_int codeType;      /* integer attributes accessor */
 	AriOperator arithmeticOperator;		/* arithmetic operator attribute code */
 	RelOperator relationalOperator;		/* relational operator attribute code */
 	LogOperator logicalOperator;		/* logical operator attribute code */
 	EofOperator seofType;				/* source-end-of-file attribute code */
-	sofia_intg intValue;				/* integer literal attribute (value) */
-	sofia_intg keywordIndex;			/* keyword index in the keyword table */
-	sofia_intg contentString;			/* string literal offset from the beginning of the string literal buffer (stringLiteralTable->content) */
-	sofia_real floatValue;				/* floating-point literal attribute (value) */
-	sofia_char idLexeme[VID_LEN + 1];	/* variable identifier token attribute */
-	sofia_char errLexeme[ERR_LEN + 1];	/* error token attribite */
+	urizen_int intValue;				/* integer literal attribute (value) */
+	urizen_int keywordIndex;			/* keyword index in the keyword table */
+	urizen_int contentString;			/* string literal offset from the beginning of the string literal buffer (stringLiteralTable->content) */
+	urizen_float floatValue;				/* floating-point literal attribute (value) */
+	urizen_char idLexeme[VID_LEN + 1];	/* variable identifier token attribute */
+	urizen_char errLexeme[ERR_LEN + 1];	/* error token attribite */
 } TokenAttribute;
 
 /* TO_DO: Should be used if no symbol table is implemented */
 typedef struct idAttibutes {
-	sofia_byte flags;			/* Flags information */
+	urizen_byte flags;			/* Flags information */
 	union {
-		sofia_intg intValue;				/* Integer value */
-		sofia_real floatValue;			/* Float value */
-		sofia_strg stringContent;		/* String value */
+		urizen_int intValue;				/* Integer value */
+		urizen_float floatValue;			/* Float value */
+		urizen_str stringContent;		/* String value */
 	} values;
 } IdAttibutes;
 
 /* Token declaration */
 typedef struct Token {
-	sofia_intg code;				/* token code */
+	urizen_int code;				/* token code */
 	TokenAttribute attribute;	/* token attribute */
 	IdAttibutes   idAttribute;	/* not used in this scanner implementation - for further use */
 } Token;
 
 /* Scanner */
 typedef struct scannerData {
-	sofia_intg scanHistogram[NUM_TOKENS];	/* Statistics of chars */
+	urizen_int scanHistogram[NUM_TOKENS];	/* Statistics of chars */
 } ScannerData, * pScanData;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,7 +181,7 @@ typedef struct scannerData {
 #define CHAR_CLASSES	8
 
 /* TO_DO: Transition table - type of states defined in separate table */
-static sofia_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
+static urizen_int transitionTable[NUM_STATES][CHAR_CLASSES] = {
 /*    [A-z],[0-9],    _,    &,   \', SEOF,    #, other
 	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
 	{     1, ESNR, ESNR, ESNR,    4, ESWR,	  6, ESNR},	// S0: NOAS
@@ -202,7 +202,7 @@ static sofia_intg transitionTable[NUM_STATES][CHAR_CLASSES] = {
 #define FSWR	2		/* accepting state with retract */
 
 /* TO_DO: Define list of acceptable states */
-static sofia_intg stateType[NUM_STATES] = {
+static urizen_int stateType[NUM_STATES] = {
 	NOFS, /* 00 */
 	NOFS, /* 01 */
 	FSNR, /* 02 (MID) - Methods */
@@ -222,10 +222,10 @@ TO_DO: Adjust your functions'definitions
 */
 
 /* Static (local) function  prototypes */
-sofia_intg			startScanner(BufferPointer psc_buf);
-static sofia_intg	nextClass(sofia_char c);					/* character class function */
-static sofia_intg	nextState(sofia_intg, sofia_char);		/* state machine function */
-sofia_void			printScannerData(ScannerData scData);
+urizen_int			startScanner(BufferPointer psc_buf);
+static urizen_int	nextClass(urizen_char c);					/* character class function */
+static urizen_int	nextState(sofia_intg, sofia_char);		/* state machine function */
+urizen_void			printScannerData(ScannerData scData);
 Token				tokenizer(sofia_void);
 
 /*
@@ -235,15 +235,15 @@ Automata definitions
 */
 
 /* TO_DO: Pointer to function (of one char * argument) returning Token */
-typedef Token(*PTR_ACCFUN)(sofia_strg lexeme);
+typedef Token(*PTR_ACCFUN)(urizen_str lexeme);
 
 /* Declare accepting states functions */
-Token funcSL	(sofia_strg lexeme);
-Token funcIL	(sofia_strg lexeme);
-Token funcID	(sofia_strg lexeme);
-Token funcCMT   (sofia_strg lexeme);
-Token funcKEY	(sofia_strg lexeme);
-Token funcErr	(sofia_strg lexeme);
+Token funcSL	(urizen_str lexeme);
+Token funcIL	(urizen_str lexeme);
+Token funcID	(urizen_str lexeme);
+Token funcCMT   (urizen_str lexeme);
+Token funcKEY	(urizen_str lexeme);
+Token funcErr	(urizen_str lexeme);
 
 /* 
  * Accepting function (action) callback table (array) definition 
@@ -274,7 +274,7 @@ Language keywords
 #define KWT_SIZE 11
 
 /* TO_DO: Define the list of keywords */
-static sofia_strg keywordTable[KWT_SIZE] = {
+static urizen_str keywordTable[KWT_SIZE] = {
 	"data",		/* KW00 */
 	"code",		/* KW01 */
 	"int",		/* KW02 */
@@ -298,13 +298,13 @@ static sofia_strg keywordTable[KWT_SIZE] = {
 
 /* TO_DO: Should be used if no symbol table is implemented */
 typedef struct languageAttributes {
-	sofia_char indentationCharType;
-	sofia_intg indentationCurrentPos;
+	urizen_char indentationCharType;
+	urizen_int indentationCurrentPos;
 	/* TO_DO: Include any extra attribute to be used in your scanner (OPTIONAL and FREE) */
 } LanguageAttributes;
 
 /* Number of errors */
-sofia_intg numScannerErrors;
+urizen_int numScannerErrors;
 
 /* Scanner data */
 ScannerData scData;

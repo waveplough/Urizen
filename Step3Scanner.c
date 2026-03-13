@@ -1,33 +1,33 @@
 /*
 ************************************************************
 * COMPILERS COURSE - Algonquin College
-* Code version: Fall, 2025
-* Author: TO_DO
+* Code version: Winter, 2026
+* Author: David Jacob
 * Professors: Paulo Sousa
 ************************************************************
 #
 # ECHO "=---------------------------------------="
-# ECHO "|  COMPILERS - ALGONQUIN COLLEGE (F24)  |"
+# ECHO "|  COMPILERS - ALGONQUIN COLLEGE (W26)  |"
 # ECHO "=---------------------------------------="
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "    @@                             @@    ”
-# ECHO "    @@           %&@@@@@@@@@@@     @@    ”
-# ECHO "    @@       @%% (@@@@@@@@@  @     @@    ”
-# ECHO "    @@      @& @   @ @       @     @@    ”
-# ECHO "    @@     @ @ %  / /   @@@@@@     @@    ”
-# ECHO "    @@      & @ @  @@              @@    ”
-# ECHO "    @@       @/ @*@ @ @   @        @@    ”
-# ECHO "    @@           @@@@  @@ @ @      @@    ”
-# ECHO "    @@            /@@    @@@ @     @@    ”
-# ECHO "    @@     @      / /     @@ @     @@    ”
-# ECHO "    @@     @ @@   /@/   @@@ @      @@    ”
-# ECHO "    @@     @@@@@@@@@@@@@@@         @@    ”
 # ECHO "    @@                             @@    ”
-# ECHO "    @@         S O F I A           @@    ”
+# ECHO "    @@                             @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@        @@@@      @@    ”
+# ECHO "    @@       @@@@@@@@@@@@@@@@      @@    ”
+# ECHO "    @@        @@@@@@@@@@@@@@       @@    ”
+# ECHO "    @@                             @@    ”
+# ECHO "    @@         U R I Z E N         @@    ”
 # ECHO "    @@                             @@    ”
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "                                         "
-# ECHO "[READER SCRIPT .........................]"
+# ECHO "[SCANNER SCRIPT ........................]"
 # ECHO "                                         "
 */
 
@@ -106,9 +106,9 @@ static BufferPointer sourceBuffer;			/* Pointer to input source buffer */
  */
  /* TO_DO: Follow the standard and adjust datatypes */
 
-sofia_intg startScanner(BufferPointer psc_buf) {
+urizen_int startScanner(BufferPointer psc_buf) {
 	/* TO_DO: Start histogram */
-	for (sofia_intg i=0; i<NUM_TOKENS;i++)
+	for (urizen_int i=0; i<NUM_TOKENS;i++)
 		scData.scanHistogram[i] = 0;
 	/* Basic scanner initialization */
 	/* in case the buffer has been read previously  */
@@ -135,18 +135,18 @@ Token tokenizer(sofia_void) {
 	/* TO_DO: Follow the standard and adjust datatypes */
 
 	Token currentToken = { 0 }; /* token to return after pattern recognition. Set all structure members to 0 */
-	sofia_char c;			/* input symbol */
-	sofia_intg state = 0;	/* initial state of the FSM */
-	sofia_intg lexStart;	/* start offset of a lexeme in the input char buffer (array) */
-	sofia_intg lexEnd;		/* end offset of a lexeme in the input char buffer (array)*/
+	urizen_char c;			/* input symbol */
+	urizen_int state = 0;	/* initial state of the FSM */
+	urizen_int lexStart;	/* start offset of a lexeme in the input char buffer (array) */
+	urizen_int lexEnd;		/* end offset of a lexeme in the input char buffer (array)*/
 
-	sofia_intg lexLength;	/* token length */
-	sofia_intg i;			/* counter */
+	urizen_int lexLength;	/* token length */
+	urizen_int i;			/* counter */
 	///sofia_char newc;		// new char
 
 	/* Starting lexeme */
-	sofia_strg lexeme;	/* lexeme (to check the function) */
-	lexeme = (sofia_strg)malloc(VID_LEN * sizeof(sofia_char));
+	urizen_str lexeme;	/* lexeme (to check the function) */
+	lexeme = (urizen_str)malloc(VID_LEN * sizeof(urizen_char));
 	if (!lexeme)
 		return currentToken;
 	lexeme[0] = EOS_CHR;
@@ -230,7 +230,7 @@ Token tokenizer(sofia_void) {
 				readerRetract(sourceBuffer);
 			lexEnd = readerGetPosRead(sourceBuffer);
 			lexLength = lexEnd - lexStart;
-			lexemeBuffer = readerCreate((sofia_intg)lexLength + 2, READER_DEFAULT_FACTOR);
+			lexemeBuffer = readerCreate((urizen_int)lexLength + 2, READER_DEFAULT_FACTOR);
 			if (!lexemeBuffer) {
 				fprintf(stderr, "Scanner error: Can not create buffer\n");
 				exit(1);
@@ -279,9 +279,9 @@ Token tokenizer(sofia_void) {
  */
  /* TO_DO: Just change the datatypes */
 
-sofia_intg nextState(sofia_intg state, sofia_char c) {
-	sofia_intg col;
-	sofia_intg next;
+urizen_int nextState(urizen_int state, urizen_char c) {
+	urizen_int col;
+	urizen_int next;
 	col = nextClass(c);
 	next = transitionTable[state][col];
 	if (DEBUG)
@@ -310,8 +310,8 @@ sofia_intg nextState(sofia_intg state, sofia_char c) {
 /*    [A-z],[0-9],    _,    &,   \', SEOF,    #, other
 	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
 
-sofia_intg nextClass(sofia_char c) {
-	sofia_intg val = -1;
+urizen_int nextClass(urizen_char c) {
+	urizen_int val = -1;
 	switch (c) {
 	case UND_CHR:
 		val = 2;
@@ -348,9 +348,9 @@ sofia_intg nextClass(sofia_char c) {
  */
  /* TO_DO: Adjust the function for IL */
 
-Token funcCMT(sofia_strg lexeme) {
+Token funcCMT(urizen_str lexeme) {
 	Token currentToken = { 0 };
-	sofia_intg i = 0, len = (sofia_intg)strlen(lexeme);
+	urizen_int i = 0, len = (urizen_int)strlen(lexeme);
 	currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
 	for (i = 1; i < len - 1; i++) {
 		if (lexeme[i] == NWL_CHR)
@@ -374,9 +374,9 @@ Token funcCMT(sofia_strg lexeme) {
   */
   /* TO_DO: Adjust the function for IL */
 
-Token funcIL(sofia_strg lexeme) {
+Token funcIL(urizen_str lexeme) {
 	Token currentToken = { 0 };
-	sofia_long tlong;
+	urizen_long tlong;
 	if (lexeme[0] != EOS_CHR && strlen(lexeme) > NUM_LEN) {
 		currentToken = (*finalStateTable[ESNR])(lexeme);
 	}
@@ -385,7 +385,7 @@ Token funcIL(sofia_strg lexeme) {
 		if (tlong >= 0 && tlong <= SHRT_MAX) {
 			currentToken.code = INL_T;
 			scData.scanHistogram[currentToken.code]++;
-			currentToken.attribute.intValue = (sofia_intg)tlong;
+			currentToken.attribute.intValue = (urizen_int)tlong;
 		}
 		else {
 			currentToken = (*finalStateTable[ESNR])(lexeme);
@@ -409,16 +409,16 @@ Token funcIL(sofia_strg lexeme) {
  */
  /* TO_DO: Adjust the function for ID */
 
-Token funcID(sofia_strg lexeme) {
+Token funcID(urizen_str lexeme) {
 	Token currentToken = { 0 };
 	size_t length = strlen(lexeme);
-	sofia_char lastch = lexeme[length - 1];
-	sofia_intg isID = SOFIA_FALSE;
+	urizen_char lastch = lexeme[length - 1];
+	urizen_int isID = URIZEN_FALSE;
 	switch (lastch) {
 		case AMP_CHR:
 			currentToken.code = MNID_T;
 			scData.scanHistogram[currentToken.code]++;
-			isID = SOFIA_TRUE;
+			isID = URIZEN_TRUE;
 			break;
 		default:
 			// Test Keyword
@@ -426,7 +426,7 @@ Token funcID(sofia_strg lexeme) {
 			currentToken = funcKEY(lexeme);
 			break;
 	}
-	if (isID == SOFIA_TRUE) {
+	if (isID == URIZEN_TRUE) {
 		strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
 		currentToken.attribute.idLexeme[VID_LEN] = EOS_CHR;
 	}
@@ -446,9 +446,9 @@ Token funcID(sofia_strg lexeme) {
  */
 /* TO_DO: Adjust the function for SL */
 
-Token funcSL(sofia_strg lexeme) {
+Token funcSL(urizen_str lexeme) {
 	Token currentToken = { 0 };
-	sofia_intg i = 0, len = (sofia_intg)strlen(lexeme);
+	urizen_int i = 0, len = (urizen_int)strlen(lexeme);
 	currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
 	for (i = 1; i < len - 1; i++) {
 		if (lexeme[i] == NWL_CHR)
@@ -482,10 +482,10 @@ Token funcSL(sofia_strg lexeme) {
  */
  /* TO_DO: Adjust the function for Keywords */
 
-Token funcKEY(sofia_strg lexeme) {
+Token funcKEY(urizen_str lexeme) {
 	Token currentToken = { 0 };
-	sofia_intg kwindex = -1, j = 0;
-	sofia_intg len = (sofia_intg)strlen(lexeme);
+	urizen_int kwindex = -1, j = 0;
+	urizen_int len = (urizen_int)strlen(lexeme);
 	///lexeme[len - 1] = EOS_CHR;
 	for (j = 0; j < KWT_SIZE; j++)
 		if (!strcmp(lexeme, &keywordTable[j][0]))
@@ -514,9 +514,9 @@ Token funcKEY(sofia_strg lexeme) {
  */
  /* TO_DO: Adjust the function for Errors */
 
-Token funcErr(sofia_strg lexeme) {
+Token funcErr(urizen_str lexeme) {
 	Token currentToken = { 0 };
-	sofia_intg i = 0, len = (sofia_intg)strlen(lexeme);
+	urizen_int i = 0, len = (urizen_int)strlen(lexeme);
 	if (len > ERR_LEN) {
 		strncpy(currentToken.attribute.errLexeme, lexeme, ERR_LEN - 3);
 		currentToken.attribute.errLexeme[ERR_LEN - 3] = EOS_CHR;
@@ -540,8 +540,8 @@ Token funcErr(sofia_strg lexeme) {
  ***********************************************************
  */
 
-sofia_void printToken(Token t) {
-	extern sofia_strg keywordTable[]; /* link to keyword table in */
+urizen_void printToken(Token t) {
+	extern urizen_str keywordTable[]; /* link to keyword table in */
 	switch (t.code) {
 	case RTE_T:
 		printf("RTE_T\t\t%s", t.attribute.errLexeme);
@@ -562,8 +562,8 @@ sofia_void printToken(Token t) {
 		printf("MNID_T\t\t%s\n", t.attribute.idLexeme);
 		break;
 	case STR_T:
-		printf("STR_T\t\t%d\t ", (sofia_intg)t.attribute.codeType);
-		printf("%s\n", readerGetContent(stringLiteralTable, (sofia_intg)t.attribute.codeType));
+		printf("STR_T\t\t%d\t ", (urizen_int)t.attribute.codeType);
+		printf("%s\n", readerGetContent(stringLiteralTable, (urizen_int)t.attribute.codeType));
 		break;
 	case LPR_T:
 		printf("LPR_T\n");
@@ -600,7 +600,7 @@ sofia_void printToken(Token t) {
  *	- Void (procedure)
  ***********************************************************
  */
-sofia_void printScannerData(ScannerData scData) {
+urizen_void printScannerData(ScannerData scData) {
 	/* Print Scanner statistics */
 	printf("Statistics:\n");
 	printf("----------------------------------\n");
