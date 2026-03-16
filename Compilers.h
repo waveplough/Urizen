@@ -68,6 +68,7 @@
 
 #define INVALID NULL
 #define EOF_CHAR '\0'
+#define URIZEN_ERROR -1
 
 /*
 ------------------------------------------------------------
@@ -117,6 +118,7 @@ Main functions signatures
 */
 urizen_int main1Coder(urizen_int argc, urizen_str* argv);
 urizen_int main2Reader(urizen_int argc, urizen_str* argv);
+urizen_int main3Scanner(urizen_int argc, urizen_str* argv);
 
 urizen_void printLogo(urizen_void);
 urizen_void errorPrint(urizen_str fmt, ...);

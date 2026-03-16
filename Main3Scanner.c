@@ -117,7 +117,7 @@ urizen_void printToken(Token t);
  ***********************************************************
  */
 
-urizen_int mainScanner(urizen_int argc, urizen_str* argv) {
+urizen_int main3Scanner(urizen_int argc, urizen_str* argv) {
 
 	BufferPointer sourceBuffer;		/* Pointer to input (source) buffer */
 	FILE* fileHandler;				/* Input file handle */
@@ -138,7 +138,7 @@ urizen_int mainScanner(urizen_int argc, urizen_str* argv) {
 	printf("%s%d%s", "[Debug mode: ", DEBUG, "]\n");
 
 	/* Create a source code input buffer - multiplicative mode */
-	sourceBuffer = readerCreate(READER_DEFAULT_SIZE, READER_DEFAULT_INCREMENT, MODE_MULTI);
+	sourceBuffer = readerCreate(READER_DEFAULT_SIZE, READER_DEFAULT_FACTOR, DEFAULT_MAX_LIMIT); // originally readerCreate(READER_DEFAULT_SIZE, READER_DEFAULT_FACTOR, MODE_MULTI);
 	if (sourceBuffer == NULL) {
 		printScannerError("%s%s", argv[1], ": Could not create source buffer");
 		exit(EXIT_FAILURE);
@@ -153,26 +153,26 @@ urizen_int mainScanner(urizen_int argc, urizen_str* argv) {
 	/* Load source file into input buffer  */
 	printf("Reading file %s ....Please wait\n", argv[2]);
 	loadSize = readerLoad(sourceBuffer, fileHandler);
-	if (loadSize == SOFIA_ERROR)
+	if (loadSize == URIZEN_ERROR)
 		printScannerError("%s%s", argv[0], ": Error in loading buffer.");
 
 	/* Close source file */
 	fclose(fileHandler);
 	/* Find the size of the file */
-	if (loadSize == SOFIA_ERROR) {
+	if (loadSize == URIZEN_ERROR) {
 		printf("The input file %s %s\n", argv[2], "is not completely loaded.");
 		printf("Input file size: %ld\n", getScannerFilesize(argv[2]));
 	}
 
 	/* Compact and display the source buffer and add SEOF to input program buffer */
-	if ((loadSize != SOFIA_ERROR) && (loadSize != 0)) {
+	if ((loadSize != URIZEN_ERROR) && (loadSize != 0)) {
 		if (readerAddChar(sourceBuffer, READER_TERMINATOR)) {
 			displayScanner(sourceBuffer);
 		}
 	}
 
 	/* Create string Literal Table */
-	stringLiteralTable = readerCreate(READER_DEFAULT_SIZE, READER_DEFAULT_INCREMENT, MODE_ADDIT);
+	stringLiteralTable = readerCreate(READER_DEFAULT_SIZE, READER_DEFAULT_FACTOR, DEFAULT_MAX_LIMIT); // originally readerCreate(READER_DEFAULT_SIZE, READER_DEFAULT_FACTOR, MODE_ADDIT);
 	if (stringLiteralTable == NULL) {
 		printScannerError("%s%s", argv[0], ": Could not create string literals buffer");
 		exit(EXIT_FAILURE);
@@ -196,7 +196,7 @@ urizen_int mainScanner(urizen_int argc, urizen_str* argv) {
 	/* Print String Literal Table if not empty */
 	printf("\nPrinting string table...\n");
 	printf("----------------------------------\n");
-	if (readerGetPosWrte(stringLiteralTable)) {
+	if (readerGetPosWrite(stringLiteralTable)) {
 		readerPrint(stringLiteralTable);
 	}
 	printf("\n----------------------------------\n");
@@ -241,7 +241,7 @@ urizen_void printScannerError(urizen_str fmt, ...) {
 urizen_void displayScanner(BufferPointer ptrBuffer) {
 	printf("\nPrinting buffer parameters:\n\n");
 	printf("The capacity of the buffer is:  %d\n", readerGetSize(ptrBuffer));
-	printf("The current size of the buffer is:  %d\n", readerGetPosWrte(ptrBuffer));
+	printf("The current size of the buffer is:  %d\n", readerGetPosWrite(ptrBuffer));
 	printf("\nPrinting buffer contents:\n\n");
 	readerRecover(ptrBuffer);
 	readerPrint(ptrBuffer);

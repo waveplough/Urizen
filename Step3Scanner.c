@@ -85,14 +85,14 @@ TO_DO: Global vars definitions
 /* Global objects - variables */
 /* This buffer is used as a repository for string literals. */
 extern BufferPointer stringLiteralTable;	/* String literal table */
-sofia_intg line;								/* Current line number of the source code */
-extern sofia_intg errorNumber;				/* Defined in platy_st.c - run-time error number */
+urizen_int line;								/* Current line number of the source code */
+extern urizen_int errorNumber;				/* Defined in platy_st.c - run-time error number */
 
-extern sofia_intg stateType[NUM_STATES];
-extern sofia_strg keywordTable[KWT_SIZE];
+extern urizen_int stateType[NUM_STATES];
+extern urizen_str keywordTable[KWT_SIZE];
 
 extern PTR_ACCFUN finalStateTable[NUM_STATES];
-extern sofia_intg transitionTable[NUM_STATES][CHAR_CLASSES];
+extern urizen_int transitionTable[NUM_STATES][CHAR_CLASSES];
 
 /* Local(file) global objects - variables */
 static BufferPointer lexemeBuffer;			/* Pointer to temporary lexeme buffer */
@@ -230,7 +230,7 @@ Token tokenizer(sofia_void) {
 				readerRetract(sourceBuffer);
 			lexEnd = readerGetPosRead(sourceBuffer);
 			lexLength = lexEnd - lexStart;
-			lexemeBuffer = readerCreate((urizen_int)lexLength + 2, READER_DEFAULT_FACTOR);
+			lexemeBuffer = readerCreate((urizen_int)lexLength + 2, READER_DEFAULT_FACTOR, DEFAULT_MAX_LIMIT);
 			if (!lexemeBuffer) {
 				fprintf(stderr, "Scanner error: Can not create buffer\n");
 				exit(1);
@@ -351,7 +351,7 @@ urizen_int nextClass(urizen_char c) {
 Token funcCMT(urizen_str lexeme) {
 	Token currentToken = { 0 };
 	urizen_int i = 0, len = (urizen_int)strlen(lexeme);
-	currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
+	currentToken.attribute.contentString = readerGetPosWrite(stringLiteralTable);
 	for (i = 1; i < len - 1; i++) {
 		if (lexeme[i] == NWL_CHR)
 			line++;
@@ -449,7 +449,7 @@ Token funcID(urizen_str lexeme) {
 Token funcSL(urizen_str lexeme) {
 	Token currentToken = { 0 };
 	urizen_int i = 0, len = (urizen_int)strlen(lexeme);
-	currentToken.attribute.contentString = readerGetPosWrte(stringLiteralTable);
+	currentToken.attribute.contentString = readerGetPosWrite(stringLiteralTable);
 	for (i = 1; i < len - 1; i++) {
 		if (lexeme[i] == NWL_CHR)
 			line++;
