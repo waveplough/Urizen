@@ -69,7 +69,7 @@
 #define RTE_CODE 1  /* Value for run-time error */
 
 /* TO_DO: Define the number of tokens */
-#define NUM_TOKENS 13
+#define NUM_TOKENS 20
 
 /* TO_DO: Define Token codes - Create your token classes */
 enum TOKENS {
@@ -85,7 +85,15 @@ enum TOKENS {
 	EOS_T,		/*  9: End of statement (semicolon) */
 	RTE_T,		/* 10: Run-time error token */
 	SEOF_T,		/* 11: Source end-of-file token */
-	CMT_T		/* 12: Comment token */
+	CMT_T,		/* 12: Comment token */
+	LSB_T,		/* 13: Left square bracket token */
+	RSB_T,		/* 14: Right square bracket token*/
+	VARSUB_T,	/* 15: (variable substitution) Dollar sign token */
+	ARITH_T,	/* 16: Arithmetic operator */
+	REL_T,		/* 17: Relational operator */
+	LOG_T,		/* 18: Logic operator */
+	ASSIGN_T	/* 19: Assignment */
+	
 };
 
 /* TO_DO: Define the list of keywords */
@@ -102,7 +110,14 @@ static urizen_str tokenStrTable[NUM_TOKENS] = {
 	"EOS_T",
 	"RTE_T",
 	"SEOF_T",
-	"CMT_T"
+	"CMT_T",
+	"LSB_T",
+	"RSB_T",
+	"VARSUB_T",
+	"ARITH_T",
+	"REL_T",
+	"LOG_T",
+	"ASSIGN_T"
 };
 
 /* TO_DO: Operators token attributes */
@@ -166,6 +181,17 @@ typedef struct scannerData {
 #define RPR_CHR ')'		// CH11
 #define LBR_CHR '{'		// CH12
 #define RBR_CHR '}'		// CH13
+#define LSB_CHR '['		// CH14
+#define RSB_CHR ']'		// CH15
+#define VARSUB_CHR '$'	//CH16
+#define PLUS_CHR '+'	
+#define MINUS_CHR '-'
+#define MULT_CHR '*'
+#define DIV_CHR '/'
+#define LT_CHR '<'
+#define GT_CHR '>'
+#define ASSIGN_CHR '='
+
 
 /*  Special case tokens processed separately one by one in the token-driven part of the scanner:
  *  LPR_T, RPR_T, LBR_T, RBR_T, EOS_T, SEOF_T and special chars used for tokenis include _, & and ' */

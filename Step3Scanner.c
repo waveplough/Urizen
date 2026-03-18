@@ -154,7 +154,7 @@ Token tokenizer(sofia_void) {
 	while (1) { /* endless loop broken by token returns it will generate a warning */
 		c = readerGetChar(sourceBuffer);
 
-		// TO_DO: Defensive programming
+		// TO_DO: Defensive programming checks that character is within ASCII range
 		if (c < 0 || c >= NCHAR)
 			return currentToken;
 
@@ -167,35 +167,88 @@ Token tokenizer(sofia_void) {
 		/* TO_DO: All patterns that do not require accepting functions */
 		switch (c) {
 
-		/* Cases for spaces */
+		/* Cases for spaces, tabs, and new lines (ignore them)*/
 		case SPC_CHR:
 		case TAB_CHR:
 			break;
 		case NWL_CHR:
-			line++;
+			line++;	/* increment line count in case of new line */
 			break;
 
 		/* Cases for symbols */
-		case SCL_CHR:
+		case SCL_CHR:	/* Semicolon */
 			currentToken.code = EOS_T;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
-		case LPR_CHR:
+		case LPR_CHR:	/* left parenthesis */
 			currentToken.code = LPR_T;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
-		case RPR_CHR:
+		case RPR_CHR:	/* right parenthesis */
 			currentToken.code = RPR_T;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
-		case LBR_CHR:
+		case LBR_CHR:	/* left curly brace */
 			currentToken.code = LBR_T;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
-		case RBR_CHR:
+		case RBR_CHR:	/* right curly brace */
 			currentToken.code = RBR_T;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
+		case RSB_CHR:	/* right square bracket */
+			currentToken.code = RSB_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case LSB_CHR:	/* left square bracket */
+			currentToken.code = LSB_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case VARSUB_CHR:	/* left square bracket */
+			currentToken.code = VARSUB_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case ASSIGN_CHR:	/* left square bracket */
+			currentToken.code = ASSIGN_T;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+
+
+
+		/* Arithmetic operators */
+		case PLUS_CHR:	/* plus */
+			currentToken.code = ARITH_T;
+			currentToken.attribute.arithmeticOperator = OP_ADD;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case MINUS_CHR:	/* minus */
+			currentToken.code = ARITH_T;
+			currentToken.attribute.arithmeticOperator = OP_SUB;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+		case MULT_CHR:	/* multiplication */
+			currentToken.code = ARITH_T;
+			currentToken.attribute.arithmeticOperator = OP_MUL;
+			return currentToken;
+		case DIV_CHR:	/* left square bracket */
+			currentToken.code = ARITH_T;
+			currentToken.attribute.arithmeticOperator = OP_DIV;
+			scData.scanHistogram[currentToken.code]++;
+			return currentToken;
+
+		/* Relational operator */
+
+		case LT_CHR:
+			currentToken.code = REL_T;
+			currentToken.attribute.relationalOperator = OP_LT;
+			return currentToken;
+
+		case GT_CHR:
+			currentToken.code = REL_T;
+			currentToken.attribute.relationalOperator = OP_GT;
+			return currentToken;
+
+
 		/* Cases for END OF FILE */
 		case EOS_CHR:
 			currentToken.code = SEOF_T;
@@ -583,8 +636,52 @@ urizen_void printToken(Token t) {
 	case CMT_T:
 		printf("CMT_T\n");
 		break;
+	case LSB_T:
+		printf("LSB_T\n");
+		break;
+	case RSB_T:
+		printf("RSB_T\n");
+		break;
 	case EOS_T:
 		printf("EOS_T\n");
+		break;
+	case ASSIGN_T:
+		printf("ASSIGN_T\n");
+		break;
+	case VARSUB_T:
+		printf("VARSUB_T\n");
+		break;
+// new
+	case ARITH_T:
+		switch (t.attribute.arithmeticOperator) {
+		case OP_ADD:
+			printf("ARITH_T\t\tOP_ADD\n");
+			break;
+		case OP_SUB:
+			printf("ARITH_T\t\tOP_SUB\n");
+			break;
+		case OP_MUL:
+			printf("ARITH_T\t\tOP_MUL\n");
+			break;
+		case OP_DIV:
+			printf("ARITH_T\t\tOP_DIV\n");
+			break;
+		default:
+			printf("ARITH_T\t\tUNKNOWN_OP\n");
+		}
+		break;
+
+	case REL_T:
+		switch (t.attribute.relationalOperator) {
+		case OP_LT:
+			printf("REL_T\t\tOP_LT\n");
+			break;
+		case OP_GT:
+			printf("REL_T\t\tOP_GT\n");
+			break;
+		default:
+			printf("REL_T\t\tUNKNOWN_OP\n");
+		}
 		break;
 	default:
 		printf("Scanner error: invalid token code: %d\n", t.code);
