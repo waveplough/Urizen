@@ -120,7 +120,6 @@ urizen_void printToken(Token t);
 urizen_int main3Scanner(urizen_int argc, urizen_str* argv) {
 
 	BufferPointer sourceBuffer;		/* Pointer to input (source) buffer */
-	FILE* fileHandler;				/* Input file handle */
 	Token currentToken;				/* Token produced by the scanner */
 	urizen_int loadSize = 0;			/* The size of the file loaded in the buffer */
 
@@ -144,20 +143,14 @@ urizen_int main3Scanner(urizen_int argc, urizen_str* argv) {
 		exit(EXIT_FAILURE);
 	}
 
-	/* Open source file */
-	if ((fileHandler = fopen(argv[2], "r")) == NULL) {
-		printScannerError("%s%s%s", argv[0], ": Cannot open file: ", argv[2]);
-		exit(EXIT_FAILURE);
-	}
-
 	/* Load source file into input buffer  */
 	printf("Reading file %s ....Please wait\n", argv[2]);
-	loadSize = readerLoad(sourceBuffer, fileHandler);
+	loadSize = readerLoad(sourceBuffer, argv[2]);
 	if (loadSize == URIZEN_ERROR)
 		printScannerError("%s%s", argv[0], ": Error in loading buffer.");
 
-	/* Close source file */
-	fclose(fileHandler);
+
+
 	/* Find the size of the file */
 	if (loadSize == URIZEN_ERROR) {
 		printf("The input file %s %s\n", argv[2], "is not completely loaded.");

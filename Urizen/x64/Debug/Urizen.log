@@ -1,19 +1,6 @@
-﻿  Main3Scanner.c
+﻿  Main2Reader.c
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
-  (compiling source file 'Main3Scanner.c')
+  (compiling source file 'Main2Reader.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(131,14): warning C4820: 'idAttibutes': '7' bytes padding added after data member 'flags'
-  (compiling source file 'Main3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(227,19): warning C4131: 'nextState': uses old-style declarator
-  (compiling source file 'Main3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(229,10): warning C4131: 'tokenizer': uses old-style declarator
-  (compiling source file 'Main3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(301,14): warning C4820: 'languageAttributes': '3' bytes padding added after data member 'indentationCharType'
-  (compiling source file 'Main3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Main3Scanner.c(98,14): warning C4131: 'tokenizer': uses old-style declarator
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Main3Scanner.c(155,38): warning C4133: 'function': incompatible types - from 'FILE *' to 'urizen_str'
+  LINK : C:\Users\David Jacob\Compilers\source\repos\Urizen\x64\Debug\Urizen.exe not found or not built by the last incremental link; performing full link
   Urizen.vcxproj -> C:\Users\David Jacob\Compilers\source\repos\Urizen\x64\Debug\Urizen.exe
