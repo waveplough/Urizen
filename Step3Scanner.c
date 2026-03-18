@@ -169,6 +169,7 @@ Token tokenizer(sofia_void) {
 
 		/* Cases for spaces, tabs, and new lines (ignore them)*/
 		case SPC_CHR:
+		case CRG_CHR:
 		case TAB_CHR:
 			break;
 		case NWL_CHR:
@@ -541,7 +542,7 @@ Token funcKEY(urizen_str lexeme) {
 	urizen_int len = (urizen_int)strlen(lexeme);
 	///lexeme[len - 1] = EOS_CHR;
 	for (j = 0; j < KWT_SIZE; j++)
-		if (!strcmp(lexeme, &keywordTable[j][0]))
+		if (strcmp(lexeme, &keywordTable[j][0]) == 0)
 			kwindex = j;
 	if (kwindex != -1) {
 		currentToken.code = KW_T;

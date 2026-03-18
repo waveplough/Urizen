@@ -184,6 +184,7 @@ typedef struct scannerData {
 #define LSB_CHR '['		// CH14
 #define RSB_CHR ']'		// CH15
 #define VARSUB_CHR '$'	//CH16
+#define CRG_CHR '\r'
 #define PLUS_CHR '+'	
 #define MINUS_CHR '-'
 #define MULT_CHR '*'
@@ -297,21 +298,54 @@ Language keywords
 */
 
 /* TO_DO: Define the number of Keywords from the language */
-#define KWT_SIZE 11
+#define KWT_SIZE 33
 
 /* TO_DO: Define the list of keywords */
 static urizen_str keywordTable[KWT_SIZE] = {
-	"data",		/* KW00 */
-	"code",		/* KW01 */
-	"int",		/* KW02 */
-	"real",		/* KW03 */
-	"string",	/* KW04 */
-	"if",		/* KW05 */
-	"then",		/* KW06 */
-	"else",		/* KW07 */
-	"while",	/* KW08 */
-	"do",		/* KW09 */
-	"return"	/* KW10 */
+	/* Core (9) */
+	"set",      /* 00: Variable assignment */
+	"expr",     /* 01: Expression evaluation */
+	"puts",     /* 02: Output */
+	"proc",     /* 03: Procedure definition */
+	"return",   /* 04: Return from proc */
+	"if",       /* 05: Conditional */
+	"else",     /* 06: Alternative */
+	"elseif",   /* 07: Chained conditional */
+	"while",    /* 08: While loop */
+
+	/* Loops and flow (4) */
+	"for",      /* 09: For loop */
+	"foreach",  /* 10: List iteration */
+	"break",    /* 11: Exit loop */
+	"continue", /* 12: Next iteration */
+
+	/* Scope (4) */
+	"global",   /* 13: Global variable */
+	"variable", /* 14: Namespace variable */
+	"upvar",    /* 15: Link variable */
+	"uplevel",  /* 16: Execute in scope */
+
+	/* Lists (8) */
+	"list",     /* 17: Create list */
+	"lappend",  /* 18: Append to list */
+	"lindex",   /* 19: Get element */
+	"llength",  /* 20: List length */
+	"lrange",   /* 21: Range of list */
+	"lsearch",  /* 22: Search list */
+	"lsort",    /* 23: Sort list */
+	"concat",   /* 24: Join lists */
+
+	/* Strings (4) */
+	"string",   /* 25: String ops */
+	"regexp",   /* 26: Regex match */
+	"regsub",   /* 27: Regex sub */
+	"subst",    /* 28: Substitutions */
+
+	/* Files (4) */
+	"open",     /* 29: Open file */
+	"close",    /* 30: Close file */
+	"read",     /* 31: Read file */
+	"gets"      /* 32: Read line */
 };
 
 /* NEW SECTION: About indentation */
