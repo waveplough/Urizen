@@ -212,16 +212,16 @@ typedef struct scannerData {
 static urizen_int transitionTable[NUM_STATES][CHAR_CLASSES] = {
 /*    [A-z],[0-9],    _,    &,   \', SEOF,    #, other
 	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
-	{     1, ESNR, ESNR, ESNR,    4, ESWR,	  6, ESNR},	// S0: NOAS (Non accepting state)
-	{     1,    1,    1,    2,	  3,    3,   3,    3},	// S1: NOAS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S2: ASNR (MVID) (Accepting state no retract)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S3: ASWR (KEY)  (Accepting state with retract)
-	{     4,    4,    4,    4,    5, ESWR,	  4,    4},	// S4: NOAS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S5: ASNR (SL)   (Accepting state no retract)
-	{     6,    6,    6,    6,    6, ESWR,	  7,    6},	// S6: NOAS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S7: ASNR (COM)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S8: ASNR (ES)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS}  // S9: ASWR (ER)
+	{     1, ESNR, ESNR, ESNR,    4, ESWR,	  6, ESNR},	// S0: NOFS (Non accepting state)
+	{     1,    1,    1,    2,	  3,    3,   3,    3},	// S1: NOFS
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S2: FSNR (MVID) (Accepting state no retract)
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S3: FSWR (KEY)  (Accepting state with retract)
+	{     4,    4,    4,    4,    5, ESWR,	  4,    4},	// S4: NOFS
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S5: FSNR (SL)   (Accepting state no retract)
+	{     6,    6,    6,    6,    6, ESWR,	  7,    6},	// S6: NOFS
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S7: FSNR (COM)
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S8: FSNR (ES)
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS}  // S9: FSWR (ER)
 };
 
 /* Define accepting states types */

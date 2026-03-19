@@ -1,21 +1,4 @@
-﻿  Main3Scanner.c
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
-  (compiling source file 'Main3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(146,14): warning C4820: 'idAttibutes': '7' bytes padding added after data member 'flags'
-  (compiling source file 'Main3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(256,19): warning C4131: 'nextState': uses old-style declarator
-  (compiling source file 'Main3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(258,10): warning C4131: 'tokenizer': uses old-style declarator
-  (compiling source file 'Main3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(363,14): warning C4820: 'languageAttributes': '3' bytes padding added after data member 'indentationCharType'
-  (compiling source file 'Main3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Main3Scanner.c(98,14): warning C4131: 'tokenizer': uses old-style declarator
-  Step3Scanner.c
+﻿  Step3Scanner.c
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
   (compiling source file 'Step3Scanner.c')
   
@@ -33,25 +16,24 @@ C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(363,14): warni
   
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(133,7): warning C4131: 'tokenizer': uses old-style declarator
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(133,17): warning C4100: 'sofia_void': unreferenced parameter
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(543,13): warning C4189: 'len': local variable is initialized but not referenced
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(702,42): warning C4459: declaration of 'scData' hides global declaration
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(550,13): warning C4189: 'len': local variable is initialized but not referenced
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(709,42): warning C4459: declaration of 'scData' hides global declaration
       C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(372,13):
       see declaration of 'scData'
   
-  Generating Code...
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(436,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(436,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(435) : note: index '' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(436,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(436) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(511,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(511,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(508) : note: index 'i' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(511,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(511) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(546,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(546,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(545) : note: index 'j' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(546,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(546) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(576,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(576,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(575) : note: index 'len' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(576,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(576) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(709,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(709,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(707) : note: index 'cont' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(709,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(709) : note: feeds call on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(516,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(516,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(513) : note: index 'i' range checked by comparison on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(516,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(516) : note: feeds call on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(440,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(440,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(439) : note: index '' range checked by comparison on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(440,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(440) : note: feeds call on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(553,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(553,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(552) : note: index 'j' range checked by comparison on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(553,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(553) : note: feeds call on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(583,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(583,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(582) : note: index 'len' range checked by comparison on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(583,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(583) : note: feeds call on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(716,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(716,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(714) : note: index 'cont' range checked by comparison on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(716,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(716) : note: feeds call on this line
   Urizen.vcxproj -> C:\Users\David Jacob\Compilers\source\repos\Urizen\x64\Debug\Urizen.exe

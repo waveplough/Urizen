@@ -275,25 +275,29 @@ Token tokenizer(sofia_void) {
 			lexStart = readerGetPosRead(sourceBuffer) - 1;
 			readerSetMark(sourceBuffer, lexStart);
 			int pos = 0;
-			while (stateType[state] == NOFS) {
-				c = readerGetChar(sourceBuffer);
-				state = nextState(state, c);
+			while (stateType[state] == NOFS) { /* As long as the state isn't an accepting one, continue looping */
+				c = readerGetChar(sourceBuffer); /* Get the next character in the buffer */
+				state = nextState(state, c);	/* Determine the category of the character and return it's next state based on that input */
 				pos++;
 			}
-			if (stateType[state] == FSWR)
+			if (stateType[state] == FSWR)	/* If the current state is a final state that is retractbale, then retract the reader by one */
 				readerRetract(sourceBuffer);
-			lexEnd = readerGetPosRead(sourceBuffer);
-			lexLength = lexEnd - lexStart;
-			lexemeBuffer = readerCreate((urizen_int)lexLength + 2, READER_DEFAULT_FACTOR, DEFAULT_MAX_LIMIT);
+			lexEnd = readerGetPosRead(sourceBuffer);	
+			lexLength = lexEnd - lexStart; /* Actual length */
+			lexemeBuffer = readerCreate((urizen_int)lexLength + 2, READER_DEFAULT_FACTOR, DEFAULT_MAX_LIMIT); /* Assign +2 slots for defensive programming */
+
+			/* Defensive programming */
 			if (!lexemeBuffer) {
 				fprintf(stderr, "Scanner error: Can not create buffer\n");
 				exit(1);
 			}
-			readerRestore(sourceBuffer);
+
+			readerRestore(sourceBuffer); /* read = mark */
+
 			for (i = 0; i < lexLength; i++)
-				readerAddChar(lexemeBuffer, readerGetChar(sourceBuffer));
-			readerAddChar(lexemeBuffer, READER_TERMINATOR);
-			lexeme = readerGetContent(lexemeBuffer, 0);
+				readerAddChar(lexemeBuffer, readerGetChar(sourceBuffer)); /* buffer is + 2 than lexLength so once it iterates through, it will have space for the null terminator and another safety slot */
+			readerAddChar(lexemeBuffer, READER_TERMINATOR); /* append null terminator at lexemeBuffer.length - 2 */
+			lexeme = readerGetContent(lexemeBuffer, 0); /* point lexeme variable to the first index of the readers contents */
 			// TO_DO: Defensive programming
 			if (!lexeme)
 				return currentToken;
@@ -336,7 +340,7 @@ Token tokenizer(sofia_void) {
 urizen_int nextState(urizen_int state, urizen_char c) {
 	urizen_int col;
 	urizen_int next;
-	col = nextClass(c);
+	col = nextClass(c); /* returns the category of input read */
 	next = transitionTable[state][col];
 	if (DEBUG)
 		printf("Input symbol: %c Row: %d Column: %d Next: %d \n", c, state, col, next);
@@ -504,9 +508,10 @@ Token funcID(urizen_str lexeme) {
 Token funcSL(urizen_str lexeme) {
 	Token currentToken = { 0 };
 	urizen_int i = 0, len = (urizen_int)strlen(lexeme);
-	currentToken.attribute.contentString = readerGetPosWrite(stringLiteralTable);
-	for (i = 1; i < len - 1; i++) {
-		if (lexeme[i] == NWL_CHR)
+	currentToken.attribute.contentString = readerGetPosWrite(stringLiteralTable); /* Get current position of write in the buffer to know where the SL starts for access e.g. stringLiteral[contentString*/
+
+	for (i = 1; i < len - 1; i++) { /* starts at [1] because [0] would be the starting quote/ double quote ; also ends at < len - 1 because < len would access the closing quote */
+		if (lexeme[i] == NWL_CHR) /* If it encounters a new line increment the number of lines */
 			line++;
 		if (!readerAddChar(stringLiteralTable, lexeme[i])) {
 			currentToken.code = RTE_T;
@@ -516,14 +521,16 @@ Token funcSL(urizen_str lexeme) {
 			return currentToken;
 		}
 	}
-	if (!readerAddChar(stringLiteralTable, EOS_CHR)) {
+	
+	if (!readerAddChar(stringLiteralTable, EOS_CHR)) { /* Append a null terminator at the end of the string literal \0 */
 		currentToken.code = RTE_T;
 		scData.scanHistogram[currentToken.code]++;
 		strcpy(currentToken.attribute.errLexeme, "Run Time Error:");
 		errorNumber = RTE_CODE;
 		return currentToken;
 	}
-	currentToken.code = STR_T;
+
+	currentToken.code = STR_T; /* String literal token */
 	scData.scanHistogram[currentToken.code]++;
 	return currentToken;
 }

@@ -419,13 +419,15 @@ urizen_int readerPrint(BufferPointer const readerPointer) {
 	}
 
 	/* Print the buffer content */
-	while (readerPointer->content[i]) {
+	while (i < readerPointer->position.write) {
 		printf("%c",readerPointer->content[i]);
+		if (!readerPointer->content[i])
+			printf("\n");
 		num++;
 		i++;
 	}
 
-	printf("\n\n");
+	printf("\n");
 
 	return num;
 }
