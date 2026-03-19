@@ -374,6 +374,7 @@ urizen_int nextClass(urizen_char c) {
 		val = 3;
 		break;
 	case QUT_CHR:
+	case DQT_CHR:
 		val = 4;
 		break;
 	case HST_CHR:

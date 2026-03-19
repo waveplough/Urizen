@@ -128,7 +128,7 @@ typedef enum SourceEndOfFile { SEOF_0, SEOF_255 } EofOperator;
 
 /* TO_DO: Data structures for declaring the token and its attributes */
 typedef union TokenAttribute {
-	urizen_int codeType;      /* integer attributes accessor */
+	urizen_int codeType;				 /* integer attributes accessor */
 	AriOperator arithmeticOperator;		/* arithmetic operator attribute code */
 	RelOperator relationalOperator;		/* relational operator attribute code */
 	LogOperator logicalOperator;		/* logical operator attribute code */
@@ -192,6 +192,7 @@ typedef struct scannerData {
 #define LT_CHR '<'
 #define GT_CHR '>'
 #define ASSIGN_CHR '='
+#define DQT_CHR '"'
 
 
 /*  Special case tokens processed separately one by one in the token-driven part of the scanner:
@@ -211,12 +212,12 @@ typedef struct scannerData {
 static urizen_int transitionTable[NUM_STATES][CHAR_CLASSES] = {
 /*    [A-z],[0-9],    _,    &,   \', SEOF,    #, other
 	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
-	{     1, ESNR, ESNR, ESNR,    4, ESWR,	  6, ESNR},	// S0: NOAS
+	{     1, ESNR, ESNR, ESNR,    4, ESWR,	  6, ESNR},	// S0: NOAS (Non accepting state)
 	{     1,    1,    1,    2,	  3,    3,   3,    3},	// S1: NOAS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S2: ASNR (MVID)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S3: ASWR (KEY)
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S2: ASNR (MVID) (Accepting state no retract)
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S3: ASWR (KEY)  (Accepting state with retract)
 	{     4,    4,    4,    4,    5, ESWR,	  4,    4},	// S4: NOAS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S5: ASNR (SL)
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S5: ASNR (SL)   (Accepting state no retract)
 	{     6,    6,    6,    6,    6, ESWR,	  7,    6},	// S6: NOAS
 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S7: ASNR (COM)
 	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S8: ASNR (ES)
@@ -240,6 +241,7 @@ static urizen_int stateType[NUM_STATES] = {
 	FSNR, /* 07 (COM) */
 	FSNR, /* 08 (Err1 - no retract) */
 	FSWR  /* 09 (Err2 - retract) */
+
 };
 
 /*
