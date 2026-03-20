@@ -271,8 +271,9 @@ Token tokenizer(sofia_void) {
 		/* TO_DO: Adjust / check the logic for your language */
 
 		default: // general case
+
 			state = nextState(state, c);
-			lexStart = readerGetPosRead(sourceBuffer) - 1;
+			lexStart = readerGetPosRead(sourceBuffer) - 1; /* get char was used above to check for exceptional characters (operators, braces etc) so you have to move it back one if it isn't exceptional */
 			readerSetMark(sourceBuffer, lexStart);
 			int pos = 0;
 			while (stateType[state] == NOFS) { /* As long as the state isn't an accepting one, continue looping */
@@ -282,7 +283,7 @@ Token tokenizer(sofia_void) {
 			}
 			if (stateType[state] == FSWR)	/* If the current state is a final state that is retractbale, then retract the reader by one */
 				readerRetract(sourceBuffer);
-			lexEnd = readerGetPosRead(sourceBuffer);	
+			lexEnd = readerGetPosRead(sourceBuffer);	/* it would be pointing one past the accept state but this works to its advantage*/
 			lexLength = lexEnd - lexStart; /* Actual length */
 			lexemeBuffer = readerCreate((urizen_int)lexLength + 2, READER_DEFAULT_FACTOR, DEFAULT_MAX_LIMIT); /* Assign +2 slots for defensive programming */
 
@@ -456,7 +457,6 @@ Token funcIL(urizen_str lexeme) {
 
 /*
  ************************************************************
- * Acceptance State Function ID
  *		In this function, the pattern for IDs must be recognized.
  *		Since keywords obey the same pattern, is required to test if
  *		the current lexeme matches with KW from language.
@@ -468,6 +468,19 @@ Token funcIL(urizen_str lexeme) {
  */
  /* TO_DO: Adjust the function for ID */
 
+Token funcID(urizen_str lexeme) {
+	Token currentToken = { 0 };
+	size_t length = strlen(lexeme);
+
+	currentToken.code = MNID_T;
+	scData.scanHistogram[currentToken.code]++;
+	strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
+	currentToken.attribute.idLexeme[VID_LEN] = EOS_CHR;
+	
+	return currentToken;
+}
+
+/*
 Token funcID(urizen_str lexeme) {
 	Token currentToken = { 0 };
 	size_t length = strlen(lexeme);
@@ -488,6 +501,34 @@ Token funcID(urizen_str lexeme) {
 	if (isID == URIZEN_TRUE) {
 		strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
 		currentToken.attribute.idLexeme[VID_LEN] = EOS_CHR;
+	}
+	return currentToken;
+}
+*/
+
+/*
+************************************************************
+ * This function checks if one specific lexeme is a keyword.
+ * - Tip: Remember to use the keywordTable to check the keywords.
+ ***********************************************************
+ */
+ /* TO_DO: Adjust the function for Keywords */
+
+Token funcKEY(urizen_str lexeme) {
+	Token currentToken = { 0 };
+	urizen_int kwindex = -1, j = 0; /* kw index initialized as - 1 */
+	urizen_int len = (urizen_int)strlen(lexeme);
+	///lexeme[len - 1] = EOS_CHR;
+	for (j = 0; j < KWT_SIZE; j++)
+		if (strcmp(lexeme, &keywordTable[j][0]) == 0)
+			kwindex = j;
+	if (kwindex != -1) {	/* After the loop */
+		currentToken.code = KW_T; /* kw index was modified then a match was found set the token as a KW (keyword type) */
+		scData.scanHistogram[currentToken.code]++;
+		currentToken.attribute.codeType = kwindex;
+	}
+	else {
+		currentToken = funcID(lexeme); // previously funcErr not funcID
 	}
 	return currentToken;
 }
@@ -532,34 +573,6 @@ Token funcSL(urizen_str lexeme) {
 
 	currentToken.code = STR_T; /* String literal token */
 	scData.scanHistogram[currentToken.code]++;
-	return currentToken;
-}
-
-
-/*
-************************************************************
- * This function checks if one specific lexeme is a keyword.
- * - Tip: Remember to use the keywordTable to check the keywords.
- ***********************************************************
- */
- /* TO_DO: Adjust the function for Keywords */
-
-Token funcKEY(urizen_str lexeme) {
-	Token currentToken = { 0 };
-	urizen_int kwindex = -1, j = 0;
-	urizen_int len = (urizen_int)strlen(lexeme);
-	///lexeme[len - 1] = EOS_CHR;
-	for (j = 0; j < KWT_SIZE; j++)
-		if (strcmp(lexeme, &keywordTable[j][0]) == 0)
-			kwindex = j;
-	if (kwindex != -1) {
-		currentToken.code = KW_T;
-		scData.scanHistogram[currentToken.code]++;
-		currentToken.attribute.codeType = kwindex;
-	}
-	else {
-		currentToken = funcErr(lexeme);
-	}
 	return currentToken;
 }
 
@@ -659,6 +672,9 @@ urizen_void printToken(Token t) {
 		break;
 	case VARSUB_T:
 		printf("VARSUB_T\n");
+		break;
+	case INL_T:
+		printf("INL_T\n");
 		break;
 // new
 	case ARITH_T:
