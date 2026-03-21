@@ -385,6 +385,13 @@ urizen_int nextClass(urizen_char c) {
 	case NWL_CHR:
 		val = 6;
 		break;
+	case PRD_CHR:
+		val = 7;
+		break;
+	case EXP_CHR_UPPER:
+	case EXP_CHR_LOWER:
+		val = 8;
+		break;
 	case EOS_CHR:
 	case EOF_CHR:
 		val = 5;
@@ -395,7 +402,7 @@ urizen_int nextClass(urizen_char c) {
 		else if (isdigit(c))
 			val = 1;
 		else
-			val = 7;
+			val = 9;
 	}
 	return val;
 }
@@ -437,7 +444,7 @@ Token funcCMT(urizen_str lexeme) {
 Token funcIL(urizen_str lexeme) {
 	Token currentToken = { 0 };
 	urizen_long tlong;
-	if (lexeme[0] != EOS_CHR && strlen(lexeme) > NUM_LEN) {
+	if (lexeme[0] == EOS_CHR && strlen(lexeme) > NUM_LEN) {
 		currentToken = (*finalStateTable[ESNR])(lexeme);
 	}
 	else {
@@ -451,6 +458,29 @@ Token funcIL(urizen_str lexeme) {
 			currentToken = (*finalStateTable[ESNR])(lexeme);
 		}
 	}
+	return currentToken;
+}
+
+/*
+ ************************************************************
+ * Acceptance State Function FPL
+ *		Function responsible to identify FPL (floating point literals).
+ * - It is necessary respect the limit (ex: 2-byte integer in C).
+ * - In the case of larger lexemes, error shoul be returned.
+ * - Only first ERR_LEN characters are accepted and eventually,
+ *   additional three dots (...) should be put in the output.
+ ***********************************************************
+ */
+ /* TO_DO: Adjust the function for FPL */
+
+Token funcFPL(urizen_str lexeme) {
+	Token currentToken = { 0 };
+	currentToken.code = FPL_T;
+	scData.scanHistogram[FPL_T]++;
+
+	/* Convert string to float/double */
+	currentToken.attribute.floatValue = (urizen_float)atof(lexeme);
+
 	return currentToken;
 }
 
@@ -480,31 +510,6 @@ Token funcID(urizen_str lexeme) {
 	return currentToken;
 }
 
-/*
-Token funcID(urizen_str lexeme) {
-	Token currentToken = { 0 };
-	size_t length = strlen(lexeme);
-	urizen_char lastch = lexeme[length - 1];
-	urizen_int isID = URIZEN_FALSE;
-	switch (lastch) {
-		case AMP_CHR:
-			currentToken.code = MNID_T;
-			scData.scanHistogram[currentToken.code]++;
-			isID = URIZEN_TRUE;
-			break;
-		default:
-			// Test Keyword
-			///lexeme[length - 1] = EOS_CHR;
-			currentToken = funcKEY(lexeme);
-			break;
-	}
-	if (isID == URIZEN_TRUE) {
-		strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
-		currentToken.attribute.idLexeme[VID_LEN] = EOS_CHR;
-	}
-	return currentToken;
-}
-*/
 
 /*
 ************************************************************
@@ -676,7 +681,10 @@ urizen_void printToken(Token t) {
 	case INL_T:
 		printf("INL_T\n");
 		break;
-// new
+	case FPL_T:
+		printf("FPL_T\n");
+		break;
+
 	case ARITH_T:
 		switch (t.attribute.arithmeticOperator) {
 		case OP_ADD:

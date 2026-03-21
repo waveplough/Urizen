@@ -1,8 +1,9 @@
 # This is a comment
 
 set _numbers {10 20 30 40 50}
-set sum 0
-foreach num $numbers {
+set sum 0;
+set real 1.2e5
+foreach num $_numbers {
     set sum [expr {$sum + $num}]
 }
 puts "The sum of the numbers is: $sum"

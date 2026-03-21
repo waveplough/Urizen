@@ -69,7 +69,7 @@
 #define RTE_CODE 1  /* Value for run-time error */
 
 /* TO_DO: Define the number of tokens */
-#define NUM_TOKENS 20
+#define NUM_TOKENS 21
 
 /* TO_DO: Define Token codes - Create your token classes */
 enum TOKENS {
@@ -92,7 +92,8 @@ enum TOKENS {
 	ARITH_T,	/* 16: Arithmetic operator */
 	REL_T,		/* 17: Relational operator */
 	LOG_T,		/* 18: Logic operator */
-	ASSIGN_T	/* 19: Assignment */
+	ASSIGN_T,	/* 19: Assignment */
+	FPL_T		/* 20: Floating-point literal */
 	
 };
 
@@ -193,6 +194,9 @@ typedef struct scannerData {
 #define GT_CHR '>'
 #define ASSIGN_CHR '='
 #define DQT_CHR '"'
+#define PRD_CHR '.'
+#define EXP_CHR_UPPER 'E'
+#define EXP_CHR_LOWER 'e'
 
 
 /*  Special case tokens processed separately one by one in the token-driven part of the scanner:
@@ -202,28 +206,33 @@ typedef struct scannerData {
 /* TO_DO: Error states and illegal state */
 #define ESNR	8		/* Error state with no retract */
 #define ESWR	9		/* Error state with retract */
-#define FS		12		/* Illegal state */
+#define FS		20		/* Illegal state */
 
  /* TO_DO: State transition table definition */
-#define NUM_STATES		12
-#define CHAR_CLASSES	8
+#define NUM_STATES		17
+#define CHAR_CLASSES	10
 
 /* TO_DO: Transition table - type of states defined in separate table */
 static urizen_int transitionTable[NUM_STATES][CHAR_CLASSES] = {
-/*    [A-z],[0-9],    _,    \', SEOF,    #,  \n,    other
-	   L(0), D(1), U(2),  Q(3), E(4), C(5),  N(6)    O(7) */
-	{     1,   10,    1,     4, ESWR,	  6,   0, ESNR},	// S0: NOFS (Non accepting state)
-	{     1,    1,    1, 	 3,    3,   3,  ESNR,   3},	// S1: NOFS
-	{    FS,   FS,   FS,     FS,   FS,	 FS, ESNR,  FS},	// S2: FSNR (VID) (Accepting state no retract)
-	{    FS,   FS,   FS,     FS,   FS,	 FS, ESNR,  FS},	// S3: FSWR (KEY)  (Accepting state with retract)
-	{     4,    4,    4,      5, ESWR,	  4, ESNR,   4},	// S4: NOFS
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,  FS},	// S5: FSNR (SL)   (Accepting state no retract)
-	{     6,    6,    6,      6, ESWR,	  6,    7,	 6},	// S6: NOFS (COM)
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,  FS},	// S7: FSNR (COM)
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,  FS},	// S8: FSNR (ES)
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,  FS},  // S9: FSWR (ER)
-	{	 ESWR, 10, ESWR,  ESWR,   11,   ESWR, ESWR, 11}, // S10: NOFS: BUILD NUM
-	{    FS,   FS,   FS,    FS,   FS,   FS,   FS,   FS} // S11: FSWR: NUMBER ACCEPTING STATE
+/*    [A-z],[0-9],    _,    \', SEOF,    #,  \n,	 .	  [eE]	other
+	   L(0), D(1), U(2),  Q(3), E(4), C(5),  N(6)	D(7)  E(8)  O(9) */
+	{     1,   10,    1,     4, ESWR,	  6,   0,	12,		1,   ESNR},	   // S0: NOFS (Non accepting state)
+	{     1,    1,    1, 	 3,    3,   3,   ESNR,	ESNR,	1,    3},	   // S1: NOFS
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,  FS},	   // S2: FSNR (VID) (Accepting state no retract)
+	{    FS,   FS,   FS,     FS,   FS,	 FS, ESNR,	FS,		FS,	 FS},	   // S3: FSWR (KEY)  (Accepting state with retract)
+	{     4,    4,    4,      5, ESWR,	  4,    4,	4,	    4,	  4},	   // S4: NOFS (SL)
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS},	   // S5: FSNR (SL)   (Accepting state no retract)
+	{     6,    6,    6,      6, ESWR,	  6,    7,	6,		6,    6},	   // S6: NOFS (COM)
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	  FS},	   // S7: FSNR (COM)
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	  FS},	   // S8: FSNR (ES)
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,   FS},     // S9: FSWR (ER)
+	{	 ESWR, 10, ESWR,   ESWR,   11,   ESWR, ESWR, 12,	14,   11},     // S10: NOFS: BUILD NUM
+	{    FS,   FS,   FS,     FS,   FS,   FS,   FS,	FS,		FS,   FS},     // S11: FSWR: INTEGER ACCEPTING STATE
+	{    ESWR, 12,   ESWR,  ESWR,  13, ESWR, ESWR, ESNR,    14,   13 },    // S12: NOFS: BUILD FLOAT
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	  FS},     // S13: FSWR: FLOAT ACCEPTING STATE
+	{	 ESWR, 15,   ESWR,  ESWR,  15, ESWR, ESWR, ESNR,  ESNR,	  ESNR },  // S14: NOFS: BUILD Exponent
+	{	 ESWR, 15,   ESWR,  ESWR,  16, ESWR, ESWR, ESNR,  ESNR,	  16 },    // S15: NOFS: BUILD Exponent Power needs one or more digits following exp
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	  FS}      // S16: FSWR: EXPONENT ACCEPTING STATE
 };
 
 /* Define accepting states types */
@@ -244,7 +253,12 @@ static urizen_int stateType[NUM_STATES] = {
 	FSNR, /* 08 (Err1 - no retract) */
 	FSWR,  /* 09 (Err2 - retract) */
 	NOFS, /* 10 Building number  (not accepting) */
-	FSWR /* 11 number accepting */
+	FSWR, /* 11 number accepting */
+	NOFS, /* 12 Building float */
+	FSWR, /* 13 Accepting float */
+	NOFS, /* 14 Building Exponent */
+	NOFS, /* 15 Building Exponent Power */
+	FSWR /* 16 Accepting Exponent */
 };
 
 /*
@@ -271,6 +285,7 @@ typedef Token(*PTR_ACCFUN)(urizen_str lexeme);
 
 /* Declare accepting states functions */
 Token funcSL	(urizen_str lexeme);
+Token funcFPL	(urizen_str lexeme);
 Token funcIL	(urizen_str lexeme);
 Token funcID	(urizen_str lexeme);
 Token funcCMT   (urizen_str lexeme);
@@ -295,7 +310,12 @@ static PTR_ACCFUN finalStateTable[NUM_STATES] = {
 	funcErr,	/* ERR1 [06] */
 	funcErr,		/* ERR2 [07] */
 	NULL,      /* 10 - building number */
-	funcIL     /* 11 - number accepting */
+	funcIL,     /* 11 - number accepting */
+	NULL,      /* 12 - building Float */
+	funcFPL,     /* 13 - float accepting */
+	NULL,      /* 14 - building number w/ exponent */
+	NULL,		/*15 building digits past exponent */
+	funcFPL     /* 16 - number accepting w/ exponent */
 };
 
 /*
