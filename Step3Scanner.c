@@ -217,24 +217,10 @@ Token tokenizer(urizen_void) {
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
 
-
-
-		/* Arithmetic operators */
-			/*
-		case PLUS_CHR:	
-			currentToken.code = ARITH_T;
-			currentToken.attribute.arithmeticOperator = OP_ADD;
-			scData.scanHistogram[currentToken.code]++;
-			return currentToken;
-		case MINUS_CHR:	
-			currentToken.code = ARITH_T;
-			currentToken.attribute.arithmeticOperator = OP_SUB;
-			scData.scanHistogram[currentToken.code]++;
-			return currentToken;
-		*/
 		case MULT_CHR:	/* multiplication */
 			currentToken.code = ARITH_T;
 			currentToken.attribute.arithmeticOperator = OP_MUL;
+			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
 		case DIV_CHR:	/* left square bracket */
 			currentToken.code = ARITH_T;
@@ -247,11 +233,13 @@ Token tokenizer(urizen_void) {
 		case LT_CHR:
 			currentToken.code = REL_T;
 			currentToken.attribute.relationalOperator = OP_LT;
+			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
 
 		case GT_CHR:
 			currentToken.code = REL_T;
 			currentToken.attribute.relationalOperator = OP_GT;
+			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
 
 

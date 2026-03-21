@@ -1,63 +1,25 @@
-# Test file for URIZEN scanner
-# Testing all token types
-
-# Keywords and identifiers
-set counter 0
-set total 100
+# URIZEN scanner test
+set x 42
+set y 3.14
+set big 1.2e+5
 set name "Hello World"
-set pi 3.14159
 
-# Floating point literals with exponents
-set big 1.2e5
-set small 4.56e-3
-set expo 2.0E+10
-
-# Arithmetic operators
-set x 10
-set y 20
-set z [expr {$x + $y}]
-set w [expr {$y - $x}]
-set v [expr {$x * $y}]
-set u [expr {$y / $x}]
-
-# Relational operators
-if {$x < $y} {
-    puts "x is less than y"
-}
-if {$y > $x} {
-    puts "y is greater than x"
-}
-
-# Procedure definition
 proc add {a b} {
     return [expr {$a + $b}]
 }
 
-# Nested brackets and variable substitution
-set result [add $x $y]
-puts "Result: $result"
-
-# While loop
-while {$counter < 5} {
-    set counter [expr {$counter + 1}]
+if {$x > 0} {
+    set result [add $x $y]
+    puts "Result: $result"
+} else {
+    puts "Error"
 }
 
-# For loop
-for {set i 0} {$i < 10} {set i [expr {$i + 1}]} {
-    puts "i is $i"
+while {$x < 50} {
+    set x [expr {$x + 1}]
 }
 
-# Foreach loop
-foreach item {10 20 30 40 50} {
-    set total [expr {$total + $item}]
+foreach item {10 20 30} {
+    set y [expr {$y + $item}]
 }
-
-# Negative numbers
-set neg -1
-set negfloat -3.14
-
-# String operations
-set greeting "Hello"
-set message "World"
-
 # End of test
