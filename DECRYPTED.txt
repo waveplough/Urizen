@@ -1,3 +1,5 @@
+# This is a comment
+
 set _numbers {10 20 30 40 50}
 set sum 0
 foreach num $numbers {

@@ -206,24 +206,24 @@ typedef struct scannerData {
 
  /* TO_DO: State transition table definition */
 #define NUM_STATES		12
-#define CHAR_CLASSES	8
+#define CHAR_CLASSES	9
 
 /* TO_DO: Transition table - type of states defined in separate table */
 static urizen_int transitionTable[NUM_STATES][CHAR_CLASSES] = {
-/*    [A-z],[0-9],    _,    &,   \', SEOF,    #, other
-	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
-	{     1,   10,    1, ESNR,    4, ESWR,	  6, ESNR},	// S0: NOFS (Non accepting state)
-	{     1,    1,    1, ESNR,	  3,    3,   3,    3},	// S1: NOFS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S2: FSNR (MVID) (Accepting state no retract)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S3: FSWR (KEY)  (Accepting state with retract)
-	{     4,    4,    4,    4,    5, ESWR,	  4,    4},	// S4: NOFS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S5: FSNR (SL)   (Accepting state no retract)
-	{     6,    6,    6,    6,    6, ESWR,	  7,    6},	// S6: NOFS
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S7: FSNR (COM)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},	// S8: FSNR (ES)
-	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS},  // S9: FSWR (ER)
-	{	 ESWR, 10, ESWR, ESWR, ESWR,   11,   ESWR, 11}, // S10: NOFS: BUILD NUM
-	{    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS} // S11: FSWR: NUMBER ACCEPTING STATE
+/*    [A-z],[0-9],    _,    &,   \', SEOF,    #,  \n,  other
+	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),   7    O(8) */
+	{     1,   10,    1, ESNR,    4, ESWR,	  6,   0, ESNR},	// S0: NOFS (Non accepting state)
+	{     1,    1,    1, ESNR,	  3,    3,   3,  ESNR,   3},	// S1: NOFS
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS, ESNR,  FS},	// S2: FSNR (MVID) (Accepting state no retract)
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS, ESNR,  FS},	// S3: FSWR (KEY)  (Accepting state with retract)
+	{     4,    4,    4,    4,    5, ESWR,	  4, ESNR,   4},	// S4: NOFS
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS,  FS},	// S5: FSNR (SL)   (Accepting state no retract)
+	{     6,    6,    6,    6,    6, ESWR,	  6,    7,	 6},	// S6: NOFS (COM)
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS,  FS},	// S7: FSNR (COM)
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS,  FS},	// S8: FSNR (ES)
+	{    FS,   FS,   FS,   FS,   FS,   FS,	 FS,   FS,  FS},  // S9: FSWR (ER)
+	{	 ESWR, 10, ESWR, ESWR, ESWR,   11,   ESWR, ESWR, 11}, // S10: NOFS: BUILD NUM
+	{    FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS,   FS} // S11: FSWR: NUMBER ACCEPTING STATE
 };
 
 /* Define accepting states types */

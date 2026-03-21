@@ -366,8 +366,8 @@ urizen_int nextState(urizen_int state, urizen_char c) {
 /* TO_DO: Use your column configuration */
 
 /* Adjust the logic to return next column in TT */
-/*    [A-z],[0-9],    _,    &,   \', SEOF,    #, other
-	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6),  O(7) */
+/*    [A-z],[0-9],    _,    &,   \', SEOF,    #, \n, other
+	   L(0), D(1), U(2), M(3), Q(4), E(5), C(6), N(7),  O(8) */
 
 urizen_int nextClass(urizen_char c) {
 	urizen_int val = -1;
@@ -385,6 +385,9 @@ urizen_int nextClass(urizen_char c) {
 	case HST_CHR:
 		val = 6;
 		break;
+	case NWL_CHR:
+		val = 7;
+		break;
 	case EOS_CHR:
 	case EOF_CHR:
 		val = 5;
@@ -395,7 +398,7 @@ urizen_int nextClass(urizen_char c) {
 		else if (isdigit(c))
 			val = 1;
 		else
-			val = 7;
+			val = 8;
 	}
 	return val;
 }
@@ -412,7 +415,7 @@ Token funcCMT(urizen_str lexeme) {
 	Token currentToken = { 0 };
 	urizen_int i = 0, len = (urizen_int)strlen(lexeme);
 	currentToken.attribute.contentString = readerGetPosWrite(stringLiteralTable);
-	for (i = 1; i < len - 1; i++) {
+	for (i = 1; i < len - 1; i++) { // would extract till one less than new line
 		if (lexeme[i] == NWL_CHR)
 			line++;
 	}
