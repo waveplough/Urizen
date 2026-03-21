@@ -25,4 +25,5 @@ Urizen 3 ENCRYPTED.txt  >> out.txt 2>> err.txt
 timeout /t 1 /nobreak >nul
 dir out.txt err.txt
 type out.txt
+pause
 exit

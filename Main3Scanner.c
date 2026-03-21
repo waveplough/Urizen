@@ -95,7 +95,7 @@ urizen_int errorNumber;				/* Run-time error number = 0 by default (ANSI) */
 
 /* External objects */
 extern urizen_int line; /* Source code line numbers - defined in scanner.c */
-extern Token tokenizer(sofia_void);
+extern Token tokenizer(urizen_void);
 
 /*
  * -------------------------------------------------------------

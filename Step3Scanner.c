@@ -94,6 +94,9 @@ extern urizen_str keywordTable[KWT_SIZE];
 extern PTR_ACCFUN finalStateTable[NUM_STATES];
 extern urizen_int transitionTable[NUM_STATES][CHAR_CLASSES];
 
+urizen_int numScannerErrors;
+ScannerData scData;
+
 /* Local(file) global objects - variables */
 static BufferPointer lexemeBuffer;			/* Pointer to temporary lexeme buffer */
 static BufferPointer sourceBuffer;			/* Pointer to input source buffer */
@@ -130,7 +133,7 @@ urizen_int startScanner(BufferPointer psc_buf) {
  ***********************************************************
  */
 
-Token tokenizer(sofia_void) {
+Token tokenizer(urizen_void) {
 
 	/* TO_DO: Follow the standard and adjust datatypes */
 
@@ -165,7 +168,7 @@ Token tokenizer(sofia_void) {
 		*/
 
 		/* TO_DO: All patterns that do not require accepting functions */
-		switch (c) {
+		switch ((urizen_byte)c) {
 
 		/* Cases for spaces, tabs, and new lines (ignore them)*/
 		case SPC_CHR:
@@ -373,7 +376,7 @@ urizen_int nextState(urizen_int state, urizen_char c) {
 
 urizen_int nextClass(urizen_char c) {
 	urizen_int val = -1;
-	switch (c) {
+	switch ((urizen_byte)c) {
 	case UND_CHR:
 		val = 2;
 		break;
@@ -416,12 +419,13 @@ urizen_int nextClass(urizen_char c) {
 
 
 Token funcARITH(urizen_str lexeme) {
+	urizen_char op = lexeme[0];
 	Token currentToken = { 0 };
 	currentToken.code = ARITH_T;
 	scData.scanHistogram[ARITH_T]++;
-	if (lexeme[0] == '+')
+	if (op == '+')
 		currentToken.attribute.arithmeticOperator = OP_ADD;
-	else if (lexeme[0] == '-')
+	else if (op == '-')
 		currentToken.attribute.arithmeticOperator = OP_SUB;
 	return currentToken;
 }

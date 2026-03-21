@@ -210,13 +210,13 @@ typedef struct scannerData {
 #define FS		20		/* Illegal state */
 
  /* TO_DO: State transition table definition */
-#define NUM_STATES		20
+#define NUM_STATES		19
 #define CHAR_CLASSES	11
 
 /* TO_DO: Transition table - type of states defined in separate table */
 static urizen_int transitionTable[NUM_STATES][CHAR_CLASSES] = {
 /*    [A-z],[0-9],    _,    \', SEOF,    #,  \n,	 .	  [eE]   +/-  other
-	   L(0), D(1), U(2),  Q(3), E(4), C(5),  N(6)	D(7)  E(8)  S(09) O(9) */
+	   L(0), D(1), U(2),  Q(3), E(4), C(5),  N(6)	D(7)  E(8)  S(09) O(10) */
 	{     1,   10,    1,     4, ESWR,	  6,   0,	12,		1,	18,	  ESNR},		// S0: NOFS: Start State
 	{     1,    1,    1, 	 3,    3,   3,   ESNR,	ESNR,	1,	 3,		3},			// S1: NOFS: Building Identifier
 	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S2: FSWR: (VID) Identifier Accepting State (unused/placeholder)
@@ -235,8 +235,7 @@ static urizen_int transitionTable[NUM_STATES][CHAR_CLASSES] = {
 	{	 ESWR, 16,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, ESNR, ESNR},		// S15: NOFS: Seen [eE][+-], expecting digit
 	{	 ESWR, 16,   ESWR,  ESWR,  17, ESWR, ESWR, ESNR,  ESNR,	 ESNR,  17},		// S16: NOFS: Building Exponent Digits
 	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,    FS},		// S17: FSWR: Float with Exponent Accepting State
-	{	 ESWR, 10,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, ESNR, 19},		// S18  NOFS: Seen +/-, deciding ARITH or signed number
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS}			// S19: FSWR: Arithmetic Operator Accepting State
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS}			// S18: FSWR: Arithmetic Operator Accepting State
 	
 };
 
@@ -266,8 +265,7 @@ static urizen_int stateType[NUM_STATES] = {
 	NOFS, /* 15 Building SIGN */
 	NOFS, /* 16 Building Exponent Power */
 	FSWR, /* 17 Accepting Exponent */
-	NOFS, /* 18 SIGN BUILD */
-	FSWR /* 19 ARITHMETIC ACCEPTANCE STATE */
+	FSNR /* 18 ARITHMETIC ACCEPTANCE STATE */
 };
 
 /*
@@ -327,8 +325,7 @@ static PTR_ACCFUN finalStateTable[NUM_STATES] = {
 	NULL,		/*15 building exponent sign */
 	NULL,		/* 16 Building exponent power*/
 	funcFPL,    /* 17 - number accepting w/ exponent */
-	NULL,		/* 18 - SIGN BUILD */
-	funcARITH	/* 19 - ARITHMETIC OPERATOR ACCEPTANCE STATE */
+	funcARITH	/* 18 - ARITHMETIC OPERATOR ACCEPTANCE STATE */
 };
 
 /*
@@ -404,9 +401,9 @@ typedef struct languageAttributes {
 } LanguageAttributes;
 
 /* Number of errors */
-urizen_int numScannerErrors;
+extern urizen_int numScannerErrors;
 
 /* Scanner data */
-ScannerData scData;
+extern ScannerData scData;
 
 #endif
