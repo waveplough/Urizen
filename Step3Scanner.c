@@ -375,18 +375,15 @@ urizen_int nextClass(urizen_char c) {
 	case UND_CHR:
 		val = 2;
 		break;
-	case AMP_CHR:
-		val = 3;
-		break;
 	case QUT_CHR:
 	case DQT_CHR:
-		val = 4;
+		val = 3;
 		break;
 	case HST_CHR:
-		val = 6;
+		val = 5;
 		break;
 	case NWL_CHR:
-		val = 7;
+		val = 6;
 		break;
 	case EOS_CHR:
 	case EOF_CHR:
@@ -398,7 +395,7 @@ urizen_int nextClass(urizen_char c) {
 		else if (isdigit(c))
 			val = 1;
 		else
-			val = 8;
+			val = 7;
 	}
 	return val;
 }
@@ -475,7 +472,7 @@ Token funcID(urizen_str lexeme) {
 	Token currentToken = { 0 };
 	size_t length = strlen(lexeme);
 
-	currentToken.code = MNID_T;
+	currentToken.code = ID_T;
 	scData.scanHistogram[currentToken.code]++;
 	strncpy(currentToken.attribute.idLexeme, lexeme, VID_LEN);
 	currentToken.attribute.idLexeme[VID_LEN] = EOS_CHR;
@@ -636,8 +633,8 @@ urizen_void printToken(Token t) {
 	case SEOF_T:
 		printf("SEOF_T\t\t%d\t\n", t.attribute.seofType);
 		break;
-	case MNID_T:
-		printf("MNID_T\t\t%s\n", t.attribute.idLexeme);
+	case ID_T:
+		printf("ID_T\t\t%s\n", t.attribute.idLexeme);
 		break;
 	case STR_T:
 		printf("STR_T\t\t%d\t ", (urizen_int)t.attribute.codeType);
