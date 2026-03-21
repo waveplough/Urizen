@@ -1,12 +1,20 @@
-# This is a comment
+# Tcl test program for URIZEN compiler
+# Tests all token types
 
-set _numbers {10 20 30 40 50}
-set sum 0;
-set real 1.2e5
-foreach num $_numbers {
-    set sum [expr {$sum + $num}]
+set _counter 0
+set total 100
+set name "John"
+set pi 3.14159
+set big 1.2e5
+set small 4.56e-3
+set expo 2.0E+10
+
+if {$total > 0} {
+    set _counter [expr {$_counter + 5}]
+    puts "Counter: $_counter"
+} else {
+    puts "Error: total is zero"
 }
-puts "The sum of the numbers is: $sum"
 
 proc factorial {n} {
     if {$n <= 1} {
@@ -16,5 +24,31 @@ proc factorial {n} {
     }
 }
 
-set fact5 [factorial 5]
-puts "Factorial of 5 is: $fact5"
+set result [factorial 5]
+puts "Factorial of 5 is: $result"
+
+foreach num {10 20 30 40 50} {
+    set sum [expr {$sum + $num}]
+}
+
+puts "Sum is: $sum"
+
+set x = 42
+set y = $x + 10
+
+while {$x < 50} {
+    set x [expr {$x + 1}]
+}
+
+array set person {
+    name "Alice"
+    age 30
+    city "Ottawa"
+}
+
+puts "Name: $person(name), Age: $person(age), City: $person(city)"
+
+# This is a comment line
+set z 123.456e-2
+
+# End of test

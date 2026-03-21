@@ -217,16 +217,18 @@ Token tokenizer(sofia_void) {
 
 
 		/* Arithmetic operators */
-		case PLUS_CHR:	/* plus */
+			/*
+		case PLUS_CHR:	
 			currentToken.code = ARITH_T;
 			currentToken.attribute.arithmeticOperator = OP_ADD;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
-		case MINUS_CHR:	/* minus */
+		case MINUS_CHR:	
 			currentToken.code = ARITH_T;
 			currentToken.attribute.arithmeticOperator = OP_SUB;
 			scData.scanHistogram[currentToken.code]++;
 			return currentToken;
+		*/
 		case MULT_CHR:	/* multiplication */
 			currentToken.code = ARITH_T;
 			currentToken.attribute.arithmeticOperator = OP_MUL;
@@ -392,9 +394,13 @@ urizen_int nextClass(urizen_char c) {
 	case EXP_CHR_LOWER:
 		val = 8;
 		break;
+	case '+':
+	case '-':
+		val = 9;
+		break;
 	case EOS_CHR:
 	case EOF_CHR:
-		val = 5;
+		val = 4;
 		break;
 	default:
 		if (isalpha(c))
@@ -402,9 +408,22 @@ urizen_int nextClass(urizen_char c) {
 		else if (isdigit(c))
 			val = 1;
 		else
-			val = 9;
+			val = 10;
 	}
 	return val;
+}
+
+
+
+Token funcARITH(urizen_str lexeme) {
+	Token currentToken = { 0 };
+	currentToken.code = ARITH_T;
+	scData.scanHistogram[ARITH_T]++;
+	if (lexeme[0] == '+')
+		currentToken.attribute.arithmeticOperator = OP_ADD;
+	else if (lexeme[0] == '-')
+		currentToken.attribute.arithmeticOperator = OP_SUB;
+	return currentToken;
 }
 
 /*

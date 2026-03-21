@@ -226,9 +226,9 @@ BufferPointer readerAddChar(BufferPointer const readerPointer, urizen_char ch) {
 		readerPointer->content = tempReader;
 		readerPointer->size = newSize;
 
-		printf("\n..............\n");
-		printf("* New size: %d bytes", newSize);
-		printf("\n..............");
+		//printf("\n..............\n");
+		//printf("* New size: %d bytes", newSize);
+		//printf("\n..............");
 
 		readerPointer->flags.isFull = URIZEN_FALSE;
 	}

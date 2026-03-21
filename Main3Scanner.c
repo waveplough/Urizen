@@ -187,6 +187,7 @@ urizen_int main3Scanner(urizen_int argc, urizen_str* argv) {
 	} while (currentToken.code != SEOF_T);
 
 	/* Print String Literal Table if not empty */
+	printf("String table size: %d\n", readerGetPosWrite(stringLiteralTable));
 	printf("\nPrinting string table...\n");
 	printf("----------------------------------\n");
 	if (readerGetPosWrite(stringLiteralTable)) {

@@ -118,7 +118,8 @@ static urizen_str tokenStrTable[NUM_TOKENS] = {
 	"ARITH_T",
 	"REL_T",
 	"LOG_T",
-	"ASSIGN_T"
+	"ASSIGN_T",
+	"FPL_T"
 };
 
 /* TO_DO: Operators token attributes */
@@ -209,31 +210,36 @@ typedef struct scannerData {
 #define FS		20		/* Illegal state */
 
  /* TO_DO: State transition table definition */
-#define NUM_STATES		17
-#define CHAR_CLASSES	10
+#define NUM_STATES		20
+#define CHAR_CLASSES	11
 
 /* TO_DO: Transition table - type of states defined in separate table */
 static urizen_int transitionTable[NUM_STATES][CHAR_CLASSES] = {
-/*    [A-z],[0-9],    _,    \', SEOF,    #,  \n,	 .	  [eE]	other
-	   L(0), D(1), U(2),  Q(3), E(4), C(5),  N(6)	D(7)  E(8)  O(9) */
-	{     1,   10,    1,     4, ESWR,	  6,   0,	12,		1,   ESNR},	   // S0: NOFS (Non accepting state)
-	{     1,    1,    1, 	 3,    3,   3,   ESNR,	ESNR,	1,    3},	   // S1: NOFS
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,  FS},	   // S2: FSNR (VID) (Accepting state no retract)
-	{    FS,   FS,   FS,     FS,   FS,	 FS, ESNR,	FS,		FS,	 FS},	   // S3: FSWR (KEY)  (Accepting state with retract)
-	{     4,    4,    4,      5, ESWR,	  4,    4,	4,	    4,	  4},	   // S4: NOFS (SL)
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS},	   // S5: FSNR (SL)   (Accepting state no retract)
-	{     6,    6,    6,      6, ESWR,	  6,    7,	6,		6,    6},	   // S6: NOFS (COM)
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	  FS},	   // S7: FSNR (COM)
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	  FS},	   // S8: FSNR (ES)
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,   FS},     // S9: FSWR (ER)
-	{	 ESWR, 10, ESWR,   ESWR,   11,   ESWR, ESWR, 12,	14,   11},     // S10: NOFS: BUILD NUM
-	{    FS,   FS,   FS,     FS,   FS,   FS,   FS,	FS,		FS,   FS},     // S11: FSWR: INTEGER ACCEPTING STATE
-	{    ESWR, 12,   ESWR,  ESWR,  13, ESWR, ESWR, ESNR,    14,   13 },    // S12: NOFS: BUILD FLOAT
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	  FS},     // S13: FSWR: FLOAT ACCEPTING STATE
-	{	 ESWR, 15,   ESWR,  ESWR,  15, ESWR, ESWR, ESNR,  ESNR,	  ESNR },  // S14: NOFS: BUILD Exponent
-	{	 ESWR, 15,   ESWR,  ESWR,  16, ESWR, ESWR, ESNR,  ESNR,	  16 },    // S15: NOFS: BUILD Exponent Power needs one or more digits following exp
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	  FS}      // S16: FSWR: EXPONENT ACCEPTING STATE
+/*    [A-z],[0-9],    _,    \', SEOF,    #,  \n,	 .	  [eE]   +/-  other
+	   L(0), D(1), U(2),  Q(3), E(4), C(5),  N(6)	D(7)  E(8)  S(09) O(9) */
+	{     1,   10,    1,     4, ESWR,	  6,   0,	12,		1,	18,	  ESNR},		// S0: NOFS (Non accepting state)
+	{     1,    1,    1, 	 3,    3,   3,   ESNR,	ESNR,	1,	 3,		3},			// S1: NOFS
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S2: FSNR (VID) (Accepting state no retract)
+	{    FS,   FS,   FS,     FS,   FS,	 FS, ESNR,	FS,		FS,	 FS,   FS},			// S3: FSWR (KEY)  (Accepting state with retract)
+	{     4,    4,    4,      5, ESWR,	  4,    4,	4,	    4,	  4,	4},			// S4: NOFS (SL)
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S5: FSNR (SL)   (Accepting state no retract)
+	{     6,    6,    6,      6,   7,	  6,    7,	6,		6,	  6,	6},			// S6: NOFS (COM)
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S7: FSNR (COM)
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S8: FSNR (ES)
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S9: FSWR (ER)
+	{	 ESWR, 10, ESWR,   ESWR,   11,   ESWR, ESWR, 12,	14,	 ESWR, 11},			// S10: NOFS: BUILD NUM
+	{    FS,   FS,   FS,     FS,   FS,   FS,   FS,	FS,		FS,	 FS,   FS},			// S11: FSWR: INTEGER ACCEPTING STATE
+	{    ESWR, 12,   ESWR,  ESWR,  13, ESWR, ESWR, ESNR,    14,	ESNR,  13},			// S12: NOFS: BUILD FLOAT
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S13: FSWR: FLOAT ACCEPTING STATE
+	{	 ESWR, 16,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, 15, ESNR},		// S14: NOFS: BUILD Exponent Power OR USING SIGN S(15) needs one or more digits following exp
+	{	 ESWR, 16,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, ESNR, ESNR},		// S15: NOFS: EXPONENT SIGN Build
+	{	 ESWR, 16,   ESWR,  ESWR,  17, ESWR, ESWR, ESNR,  ESNR,	 ESNR,  17},		// S16: NOFS: BUILD Exponent POWER
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,    FS},		// S17: FSWR: num w/ EXPONENT ACCEPTING STATE
+	{	 ESWR, 10,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, ESNR, 19},		// S18  NOFS SIGN
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS}			// S19: FSWR ARITHMETIC (+/-) ACCEPTANCE STATE
+	
 };
+
 
 /* Define accepting states types */
 #define NOFS	0		/* not accepting state */
@@ -257,8 +263,11 @@ static urizen_int stateType[NUM_STATES] = {
 	NOFS, /* 12 Building float */
 	FSWR, /* 13 Accepting float */
 	NOFS, /* 14 Building Exponent */
-	NOFS, /* 15 Building Exponent Power */
-	FSWR /* 16 Accepting Exponent */
+	NOFS, /* 15 Building SIGN */
+	NOFS, /* 16 Building Exponent Power */
+	FSWR, /* 17 Accepting Exponent */
+	NOFS, /* 18 SIGN BUILD */
+	FSWR /* 19 ARITHMETIC ACCEPTANCE STATE */
 };
 
 /*
@@ -291,6 +300,7 @@ Token funcID	(urizen_str lexeme);
 Token funcCMT   (urizen_str lexeme);
 Token funcKEY	(urizen_str lexeme);
 Token funcErr	(urizen_str lexeme);
+Token funcARITH	(urizen_str lexeme);
 
 /* 
  * Accepting function (action) callback table (array) definition 
@@ -308,14 +318,17 @@ static PTR_ACCFUN finalStateTable[NUM_STATES] = {
 	NULL,		/* -    [06] */
 	funcCMT,	/* COM  [07] */
 	funcErr,	/* ERR1 [06] */
-	funcErr,		/* ERR2 [07] */
-	NULL,      /* 10 - building number */
+	funcErr,	/* ERR2 [07] */
+	NULL,		/* 10 - building number */
 	funcIL,     /* 11 - number accepting */
-	NULL,      /* 12 - building Float */
-	funcFPL,     /* 13 - float accepting */
-	NULL,      /* 14 - building number w/ exponent */
-	NULL,		/*15 building digits past exponent */
-	funcFPL     /* 16 - number accepting w/ exponent */
+	NULL,		/* 12 - building Float */
+	funcFPL,    /* 13 - float accepting */
+	NULL,		/* 14 - start building exponent */
+	NULL,		/*15 building exponent sign */
+	NULL,		/* 16 Building exponent power*/
+	funcFPL,    /* 17 - number accepting w/ exponent */
+	NULL,		/* 18 - SIGN BUILD */
+	funcARITH	/* 19 - ARITHMETIC OPERATOR ACCEPTANCE STATE */
 };
 
 /*
