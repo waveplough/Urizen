@@ -217,26 +217,26 @@ typedef struct scannerData {
 static urizen_int transitionTable[NUM_STATES][CHAR_CLASSES] = {
 /*    [A-z],[0-9],    _,    \', SEOF,    #,  \n,	 .	  [eE]   +/-  other
 	   L(0), D(1), U(2),  Q(3), E(4), C(5),  N(6)	D(7)  E(8)  S(09) O(9) */
-	{     1,   10,    1,     4, ESWR,	  6,   0,	12,		1,	18,	  ESNR},		// S0: NOFS (Non accepting state)
-	{     1,    1,    1, 	 3,    3,   3,   ESNR,	ESNR,	1,	 3,		3},			// S1: NOFS
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S2: FSNR (VID) (Accepting state no retract)
-	{    FS,   FS,   FS,     FS,   FS,	 FS, ESNR,	FS,		FS,	 FS,   FS},			// S3: FSWR (KEY)  (Accepting state with retract)
-	{     4,    4,    4,      5, ESWR,	  4,    4,	4,	    4,	  4,	4},			// S4: NOFS (SL)
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S5: FSNR (SL)   (Accepting state no retract)
-	{     6,    6,    6,      6,   7,	  6,    7,	6,		6,	  6,	6},			// S6: NOFS (COM)
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S7: FSNR (COM)
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S8: FSNR (ES)
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S9: FSWR (ER)
-	{	 ESWR, 10, ESWR,   ESWR,   11,   ESWR, ESWR, 12,	14,	 ESWR, 11},			// S10: NOFS: BUILD NUM
-	{    FS,   FS,   FS,     FS,   FS,   FS,   FS,	FS,		FS,	 FS,   FS},			// S11: FSWR: INTEGER ACCEPTING STATE
-	{    ESWR, 12,   ESWR,  ESWR,  13, ESWR, ESWR, ESNR,    14,	ESNR,  13},			// S12: NOFS: BUILD FLOAT
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S13: FSWR: FLOAT ACCEPTING STATE
-	{	 ESWR, 16,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, 15, ESNR},		// S14: NOFS: BUILD Exponent Power OR USING SIGN S(15) needs one or more digits following exp
-	{	 ESWR, 16,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, ESNR, ESNR},		// S15: NOFS: EXPONENT SIGN Build
-	{	 ESWR, 16,   ESWR,  ESWR,  17, ESWR, ESWR, ESNR,  ESNR,	 ESNR,  17},		// S16: NOFS: BUILD Exponent POWER
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,    FS},		// S17: FSWR: num w/ EXPONENT ACCEPTING STATE
-	{	 ESWR, 10,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, ESNR, 19},		// S18  NOFS SIGN
-	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS}			// S19: FSWR ARITHMETIC (+/-) ACCEPTANCE STATE
+	{     1,   10,    1,     4, ESWR,	  6,   0,	12,		1,	18,	  ESNR},		// S0: NOFS: Start State
+	{     1,    1,    1, 	 3,    3,   3,   ESNR,	ESNR,	1,	 3,		3},			// S1: NOFS: Building Identifier
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S2: FSWR: (VID) Identifier Accepting State (unused/placeholder)
+	{    FS,   FS,   FS,     FS,   FS,	 FS, ESNR,	FS,		FS,	 FS,   FS},			// S3: FSWR: Keyword Accepting State (retract: char belongs to next token)
+	{     4,    4,    4,      5, ESWR,	  4,    4,	4,	    4,	  4,	4},			// S4: NOFS: (SL) Building String Literal
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S5: FSNR: (SL) String Literal Accepting State (no retract)
+	{     6,    6,    6,      6,   7,	  6,    7,	6,		6,	  6,	6},			// S6: NOFS: (COM) Building Comment
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S7: FSNR: (COM) Comment Accepting State (no retract)
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S8: FSNR: (ES) Error, no retract
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S9: FSWR: (ER) Error, with retract
+	{	 ESWR, 10, ESWR,   ESWR,   11,   ESWR, ESWR, 12,	14,	 ESWR, 11},			// S10: NOFS: Building Integer
+	{    FS,   FS,   FS,     FS,   FS,   FS,   FS,	FS,		FS,	 FS,   FS},			// S11: FSWR: Integer Accepting state (retract)
+	{    ESWR, 12,   ESWR,  ESWR,  13, ESWR, ESWR, ESNR,    14,	ESNR,  13},			// S12: NOFS: Building Float (digits after dot)
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S13: FSWR: Float Accepting State
+	{	 ESWR, 16,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, 15, ESNR},		// S14: NOFS: Seen [eE], expecting sign or digit
+	{	 ESWR, 16,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, ESNR, ESNR},		// S15: NOFS: Seen [eE][+-], expecting digit
+	{	 ESWR, 16,   ESWR,  ESWR,  17, ESWR, ESWR, ESNR,  ESNR,	 ESNR,  17},		// S16: NOFS: Building Exponent Digits
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,    FS},		// S17: FSWR: Float with Exponent Accepting State
+	{	 ESWR, 10,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, ESNR, 19},		// S18  NOFS: Seen +/-, deciding ARITH or signed number
+	{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS}			// S19: FSWR: Arithmetic Operator Accepting State
 	
 };
 
@@ -279,9 +279,9 @@ TO_DO: Adjust your functions'definitions
 /* Static (local) function  prototypes */
 urizen_int			startScanner(BufferPointer psc_buf);
 static urizen_int	nextClass(urizen_char c);					/* character class function */
-static urizen_int	nextState(sofia_intg, sofia_char);		/* state machine function */
+static urizen_int	nextState(urizen_int, urizen_char);		/* state machine function */
 urizen_void			printScannerData(ScannerData scData);
-Token				tokenizer(sofia_void);
+Token				tokenizer(urizen_void);
 
 /*
 -------------------------------------------------
