@@ -1,45 +1,61 @@
-﻿  Main3Scanner.c
-  Step3Scanner.c
+﻿  Main4Parser.c
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
-  (compiling source file 'Main3Scanner.c')
+  (compiling source file 'Main4Parser.c')
   
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(148,14): warning C4820: 'idAttibutes': '7' bytes padding added after data member 'flags'
-  (compiling source file 'Main3Scanner.c')
+  (compiling source file 'Main4Parser.c')
   
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(398,14): warning C4820: 'languageAttributes': '3' bytes padding added after data member 'indentationCharType'
-  (compiling source file 'Main3Scanner.c')
+  (compiling source file 'Main4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
-  (compiling source file 'Step3Scanner.c')
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(111,13): warning C4255: 'startParser': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(148,14): warning C4820: 'idAttibutes': '7' bytes padding added after data member 'flags'
-  (compiling source file 'Step3Scanner.c')
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(114,13): warning C4255: 'printError': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(398,14): warning C4820: 'languageAttributes': '3' bytes padding added after data member 'indentationCharType'
-  (compiling source file 'Step3Scanner.c')
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(155,13): warning C4255: 'codeSession': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(425,13): warning C4047: '==': 'urizen_str' differs in levels of indirection from 'int'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(427,18): warning C4047: '==': 'urizen_str' differs in levels of indirection from 'int'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(525,9): warning C4189: 'length': local variable is initialized but not referenced
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(547,13): warning C4189: 'len': local variable is initialized but not referenced
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(755,42): warning C4459: declaration of 'scData' hides global declaration
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(98,13):
-      see declaration of 'scData'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(156,13): warning C4255: 'comment': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
   
-  Generating Code...
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(470,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(470,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(469) : note: index '' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(470,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(470) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(550,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(550,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(549) : note: index 'j' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(550,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(550) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(623,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(623,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(622) : note: index 'len' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(623,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(623) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(584,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(584,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(581) : note: index 'i' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(584,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(584) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(762,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(762,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(760) : note: index 'cont' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(762,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(762) : note: feeds call on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(157,13): warning C4255: 'dataSession': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(158,13): warning C4255: 'optVarListDeclarations': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(159,13): warning C4255: 'optionalStatements': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(160,13): warning C4255: 'outputStatement': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(161,13): warning C4255: 'outputVariableList': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(162,13): warning C4255: 'program': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(163,13): warning C4255: 'statement': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(164,13): warning C4255: 'statements': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(165,13): warning C4255: 'statementsPrime': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(166,13): warning C4255: 'optParams': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(167,13): warning C4255: 'paramList': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Main4Parser.c(112,20): warning C4131: 'startParser': uses old-style declarator
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Main4Parser.c(117,20): warning C4131: 'callGarbageCollector': uses old-style declarator
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Main4Parser.c(178,9): warning C4113: 'urizen_void (*)()' differs in parameter lists from 'void (*)(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Main4Parser.c(244,13): warning C4131: 'callGarbageCollector': uses old-style declarator
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Main4Parser.c(244,34): warning C4100: 'sofia_void': unreferenced parameter
   Urizen.vcxproj -> C:\Users\David Jacob\Compilers\source\repos\Urizen\x64\Debug\Urizen.exe
