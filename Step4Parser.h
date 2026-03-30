@@ -79,22 +79,32 @@ static urizen_int		syntaxErrorNumber = 0;
 
 /* Constants */
 enum KEYWORDS {
-	NO_ATTR = -1,
-	KW_data,
-	KW_code,
-	KW_int,
-	KW_real,
-	KW_string,
-	KW_if,
-	KW_then,
-	KW_else,
-	KW_while,
-	KW_do,
-	KW_return
+	NO_ATTR = -1,	// -1
+	/* Core */
+	KW_set,			// 00
+	KW_expr,		// 01
+	KW_puts,		// 02
+	KW_proc,		// 03
+	KW_return,		// 04
+	KW_if,			// 05
+	KW_else,		// 06
+	KW_elseif,		// 07
+
+	/* Loops */
+	KW_while,		// 08
+	KW_for,			// 09
+	KW_foreach,		// 10
+	KW_break,		// 11
+	KW_continue,	// 12
+
+	/* String */
+	KW_string		// 13
+	
+
 };
 
 /* TO_DO: Define the number of BNF rules */
-#define NUM_BNF_RULES 14
+#define NUM_BNF_RULES 8
 
 /* Parser */
 typedef struct parserData {
@@ -116,54 +126,33 @@ urizen_void printBNFData(ParserData psData);
 
 /* List of BNF statements */
 enum BNF_RULES {
-	BNF_error,										/*  0: Error token */
-	BNF_codeSession,								/*  1 */
-	BNF_comment,									/*  2 */
-	BNF_dataSession,								/*  3 */
-	BNF_optVarListDeclarations,						/*  4 */
-	BNF_optionalStatements,							/*  5 */
-	BNF_outputStatement,							/*  6 */
-	BNF_outputVariableList,							/*  7 */
-	BNF_program,									/*  8 */
-	BNF_statement,									/*  9 */
-	BNF_statements,									/* 10 */
-	BNF_statementsPrime,							/* 11 */
-	BNF_optParams,									/* 12 */
-	BNF_returnStatement								/* 13 */	
+	BNF_error,           /* 0 */
+	BNF_script,          /* 1 */
+	BNF_command,         /* 2 */
+	BNF_word,            /* 3 */
+	BNF_braced,          /* 4 */
+	BNF_subst,           /* 5 */
+	BNF_expression,      /* 6 */
+	BNF_comment          /* 7 */
+
 };
 
 
 /* TO_DO: Define the list of keywords */
 static urizen_str BNFStrTable[NUM_BNF_RULES] = {
 	"BNF_error",
-	"BNF_codeSession",
 	"BNF_comment",
-	"BNF_dataSession",
-	"BNF_optVarListDeclarations",
-	"BNF_optionalStatements",
-	"BNF_outputStatement",
-	"BNF_outputVariableList",
-	"BNF_program",
-	"BNF_statement",
-	"BNF_statements",
-	"BNF_statementsPrime",
-	"BNF_optParams",
-	"BNF_returnStatement"
+
 };
 
 /* TO_DO: Place ALL non-terminal function declarations */
-urizen_void codeSession();
+urizen_void script();
+urizen_void parseIf();
+urizen_void parseWhile();
+urizen_void parseForeach();
 urizen_void comment();
-urizen_void dataSession();
-urizen_void optVarListDeclarations();
-urizen_void optionalStatements();
-urizen_void outputStatement();
-urizen_void outputVariableList();
-urizen_void program();
-urizen_void statement();
-urizen_void statements();
-urizen_void statementsPrime();
-urizen_void optParams();
-urizen_void paramList();
+
+
+
 
 #endif

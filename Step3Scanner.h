@@ -335,7 +335,7 @@ Language keywords
 */
 
 /* TO_DO: Define the number of Keywords from the language */
-#define KWT_SIZE 33
+#define KWT_SIZE 14
 
 /* TO_DO: Define the list of keywords */
 static urizen_str keywordTable[KWT_SIZE] = {
@@ -356,33 +356,8 @@ static urizen_str keywordTable[KWT_SIZE] = {
 	"break",    /* 11: Exit loop */
 	"continue", /* 12: Next iteration */
 
-	/* Scope (4) */
-	"global",   /* 13: Global variable */
-	"variable", /* 14: Namespace variable */
-	"upvar",    /* 15: Link variable */
-	"uplevel",  /* 16: Execute in scope */
-
-	/* Lists (8) */
-	"list",     /* 17: Create list */
-	"lappend",  /* 18: Append to list */
-	"lindex",   /* 19: Get element */
-	"llength",  /* 20: List length */
-	"lrange",   /* 21: Range of list */
-	"lsearch",  /* 22: Search list */
-	"lsort",    /* 23: Sort list */
-	"concat",   /* 24: Join lists */
-
-	/* Strings (4) */
-	"string",   /* 25: String ops */
-	"regexp",   /* 26: Regex match */
-	"regsub",   /* 27: Regex sub */
-	"subst",    /* 28: Substitutions */
-
-	/* Files (4) */
-	"open",     /* 29: Open file */
-	"close",    /* 30: Close file */
-	"read",     /* 31: Read file */
-	"gets"      /* 32: Read line */
+	/* String (1) */
+	"string"   /* 13: String ops */
 };
 
 /* NEW SECTION: About indentation */

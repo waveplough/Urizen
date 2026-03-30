@@ -79,7 +79,7 @@
 
 #define READER_DEFAULT_SIZE		100			/* default initial buffer reader capacity */
 #define READER_DEFAULT_FACTOR	0.5f		/* default factor */
-#define DEFAULT_MAX_LIMIT		2000
+#define DEFAULT_MAX_LIMIT		INT_MAX-1
 #define MODE_MULTI				
 #define MODE_ADDIT				
 

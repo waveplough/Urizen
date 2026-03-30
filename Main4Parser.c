@@ -109,12 +109,12 @@ extern ParserData psData;
  */
 
  /* Function declarations (prototypes) */
-extern urizen_void startParser(sofia_void);
+extern urizen_void startParser(uirzen_void);
 extern urizen_int startScanner(BufferPointer sc_buf);
 
 static urizen_void displayParser(BufferPointer ptrBuffer);
 static urizen_long getParserFileSize(urizen_str fname);
-static urizen_void callGarbageCollector(sofia_void);
+static urizen_void callGarbageCollector(urizen_void);
 
 /*
 ************************************************************
@@ -163,7 +163,7 @@ urizen_int main4Parser(urizen_int argc, urizen_str* argv) {
 	/* Add SEOF (EOF) to input buffer and display the source buffer */
 	if ((loadsize != READER_ERROR) && (loadsize != 0)) {
 		if (readerAddChar(sourceBuffer, READER_TERMINATOR)) {
-			displayParser(sourceBuffer);
+			displayParser(sourceBuffer); /* displays the parser */
 		}
 	}
 

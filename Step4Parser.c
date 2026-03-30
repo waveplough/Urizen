@@ -76,8 +76,8 @@ urizen_void startParser() {
 	}
 	/* Proceed parser */
 	lookahead = tokenizer();
-	if (lookahead.code != SEOF_T) {
-		program();
+	if (lookahead.code != SEOF_T) {	// while the token isn't the eof designator of the source file then execute program()
+		script();
 	}
 	matchToken(SEOF_T, NO_ATTR);
 	printf("%s%s\n", STR_LANGNAME, ": Source file parsed");
@@ -187,34 +187,20 @@ urizen_void printError() {
  * FIRST(<program>)= {CMT_T, MNID_T (main&), SEOF_T}.
  ***********************************************************
  */
-urizen_void program() {
-	psData.parsHistogram[BNF_program]++;
-	switch (lookahead.code) {
-	case CMT_T:
-		comment();
-	case KW_T:
-		matchToken(KW_T, KW_int);
-	case ID_T:
-		if (strncmp(lookahead.attribute.idLexeme, LANG_MAIN, 5) == 0) {
-			matchToken(ID_T, NO_ATTR);
-			matchToken(LPR_T, NO_ATTR);
-			optParams();
-			matchToken(RPR_T, NO_ATTR);
-			matchToken(LBR_T, NO_ATTR);
-			dataSession();
-			codeSession();
-			matchToken(RBR_T, NO_ATTR);
-			break;
-		}
-		else {
-			printError();
-		}
-	case SEOF_T:
-		; // Empty
-		break;
-	default:
-		printError();
+urizen_void script() {
+	psData.parsHistogram[BNF_script]++;
+
+	/* Skip leading comments */
+	while (lookahead.code != SEOF_T) {
+		while (lookahead.code == CMT_T) {
+			comment();
 	}
+
+	
+	
+
+
+	
 	printf("%s%s\n", STR_LANGNAME, ": Program parsed");
 }
 
@@ -232,231 +218,7 @@ urizen_void comment() {
 }
 
 
-/*
- ************************************************************
- * optParams
- * BNF: <optParams> -> <paramList> | e
- * FIRST(<optParams>) = { e, KW_T (KW_int), KW_T (KW_real), KW_T (KW_string)}.
- ***********************************************************
- */
-urizen_void optParams() {
-	psData.parsHistogram[BNF_optParams]++;
-	switch (lookahead.code) {
-	case CMT_T:
-		comment();
-	case KW_T:
-		paramList();
-	default:
-		; // Empty
-	}
-	printf("%s%s\n", STR_LANGNAME, ": Optional param list parsed");
-}
 
-/*
- ************************************************************
- * paramList
- * BNF: <paramList> -> <opt_varlist_declarations>
- * FIRST(<paramList>) = { KW_T (KW_int), KW_T (KW_real), KW_T (KW_string)}.
- ***********************************************************
- */
-urizen_void paramList() {
-	psData.parsHistogram[BNF_optParams]++;
-	switch (lookahead.attribute.codeType) {
-	default:
-		break;
-	}
-	printf("%s%s\n", STR_LANGNAME, ": Param list parsed");
-}
-
-/*
- ************************************************************
- * dataSession
- * BNF: <dataSession> -> data { <opt_varlist_declarations> }
- * FIRST(<program>)= {KW_T (KW_data)}.
- ***********************************************************
- */
-urizen_void dataSession() {
-	psData.parsHistogram[BNF_dataSession]++;
-	switch (lookahead.code) {
-	case CMT_T:
-		comment();
-	default:
-		matchToken(KW_T, KW_data);
-		matchToken(LBR_T, NO_ATTR);
-		optVarListDeclarations();
-		matchToken(RBR_T, NO_ATTR);
-		printf("%s%s\n", STR_LANGNAME, ": Data Session parsed");
-	}
-}
-
-/*
- ************************************************************
- * Optional Var List Declarations
- * BNF: <opt_varlist_declarations> -> <varlist_declarations> | e
- * FIRST(<opt_varlist_declarations>) = { e, KW_T (KW_int), KW_T (KW_real), KW_T (KW_string)}.
- ***********************************************************
- */
-urizen_void optVarListDeclarations() {
-	psData.parsHistogram[BNF_optVarListDeclarations]++;
-	switch (lookahead.code) {
-	default:
-		; // Empty
-	}
-	printf("%s%s\n", STR_LANGNAME, ": Optional Variable List Declarations parsed");
-}
-
-/*
- ************************************************************
- * codeSession statement
- * BNF: <codeSession> -> code { <opt_statements> }
- * FIRST(<codeSession>)= {KW_T (KW_code)}.
- ***********************************************************
- */
-urizen_void codeSession() {
-	psData.parsHistogram[BNF_codeSession]++;
-	switch (lookahead.code) {
-	case CMT_T:
-		comment();
-	default:
-		matchToken(KW_T, KW_code);
-		matchToken(LBR_T, NO_ATTR);
-		optionalStatements();
-		matchToken(RBR_T, NO_ATTR);
-		printf("%s%s\n", STR_LANGNAME, ": Code Session parsed");
-	}
-}
-
-/* TO_DO: Continue the development (all non-terminal functions) */
-
-/*
- ************************************************************
- * Optional statement
- * BNF: <opt_statements> -> <statements> | ϵ
- * FIRST(<opt_statements>) = { ϵ , IVID_T, FVID_T, SVID_T, KW_T(KW_if),
- *				KW_T(KW_while), MNID_T(print&), MNID_T(input&) }
- ***********************************************************
- */
-urizen_void optionalStatements() {
-	psData.parsHistogram[BNF_optionalStatements]++;
-	switch (lookahead.code) {
-	case CMT_T:
-		comment();
-	case ID_T:
-		if ((strncmp(lookahead.attribute.idLexeme, LANG_WRTE, 6) == 0) ||
-			(strncmp(lookahead.attribute.idLexeme, LANG_READ, 6) == 0)) {
-			statements();
-			break;
-		}
-	default:
-		; // Empty
-	}
-	printf("%s%s\n", STR_LANGNAME, ": Optional statements parsed");
-}
-
-/*
- ************************************************************
- * Statements
- * BNF: <statements> -> <statement><statementsPrime>
- * FIRST(<statements>) = { IVID_T, FVID_T, SVID_T, KW_T(KW_if),
- *		KW_T(KW_while), MNID_T(input&), MNID_T(print&) }
- ***********************************************************
- */
-urizen_void statements() {
-	psData.parsHistogram[BNF_statements]++;
-	statement();
-	statementsPrime();
-	printf("%s%s\n", STR_LANGNAME, ": Statements parsed");
-}
-
-/*
- ************************************************************
- * Statements Prime
- * BNF: <statementsPrime> -> <statement><statementsPrime> | ϵ
- * FIRST(<statementsPrime>) = { ϵ , IVID_T, FVID_T, SVID_T, 
- *		KW_T(KW_if), KW_T(KW_while), MNID_T(input&), MNID_T(print&) }
- ***********************************************************
- */
-urizen_void statementsPrime() {
-	psData.parsHistogram[BNF_statementsPrime]++;
-	switch (lookahead.code) {
-	case CMT_T:
-		comment();
-	case ID_T:
-		if (strncmp(lookahead.attribute.idLexeme, LANG_WRTE, 6) == 0) {
-			statements();
-			break;
-		}
-	default:
-		; //empty string
-	}
-}
-
-/*
- ************************************************************
- * Single statement
- * BNF: <statement> -> <assignment statement> | <selection statement> |
- *	<iteration statement> | <input statement> | <output statement>
- * FIRST(<statement>) = { IVID_T, FVID_T, SVID_T, KW_T(KW_if), KW_T(KW_while),
- *			MNID_T(input&), MNID_T(print&) }
- ***********************************************************
- */
-urizen_void statement() {
-	psData.parsHistogram[BNF_statement]++;
-	switch (lookahead.code) {
-	case CMT_T:
-		comment();
-	case KW_T:
-		switch (lookahead.attribute.codeType) {
-		default:
-			printError();
-		}
-		break;
-	case ID_T:
-		if (strncmp(lookahead.attribute.idLexeme, LANG_WRTE, 6) == 0) {
-			outputStatement();
-		}
-		break;
-	default:
-		printError();
-	}
-	printf("%s%s\n", STR_LANGNAME, ": Statement parsed");
-}
-
-/*
- ************************************************************
- * Output Statement
- * BNF: <output statement> -> print& (<output statementPrime>);
- * FIRST(<output statement>) = { MNID_T(print&) }
- ***********************************************************
- */
-urizen_void outputStatement() {
-	psData.parsHistogram[BNF_outputStatement]++;
-	matchToken(ID_T, NO_ATTR);
-	matchToken(LPR_T, NO_ATTR);
-	outputVariableList();
-	matchToken(RPR_T, NO_ATTR);
-	matchToken(EOS_T, NO_ATTR);
-	printf("%s%s\n", STR_LANGNAME, ": Output statement parsed");
-}
-
-/*
- ************************************************************
- * Output Variable List
- * BNF: <opt_variable list> -> <variable list> | ϵ
- * FIRST(<opt_variable_list>) = { IVID_T, FVID_T, SVID_T, ϵ }
- ***********************************************************
- */
-urizen_void outputVariableList() {
-	psData.parsHistogram[BNF_outputVariableList]++;
-	switch (lookahead.code) {
-	case STR_T:
-		matchToken(STR_T, NO_ATTR);
-		break;
-	default:
-		;
-	}
-	printf("%s%s\n", STR_LANGNAME, ": Output variable list parsed");
-}
 
 /*
  ************************************************************

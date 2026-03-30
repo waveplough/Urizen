@@ -1,0 +1,59 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "MSVC Code Analysis",
+          "version": "14.50.35724.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/david jacob/compilers/source/repos/urizen/step3scanner.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "c77d11742c9f12046c792e1375a699f19b9e5eb80653b11a955509f9673311d8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/david jacob/compilers/source/repos/urizen/compilers.h"
+          },
+          "hashes": {
+            "sha-256": "c88c9b093f0f3f1bd86cb20f0f95a488b4cb3096d87630b7a914492bcd1e548a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/david jacob/compilers/source/repos/urizen/step2reader.h"
+          },
+          "hashes": {
+            "sha-256": "e29e931e2b8e33faeede9cb2d771bc06dc44ebf5ef0f94f59580d343a0329ab4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/david jacob/compilers/source/repos/urizen/step3scanner.h"
+          },
+          "hashes": {
+            "sha-256": "a2a1fe9fd37564a7ce1a4cad8c2b0c5fdf9741b6e4283246e8738e9b47b02211"
+          }
+        }
+      ]
+    }
+  ]
+}
