@@ -1,337 +1,66 @@
-﻿  Compilers.c
-  Main1Coder.c
-  Main2Reader.c
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
-  (compiling source file 'Main2Reader.c')
-  
-  Main3Scanner.c
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
-  (compiling source file 'Main3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(148,14): warning C4820: 'idAttibutes': '7' bytes padding added after data member 'flags'
-  (compiling source file 'Main3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(373,14): warning C4820: 'languageAttributes': '3' bytes padding added after data member 'indentationCharType'
-  (compiling source file 'Main3Scanner.c')
-  
-  Main4Parser.c
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(148,14): warning C4820: 'idAttibutes': '7' bytes padding added after data member 'flags'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(373,14): warning C4820: 'languageAttributes': '3' bytes padding added after data member 'indentationCharType'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(121,13): warning C4255: 'startParser': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(124,13): warning C4255: 'printError': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(165,13): warning C4255: 'codeSession': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(166,13): warning C4255: 'comment': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(167,13): warning C4255: 'dataSession': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(168,13): warning C4255: 'optVarListDeclarations': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(169,13): warning C4255: 'optionalStatements': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(170,13): warning C4255: 'outputStatement': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(171,13): warning C4255: 'outputVariableList': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(172,13): warning C4255: 'program': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(173,13): warning C4255: 'statement': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(174,13): warning C4255: 'statements': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(175,13): warning C4255: 'statementsPrime': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(176,13): warning C4255: 'optParams': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(177,13): warning C4255: 'paramList': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Main4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Main4Parser.c(112,20): warning C4131: 'startParser': uses old-style declarator
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Main4Parser.c(244,13): warning C4131: 'callGarbageCollector': uses old-style declarator
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Main4Parser.c(244,34): warning C4100: 'sofia_void': unreferenced parameter
-  Step1Coder.c
-  Step2Reader.c
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
-  (compiling source file 'Step2Reader.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(98,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(98,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(109,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(109,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(167,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(167,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(180,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(180,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(203,11): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(203,11):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(217,11): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(217,11):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(264,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(264,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(299,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(299,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(331,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(331,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(357,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(357,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(382,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(382,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(388,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(388,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(417,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(417,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(459,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(459,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(473,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(473,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(521,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(521,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(550,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(550,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(555,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(555,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(583,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(583,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(612,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(612,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(618,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(618,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(654,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(654,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(659,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(659,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(684,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(684,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(709,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(709,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(736,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(736,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(762,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(762,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(790,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(790,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(827,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(827,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(871,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(871,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(897,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(897,10):
-      consider using '%ld' in the format string
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(938,10): warning C4777: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 2 has type 'long'
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(938,10):
-      consider using '%ld' in the format string
-  
-  Step3Scanner.c
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
-  (compiling source file 'Step3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(148,14): warning C4820: 'idAttibutes': '7' bytes padding added after data member 'flags'
-  (compiling source file 'Step3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(373,14): warning C4820: 'languageAttributes': '3' bytes padding added after data member 'indentationCharType'
-  (compiling source file 'Step3Scanner.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(514,9): warning C4189: 'length': local variable is initialized but not referenced
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(536,13): warning C4189: 'len': local variable is initialized but not referenced
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(744,42): warning C4459: declaration of 'scData' hides global declaration
-      C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(98,13):
-      see declaration of 'scData'
-  
-  Step4Parser.c
+﻿  Step4Parser.c
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(148,14): warning C4820: 'idAttibutes': '7' bytes padding added after data member 'flags'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(150,14): warning C4820: 'idAttibutes': '7' bytes padding added after data member 'flags'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(373,14): warning C4820: 'languageAttributes': '3' bytes padding added after data member 'indentationCharType'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(376,14): warning C4820: 'languageAttributes': '3' bytes padding added after data member 'indentationCharType'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(121,13): warning C4255: 'startParser': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(122,13): warning C4255: 'startParser': no function prototype given: converting '()' to '(void)'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(124,13): warning C4255: 'printError': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(125,13): warning C4255: 'printError': no function prototype given: converting '()' to '(void)'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(165,13): warning C4255: 'codeSession': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(156,13): warning C4255: 'word': no function prototype given: converting '()' to '(void)'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(166,13): warning C4255: 'comment': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(157,13): warning C4255: 'bracedWord': no function prototype given: converting '()' to '(void)'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(167,13): warning C4255: 'dataSession': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(158,13): warning C4255: 'substWord': no function prototype given: converting '()' to '(void)'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(168,13): warning C4255: 'optVarListDeclarations': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(159,13): warning C4255: 'parseIf': no function prototype given: converting '()' to '(void)'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(169,13): warning C4255: 'optionalStatements': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(160,13): warning C4255: 'parseWhile': no function prototype given: converting '()' to '(void)'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(170,13): warning C4255: 'outputStatement': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(161,13): warning C4255: 'parseForeach': no function prototype given: converting '()' to '(void)'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(171,13): warning C4255: 'outputVariableList': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(162,13): warning C4255: 'parseProc': no function prototype given: converting '()' to '(void)'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(172,13): warning C4255: 'program': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Step4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(173,13): warning C4255: 'statement': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Step4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(174,13): warning C4255: 'statements': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Step4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(175,13): warning C4255: 'statementsPrime': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Step4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(176,13): warning C4255: 'optParams': no function prototype given: converting '()' to '(void)'
-  (compiling source file 'Step4Parser.c')
-  
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(177,13): warning C4255: 'paramList': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(163,13): warning C4255: 'parseReturn': no function prototype given: converting '()' to '(void)'
   (compiling source file 'Step4Parser.c')
   
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(71,13): warning C4255: 'startParser': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(141,13): warning C4255: 'printError': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(142,9): warning C4431: missing type specifier - int assumed. Note: C no longer supports default-int
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(190,13): warning C4255: 'program': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(211,13): warning C4255: 'comment': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(225,13): warning C4255: 'optParams': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(245,13): warning C4255: 'paramList': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(250,2): warning C4065: switch statement contains 'default' but no 'case' labels
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(263,13): warning C4255: 'optVarListDeclarations': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(268,2): warning C4065: switch statement contains 'default' but no 'case' labels
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(284,13): warning C4255: 'optionalStatements': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(309,13): warning C4255: 'statements': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(324,13): warning C4255: 'statementsPrime': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(348,13): warning C4255: 'statement': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(357,3): warning C4065: switch statement contains 'default' but no 'case' labels
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(377,13): warning C4255: 'outputStatement': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(394,13): warning C4255: 'outputVariableList': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(419,37): warning C4459: declaration of 'psData' hides global declaration
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(143,13): warning C4255: 'printError': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(144,9): warning C4431: missing type specifier - int assumed. Note: C no longer supports default-int
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(193,4): warning C4013: 'comment' undefined; assuming extern returning int
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(200,3): warning C4013: 'command' undefined; assuming extern returning int
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(204,13): warning C4255: 'command': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(244,13): warning C4255: 'bracedWord': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(252,13): warning C4255: 'substWord': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(260,13): warning C4255: 'parseWhile': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(281,13): warning C4255: 'parseForeach': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(305,13): warning C4255: 'parseProc': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(324,13): warning C4255: 'parseReturn': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(335,13): warning C4255: 'parseIf': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(389,13): warning C4255: 'word': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(397,39): warning C4047: 'function': 'urizen_int' differs in levels of indirection from 'urizen_char [21]'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(397,39): warning C4024: 'matchToken': different types for formal and actual parameter 2
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(403,40): warning C4244: 'function': conversion from 'urizen_float' to 'urizen_int', possible loss of data
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(437,13): warning C4255: 'comment': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(460,37): warning C4459: declaration of 'psData' hides global declaration
       C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(62,19):
       see declaration of 'psData'
   
-  Generating Code...
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(426,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(426,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(424) : note: index 'cont' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(426,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(426) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(459,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(459,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(458) : note: index '' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(459,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(459) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(539,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(539,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(538) : note: index 'j' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(539,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(539) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(573,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(573,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(570) : note: index 'i' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(573,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(573) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(612,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(612,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(611) : note: index 'len' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(612,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(612) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(751,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(751,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(749) : note: index 'cont' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(751,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.c(751) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(423,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(423,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(422) : note: index 'i' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(423,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(423) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(836,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(836,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(832) : note: index 'i' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(836,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(836) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(835,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(835,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(832) : note: index 'i' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(835,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.c(835) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(254,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(254,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(253) : note: index 'size' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(254,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step1Coder.c(254) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Main1Coder.c(159,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Main1Coder.c(159,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Main1Coder.c(158) : note: index 'i' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Main1Coder.c(159,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Main1Coder.c(159) : note: feeds call on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Compilers.c(88,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Compilers.c(88,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Compilers.c(87) : note: index 'i' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Compilers.c(88,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Compilers.c(88) : note: feeds call on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(467,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(467,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(465) : note: index 'cont' range checked by comparison on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(467,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(467) : note: feeds call on this line
   Urizen.vcxproj -> C:\Users\David Jacob\Compilers\source\repos\Urizen\x64\Debug\Urizen.exe

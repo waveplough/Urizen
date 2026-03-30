@@ -77,7 +77,7 @@ urizen_void startParser() {
 	/* Proceed parser */
 	lookahead = tokenizer();
 	if (lookahead.code != SEOF_T) {	// while the token isn't the eof designator of the source file then execute program()
-		script();
+		script(SEOF_T);
 	}
 	matchToken(SEOF_T, NO_ATTR);
 	printf("%s%s\n", STR_LANGNAME, ": Source file parsed");
@@ -94,11 +94,13 @@ urizen_void matchToken(urizen_int tokenCode, urizen_int tokenAttribute) {
 	urizen_int matchFlag = 1;
 	switch (lookahead.code) {
 	case KW_T:
-		if (lookahead.attribute.codeType != tokenAttribute)
+		if (tokenAttribute != NO_ATTR && lookahead.attribute.codeType != tokenAttribute)
 			matchFlag = 0;
+		break;
 	default:
 		if (lookahead.code != tokenCode)
 			matchFlag = 0;
+		break;
 	}
 	if (matchFlag && lookahead.code == SEOF_T)
 		return;
@@ -180,28 +182,249 @@ urizen_void printError() {
 	}
 }
 
-/*
- ************************************************************
- * Program statement
- * BNF: <program> -> main& { <opt_statements> }
- * FIRST(<program>)= {CMT_T, MNID_T (main&), SEOF_T}.
- ***********************************************************
- */
-urizen_void script() {
+
+ /* Parse a sequence of commands until terminator token is reached */
+void script(urizen_int terminator) {
 	psData.parsHistogram[BNF_script]++;
 
-	/* Skip leading comments */
-	while (lookahead.code != SEOF_T) {
+	while (lookahead.code != terminator && lookahead.code != SEOF_T) {
+		/* Skip comments */
 		while (lookahead.code == CMT_T) {
 			comment();
+		}
+
+		if (lookahead.code == terminator || lookahead.code == SEOF_T) {
+			break;
+		}
+
+		command();
+	}
+}
+
+urizen_void command() {
+	psData.parsHistogram[BNF_command]++;
+	
+	/* Special keywords */
+	if (lookahead.code == KW_T) {
+		switch (lookahead.attribute.codeType) {
+		case KW_if:
+			parseIf();
+			return;
+		case KW_while:
+			parseWhile();
+			return;
+		case KW_foreach:
+			parseForeach();
+			return;
+		case KW_proc:
+			parseProc();
+			return;
+		case KW_return:
+			parseReturn();
+			return;
+		default:
+			/* Fall through to generic command parsing */
+			break;
+		}
 	}
 
-	
-	
+	word();
+	while (lookahead.code != NWL_T && lookahead.code != EOS_T && lookahead.code != SEOF_T) {
+		word();
+	}
 
+	if (lookahead.code == EOS_T) {
+		matchToken(EOS_T, NO_ATTR);
+	}
 
-	
-	printf("%s%s\n", STR_LANGNAME, ": Program parsed");
+	//printf("%s%s\n", STR_LANGNAME, ": Command parsed");'
+	printf("%s: Command parsed\n", STR_LANGNAME);
+}
+
+urizen_void bracedWord() {
+	psData.parsHistogram[BNF_braced]++;
+	matchToken(LBR_T, NO_ATTR);
+	script(RBR_T);
+	matchToken(RBR_T, NO_ATTR);
+	printf("%s%s\n", STR_LANGNAME, ": Braced word parsed");
+}
+
+urizen_void substWord() {
+	psData.parsHistogram[BNF_subst]++;
+	matchToken(LSB_T, NO_ATTR);
+	script(RSB_T);
+	matchToken(RSB_T, NO_ATTR);
+	printf("%s%s\n", STR_LANGNAME, ": Command substitution parsed");
+}
+
+urizen_void parseWhile() {
+	matchToken(KW_T, KW_while);
+
+	/* Condition */
+	if (lookahead.code == LBR_T) {
+		matchToken(LBR_T, NO_ATTR);
+		script(RBR_T);
+		matchToken(RBR_T, NO_ATTR);
+	}
+	else {
+		word();
+	}
+
+	/* Body */
+	matchToken(LBR_T, NO_ATTR);
+	script(RBR_T);
+	matchToken(RBR_T, NO_ATTR);
+
+	printf("%s%s\n", STR_LANGNAME, ": While loop parsed");
+}
+
+urizen_void parseForeach() {
+	matchToken(KW_T, KW_foreach);
+
+	/* Variable name */
+	word();
+
+	/* List (braced or word) */
+	if (lookahead.code == LBR_T) {
+		matchToken(LBR_T, NO_ATTR);
+		script(RBR_T);  /* list contents */
+		matchToken(RBR_T, NO_ATTR);
+	}
+	else {
+		word();
+	}
+
+	/* Body */
+	matchToken(LBR_T, NO_ATTR);
+	script(RBR_T);
+	matchToken(RBR_T, NO_ATTR);
+
+	printf("%s%s\n", STR_LANGNAME, ": Foreach loop parsed");
+}
+
+urizen_void parseProc() {
+	matchToken(KW_T, KW_proc);
+
+	/* Procedure name */
+	word();
+
+	/* Parameter list (braced) */
+	matchToken(LBR_T, NO_ATTR);
+	script(RBR_T);  /* parameters inside braces */
+	matchToken(RBR_T, NO_ATTR);
+
+	/* Body (braced) */
+	matchToken(LBR_T, NO_ATTR);
+	script(RBR_T);
+	matchToken(RBR_T, NO_ATTR);
+
+	printf("%s%s\n", STR_LANGNAME, ": Procedure parsed");
+}
+
+urizen_void parseReturn() {
+	matchToken(KW_T, KW_return);
+
+	/* Optional return value */
+	if (lookahead.code != EOS_T && lookahead.code != SEOF_T && lookahead.code != RBR_T) {
+		word();
+	}
+
+	printf("%s%s\n", STR_LANGNAME, ": Return statement parsed");
+}
+
+urizen_void parseIf() {
+	matchToken(KW_T, KW_if);
+
+	/* Condition — could be braced or bare */
+	if (lookahead.code == LBR_T) {
+		matchToken(LBR_T, NO_ATTR);
+		script(RBR_T);
+		matchToken(RBR_T, NO_ATTR);
+	}
+	else {
+		word();
+	}
+
+	/* Optional 'then' */
+	if (lookahead.code == KW_T && lookahead.attribute.codeType == KW_then) {
+		matchToken(KW_T, KW_then);
+	}
+
+	/* Then-body */
+	matchToken(LBR_T, NO_ATTR);
+	script(RBR_T);
+	matchToken(RBR_T, NO_ATTR);
+
+	/* Optional elseif/else */
+	while (lookahead.code == KW_T) {
+		if (lookahead.attribute.codeType == KW_elseif) {
+			matchToken(KW_T, KW_elseif);
+			if (lookahead.code == LBR_T) {
+				matchToken(LBR_T, NO_ATTR);
+				script(RBR_T);
+				matchToken(RBR_T, NO_ATTR);
+			}
+			else {
+				word();
+			}
+			matchToken(LBR_T, NO_ATTR);
+			script(RBR_T);
+			matchToken(RBR_T, NO_ATTR);
+		}
+		else if (lookahead.attribute.codeType == KW_else) {
+			matchToken(KW_T, KW_else);
+			matchToken(LBR_T, NO_ATTR);
+			script(RBR_T);
+			matchToken(RBR_T, NO_ATTR);
+			break;
+		}
+		else {
+			break;
+		}
+	}
+
+	printf("%s%s\n", STR_LANGNAME, ": If statement parsed");
+}
+
+urizen_void word() {
+	psData.parsHistogram[BNF_word]++;
+
+	switch (lookahead.code) {
+	case KW_T:
+		matchToken(KW_T, lookahead.attribute.codeType);	/* Keywords can appear as words too (e.g., 'set' as variable name) */
+		break;
+	case ID_T:
+		matchToken(ID_T, lookahead.attribute.idLexeme);
+		break;
+	case INL_T:
+		matchToken(INL_T, lookahead.attribute.intValue);
+		break;
+	case FPL_T:
+		matchToken(FPL_T, lookahead.attribute.floatValue);
+		break;
+	case STR_T:
+		matchToken(STR_T, lookahead.attribute.contentString);
+		break;
+	case VARSUB_T:
+		matchToken(VARSUB_T, NO_ATTR);
+		/* Variable name follows */
+		if (lookahead.code == ID_T) {
+			word();  /* consume the variable name */
+		}
+		break;
+	case LBR_T:
+		bracedWord();
+		break;
+	case LSB_T:
+		substWord();
+		break;
+	default:
+		printError();
+		syncErrorHandler(SEOF_T);
+		break;
+	}
+
+	//printf("%s%s\n", STR_LANGNAME, ": Word parsed");
 }
 
 /*
@@ -215,6 +438,7 @@ urizen_void comment() {
 	psData.parsHistogram[BNF_comment]++;
 	matchToken(CMT_T, NO_ATTR);
 	printf("%s%s\n", STR_LANGNAME, ": Comment parsed");
+	//line++;
 }
 
 

@@ -96,6 +96,7 @@ enum KEYWORDS {
 	KW_foreach,		// 10
 	KW_break,		// 11
 	KW_continue,	// 12
+	KW_then,
 
 	/* String */
 	KW_string		// 13
@@ -141,16 +142,25 @@ enum BNF_RULES {
 /* TO_DO: Define the list of keywords */
 static urizen_str BNFStrTable[NUM_BNF_RULES] = {
 	"BNF_error",
-	"BNF_comment",
-
+	"BNF_script",
+	"BNF_command",
+	"BNF_word",
+	"BNF_braced",
+	"BNF_subst",
+	"BNF_expression",
+	"BNF_comment"
 };
 
 /* TO_DO: Place ALL non-terminal function declarations */
-urizen_void script();
+urizen_void script(urizen_int terminator);
+urizen_void word();
+urizen_void bracedWord();
+urizen_void substWord();
 urizen_void parseIf();
 urizen_void parseWhile();
 urizen_void parseForeach();
-urizen_void comment();
+urizen_void parseProc();
+urizen_void parseReturn();
 
 
 

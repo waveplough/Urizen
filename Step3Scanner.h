@@ -69,7 +69,7 @@
 #define RTE_CODE 1  /* Value for run-time error */
 
 /* TO_DO: Define the number of tokens */
-#define NUM_TOKENS 21
+#define NUM_TOKENS 22
 
 /* TO_DO: Define Token codes - Create your token classes */
 enum TOKENS {
@@ -93,7 +93,8 @@ enum TOKENS {
 	REL_T,		/* 17: Relational operator */
 	LOG_T,		/* 18: Logic operator */
 	ASSIGN_T,	/* 19: Assignment */
-	FPL_T		/* 20: Floating-point literal */
+	FPL_T,		/* 20: Floating-point literal */
+	NWL_T		/* 21 : new line token */
 	
 };
 
@@ -119,7 +120,8 @@ static urizen_str tokenStrTable[NUM_TOKENS] = {
 	"REL_T",
 	"LOG_T",
 	"ASSIGN_T",
-	"FPL_T"
+	"FPL_T",
+	"NWL_T"
 };
 
 /* TO_DO: Operators token attributes */
@@ -335,7 +337,7 @@ Language keywords
 */
 
 /* TO_DO: Define the number of Keywords from the language */
-#define KWT_SIZE 14
+#define KWT_SIZE 15
 
 /* TO_DO: Define the list of keywords */
 static urizen_str keywordTable[KWT_SIZE] = {
@@ -355,6 +357,7 @@ static urizen_str keywordTable[KWT_SIZE] = {
 	"foreach",  /* 10: List iteration */
 	"break",    /* 11: Exit loop */
 	"continue", /* 12: Next iteration */
+	"then",		/* 13 */
 
 	/* String (1) */
 	"string"   /* 13: String ops */

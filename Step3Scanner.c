@@ -176,8 +176,10 @@ Token tokenizer(urizen_void) {
 		case TAB_CHR:
 			break;
 		case NWL_CHR:
+			currentToken.code = NWL_T;
+			scData.scanHistogram[currentToken.code]++;
 			line++;	/* increment line count in case of new line */
-			break;
+			return currentToken;
 
 		/* Cases for symbols */
 		case SCL_CHR:	/* Semicolon */
@@ -694,6 +696,9 @@ urizen_void printToken(Token t) {
 		break;
 	case FPL_T:
 		printf("FPL_T\n");
+		break;
+	case NWL_T:
+		printf("NWL_T\n");
 		break;
 
 	case ARITH_T:
