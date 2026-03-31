@@ -207,6 +207,9 @@ urizen_void printError() {
 	case EOS_T:
 		printf("NA\n");
 		break;
+	case CMT_T:
+		printf("CMT_T\n");
+		break;
 	default:
 		printf("%s%s%d\n", STR_LANGNAME, ": Scanner error: invalid token code: ", t.code);
 		numParserErrors++;
@@ -218,19 +221,19 @@ urizen_void printError() {
 void script(urizen_int terminator) {
 	psData.parsHistogram[BNF_script]++;
 
-	const char* term_name = (terminator == SEOF_T) ? "EOF" :
-		(terminator == RBR_T) ? "}" :
-		(terminator == RSB_T) ? "]" : "?";
-	printf("DEBUG: Entering script, terminator=%s\n", term_name);
-
 	while (lookahead.code != terminator && lookahead.code != SEOF_T) {
-		while (lookahead.code == CMT_T) comment();
-		while (lookahead.code == NWL_T) matchToken(NWL_T, NO_ATTR);
+		/* Skip comments and blank lines */
+		while (lookahead.code == CMT_T || lookahead.code == NWL_T) {
+			while (lookahead.code == CMT_T) comment();
+			while (lookahead.code == NWL_T) matchToken(NWL_T, NO_ATTR);
+		}
+
 		if (lookahead.code == terminator || lookahead.code == SEOF_T) break;
+
 		command();
 	}
 
-	printf("DEBUG: Exiting script, lookahead.code=%d\n", lookahead.code);
+	printf("Urizen: Exiting script\n");
 }
 
 urizen_void command() {
@@ -327,6 +330,7 @@ urizen_void parseWhile() {
 }
 
 urizen_void parseForeach() {
+	printf("%s%s\n", STR_LANGNAME, ": foreach loop entered");
 	matchToken(KW_T, KW_foreach);
 
 	/* Variable name */
@@ -334,18 +338,14 @@ urizen_void parseForeach() {
 
 	/* List (braced or word) */
 	if (lookahead.code == LBR_T) {
-		matchToken(LBR_T, NO_ATTR);
-		script(RBR_T);  /* list contents */
-		matchToken(RBR_T, NO_ATTR);
+		bracedExpression();
 	}
 	else {
 		word();
 	}
 
 	/* Body */
-	matchToken(LBR_T, NO_ATTR);
-	script(RBR_T);
-	matchToken(RBR_T, NO_ATTR);
+	bracedBlock();
 
 	printf("%s%s\n", STR_LANGNAME, ": Foreach loop parsed");
 }
