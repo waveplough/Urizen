@@ -71,10 +71,6 @@ extern Token			tokenizer(urizen_void);
 extern urizen_str		keywordTable[KWT_SIZE];
 static urizen_int		syntaxErrorNumber = 0;
 
-#define LANG_WRTE		"print&"
-#define LANG_READ		"input&"
-#define LANG_MAIN		"main&"
-
 /* TO_DO: Create ALL constants for keywords (sequence given in table.h) */
 
 /* Constants */
@@ -105,7 +101,7 @@ enum KEYWORDS {
 };
 
 /* TO_DO: Define the number of BNF rules */
-#define NUM_BNF_RULES 8
+#define NUM_BNF_RULES 11
 
 /* Parser */
 typedef struct parserData {
@@ -134,7 +130,10 @@ enum BNF_RULES {
 	BNF_braced,          /* 4 */
 	BNF_subst,           /* 5 */
 	BNF_expression,      /* 6 */
-	BNF_comment          /* 7 */
+	BNF_comment,          /* 7 */
+	BNF_newline,			/* 8 */
+	BNF_parameterList,
+	BNF_body
 
 };
 
@@ -148,18 +147,24 @@ static urizen_str BNFStrTable[NUM_BNF_RULES] = {
 	"BNF_braced",
 	"BNF_subst",
 	"BNF_expression",
-	"BNF_comment"
+	"BNF_comment",
+	"BNF_newline",
+	"BNF_parameterList",
+	"BNF_body"
 };
 
 /* TO_DO: Place ALL non-terminal function declarations */
 urizen_void script(urizen_int terminator);
 urizen_void word();
-urizen_void bracedWord();
+urizen_void bracedExpression();
+urizen_void bracedBlock();
 urizen_void substWord();
 urizen_void parseIf();
 urizen_void parseWhile();
 urizen_void parseForeach();
 urizen_void parseProc();
+urizen_void parseParameterList();
+urizen_void parseBody();
 urizen_void parseReturn();
 
 

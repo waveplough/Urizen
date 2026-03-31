@@ -92,9 +92,14 @@ urizen_void startParser() {
 /* TO_DO: This is the main code for match - check your definition */
 urizen_void matchToken(urizen_int tokenCode, urizen_int tokenAttribute) {
 	urizen_int matchFlag = 1;
+
 	switch (lookahead.code) {
 	case KW_T:
 		if (tokenAttribute != NO_ATTR && lookahead.attribute.codeType != tokenAttribute)
+			matchFlag = 0;
+		break;
+	case NWL_T:
+		if (tokenCode != NWL_T && tokenCode != NO_ATTR)
 			matchFlag = 0;
 		break;
 	default:
@@ -102,6 +107,7 @@ urizen_void matchToken(urizen_int tokenCode, urizen_int tokenAttribute) {
 			matchFlag = 0;
 		break;
 	}
+
 	if (matchFlag && lookahead.code == SEOF_T)
 		return;
 	if (matchFlag) {
@@ -112,8 +118,9 @@ urizen_void matchToken(urizen_int tokenCode, urizen_int tokenAttribute) {
 			syntaxErrorNumber++;
 		}
 	}
-	else
+	else {
 		syncErrorHandler(tokenCode);
+	}
 }
 
 /*
@@ -141,7 +148,7 @@ urizen_void syncErrorHandler(urizen_int syncTokenCode) {
  */
 /* TO_DO: This is the function to error printing - adjust basically datatypes */
 urizen_void printError() {
-	extern numParserErrors;			/* link to number of errors (defined in Parser.h) */
+	extern numParserErrors;
 	Token t = lookahead;
 	printf("%s%s%3d\n", STR_LANGNAME, ": Syntax error:  Line:", line);
 	printf("*****  Token code:%3d Attribute: ", t.code);
@@ -173,12 +180,36 @@ urizen_void printError() {
 	case RBR_T:
 		printf("RBR_T\n");
 		break;
+	case LSB_T:           
+		printf("LSB_T\n");
+		break;
+	case RSB_T:          
+		printf("RSB_T\n");
+		break;
+	case ARITH_T:         
+		printf("ARITH_T\n");
+		break;
+	case ASSIGN_T:      
+		printf("ASSIGN_T\n");
+		break;
+	case VARSUB_T:        
+		printf("VARSUB_T\n");
+		break;
+	case INL_T:           
+		printf("INL_T: %d\n", t.attribute.intValue);
+		break;
+	case FPL_T: 
+		printf("FPL_T: %f\n", t.attribute.floatValue);
+		break;
+	case NWL_T:
+		printf("NWL_T\n");
+		break;
 	case EOS_T:
 		printf("NA\n");
 		break;
 	default:
 		printf("%s%s%d\n", STR_LANGNAME, ": Scanner error: invalid token code: ", t.code);
-		numParserErrors++; // Updated parser error
+		numParserErrors++;
 	}
 }
 
@@ -187,93 +218,110 @@ urizen_void printError() {
 void script(urizen_int terminator) {
 	psData.parsHistogram[BNF_script]++;
 
+	const char* term_name = (terminator == SEOF_T) ? "EOF" :
+		(terminator == RBR_T) ? "}" :
+		(terminator == RSB_T) ? "]" : "?";
+	printf("DEBUG: Entering script, terminator=%s\n", term_name);
+
 	while (lookahead.code != terminator && lookahead.code != SEOF_T) {
-		/* Skip comments */
-		while (lookahead.code == CMT_T) {
-			comment();
-		}
-
-		if (lookahead.code == terminator || lookahead.code == SEOF_T) {
-			break;
-		}
-
+		while (lookahead.code == CMT_T) comment();
+		while (lookahead.code == NWL_T) matchToken(NWL_T, NO_ATTR);
+		if (lookahead.code == terminator || lookahead.code == SEOF_T) break;
 		command();
 	}
+
+	printf("DEBUG: Exiting script, lookahead.code=%d\n", lookahead.code);
 }
 
 urizen_void command() {
 	psData.parsHistogram[BNF_command]++;
-	
+
 	/* Special keywords */
 	if (lookahead.code == KW_T) {
 		switch (lookahead.attribute.codeType) {
-		case KW_if:
-			parseIf();
-			return;
-		case KW_while:
-			parseWhile();
-			return;
-		case KW_foreach:
-			parseForeach();
-			return;
-		case KW_proc:
-			parseProc();
-			return;
-		case KW_return:
-			parseReturn();
-			return;
-		default:
-			/* Fall through to generic command parsing */
-			break;
+		case KW_if:      parseIf(); return;
+		case KW_while:   parseWhile(); return;
+		case KW_foreach: parseForeach(); return;
+		case KW_proc:    parseProc(); return;
+		case KW_return:  parseReturn(); return;
+		default: break;
 		}
 	}
 
-	word();
-	while (lookahead.code != NWL_T && lookahead.code != EOS_T && lookahead.code != SEOF_T) {
+	/* Generic command: parse words until terminator */
+	word();  /* first word */
+	while (lookahead.code != EOS_T && lookahead.code != NWL_T && lookahead.code != SEOF_T) {
 		word();
 	}
 
-	if (lookahead.code == EOS_T) {
-		matchToken(EOS_T, NO_ATTR);
+	/* Consume terminator if present */
+	if (lookahead.code == EOS_T || lookahead.code == NWL_T) {
+		matchToken(lookahead.code, NO_ATTR);
 	}
 
-	//printf("%s%s\n", STR_LANGNAME, ": Command parsed");'
 	printf("%s: Command parsed\n", STR_LANGNAME);
 }
 
-urizen_void bracedWord() {
+/* For braced expressions (single value, like {$x > 0}) */
+urizen_void bracedExpression() {
+	printf("%s: Braced expression entered\n", STR_LANGNAME);
 	psData.parsHistogram[BNF_braced]++;
 	matchToken(LBR_T, NO_ATTR);
-	script(RBR_T);
+
+	/* Parse as a sequence of words/tokens (no commands) */
+	while (lookahead.code != RBR_T && lookahead.code != SEOF_T) {
+		word();  /* parse each token */
+	}
+
 	matchToken(RBR_T, NO_ATTR);
-	printf("%s%s\n", STR_LANGNAME, ": Braced word parsed");
+	printf("%s: Braced expression parsed\n", STR_LANGNAME);
+}
+
+/* For braced blocks (multiple commands, like { set x 10; puts $x }) */
+urizen_void bracedBlock() {
+	printf("%s: Braced block entered\n", STR_LANGNAME);
+	psData.parsHistogram[BNF_braced]++;
+	matchToken(LBR_T, NO_ATTR);
+
+	/* Parse as a script of commands */
+	while (lookahead.code != RBR_T && lookahead.code != SEOF_T) {
+		while (lookahead.code == CMT_T) comment();
+		while (lookahead.code == NWL_T) matchToken(NWL_T, NO_ATTR);
+		if (lookahead.code == RBR_T || lookahead.code == SEOF_T) break;
+		command();  /* parse commands, not just words */
+	}
+
+	matchToken(RBR_T, NO_ATTR);
+	printf("%s: Braced block parsed\n", STR_LANGNAME);
 }
 
 urizen_void substWord() {
+	printf("%s%s\n", STR_LANGNAME, ": Command substitution entered");
 	psData.parsHistogram[BNF_subst]++;
 	matchToken(LSB_T, NO_ATTR);
-	script(RSB_T);
+
+	while (lookahead.code != RSB_T && lookahead.code != SEOF_T) {
+		word();  /* parse each token inside */
+	}
+
 	matchToken(RSB_T, NO_ATTR);
 	printf("%s%s\n", STR_LANGNAME, ": Command substitution parsed");
 }
 
 urizen_void parseWhile() {
+	printf("%s%s\n", STR_LANGNAME, ": While loop entered");
 	matchToken(KW_T, KW_while);
 
 	/* Condition */
 	if (lookahead.code == LBR_T) {
-		matchToken(LBR_T, NO_ATTR);
-		script(RBR_T);
-		matchToken(RBR_T, NO_ATTR);
+		bracedExpression();
 	}
 	else {
 		word();
 	}
 
 	/* Body */
-	matchToken(LBR_T, NO_ATTR);
-	script(RBR_T);
-	matchToken(RBR_T, NO_ATTR);
+	bracedBlock();
 
 	printf("%s%s\n", STR_LANGNAME, ": While loop parsed");
 }
@@ -303,23 +351,41 @@ urizen_void parseForeach() {
 }
 
 urizen_void parseProc() {
-	matchToken(KW_T, KW_proc);
+	printf("%s: Procedure entered\n", STR_LANGNAME);
+	matchToken(KW_T, KW_proc);		// match proc keyword
 
 	/* Procedure name */
-	word();
+	word();							// parse the name of the procedure
 
-	/* Parameter list (braced) */
-	matchToken(LBR_T, NO_ATTR);
-	script(RBR_T);  /* parameters inside braces */
-	matchToken(RBR_T, NO_ATTR);
+	parseParameterList();
 
-	/* Body (braced) */
-	matchToken(LBR_T, NO_ATTR);
-	script(RBR_T);
-	matchToken(RBR_T, NO_ATTR);
+	/* Procedure body — braced script */
+	bracedBlock();
 
-	printf("%s%s\n", STR_LANGNAME, ": Procedure parsed");
+	printf("%s: Procedure parsed\n", STR_LANGNAME);
 }
+
+
+urizen_void parseParameterList() {
+	psData.parsHistogram[BNF_parameterList]++;
+
+	/* Parameter list — must be braced */
+	matchToken(LBR_T, NO_ATTR);
+	/* Parse parameters (just words) inside braces */
+	while (lookahead.code != RBR_T && lookahead.code != SEOF_T) {
+		word();
+	}
+	matchToken(RBR_T, NO_ATTR);
+
+	printf("%s: Parameters parsed\n", STR_LANGNAME);
+}
+
+urizen_void parseBody() {
+	psData.parsHistogram[BNF_body]++;
+	matchToken(LBR_T, NO_ATTR);
+
+}
+
 
 urizen_void parseReturn() {
 	matchToken(KW_T, KW_return);
@@ -333,13 +399,12 @@ urizen_void parseReturn() {
 }
 
 urizen_void parseIf() {
+	printf("%s%s\n", STR_LANGNAME, ": If statement entered");
 	matchToken(KW_T, KW_if);
 
 	/* Condition — could be braced or bare */
 	if (lookahead.code == LBR_T) {
-		matchToken(LBR_T, NO_ATTR);
-		script(RBR_T);
-		matchToken(RBR_T, NO_ATTR);
+		bracedExpression();
 	}
 	else {
 		word();
@@ -351,31 +416,27 @@ urizen_void parseIf() {
 	}
 
 	/* Then-body */
-	matchToken(LBR_T, NO_ATTR);
-	script(RBR_T);
-	matchToken(RBR_T, NO_ATTR);
+	bracedBlock();
+
 
 	/* Optional elseif/else */
 	while (lookahead.code == KW_T) {
 		if (lookahead.attribute.codeType == KW_elseif) {
+			printf("%s%s\n", STR_LANGNAME, ": Elseif statement entered");
 			matchToken(KW_T, KW_elseif);
 			if (lookahead.code == LBR_T) {
-				matchToken(LBR_T, NO_ATTR);
-				script(RBR_T);
-				matchToken(RBR_T, NO_ATTR);
+				bracedExpression();
 			}
 			else {
 				word();
 			}
-			matchToken(LBR_T, NO_ATTR);
-			script(RBR_T);
-			matchToken(RBR_T, NO_ATTR);
+			bracedBlock();
 		}
 		else if (lookahead.attribute.codeType == KW_else) {
+			printf("%s%s\n", STR_LANGNAME, ": Else statement entered");
+
 			matchToken(KW_T, KW_else);
-			matchToken(LBR_T, NO_ATTR);
-			script(RBR_T);
-			matchToken(RBR_T, NO_ATTR);
+			bracedBlock();
 			break;
 		}
 		else {
@@ -391,41 +452,51 @@ urizen_void word() {
 
 	switch (lookahead.code) {
 	case KW_T:
-		matchToken(KW_T, lookahead.attribute.codeType);	/* Keywords can appear as words too (e.g., 'set' as variable name) */
+		matchToken(KW_T, lookahead.attribute.codeType);
 		break;
 	case ID_T:
-		matchToken(ID_T, lookahead.attribute.idLexeme);
+		matchToken(ID_T, NO_ATTR);  
 		break;
 	case INL_T:
-		matchToken(INL_T, lookahead.attribute.intValue);
+		matchToken(INL_T, NO_ATTR);  
 		break;
 	case FPL_T:
-		matchToken(FPL_T, lookahead.attribute.floatValue);
+		matchToken(FPL_T, NO_ATTR); 
 		break;
 	case STR_T:
-		matchToken(STR_T, lookahead.attribute.contentString);
+		matchToken(STR_T, NO_ATTR);  
 		break;
 	case VARSUB_T:
 		matchToken(VARSUB_T, NO_ATTR);
-		/* Variable name follows */
 		if (lookahead.code == ID_T) {
-			word();  /* consume the variable name */
+			word();
 		}
 		break;
 	case LBR_T:
-		bracedWord();
+		bracedExpression();
 		break;
 	case LSB_T:
 		substWord();
+		break;
+	case ARITH_T:       
+		matchToken(ARITH_T, NO_ATTR);
+		break;
+	case ASSIGN_T:       
+		matchToken(ASSIGN_T, NO_ATTR);
+		break;
+	case REL_T:          
+		matchToken(REL_T, NO_ATTR);
+		break;
+	case LOG_T:         
+		matchToken(LOG_T, NO_ATTR);
 		break;
 	default:
 		printError();
 		syncErrorHandler(SEOF_T);
 		break;
 	}
-
-	//printf("%s%s\n", STR_LANGNAME, ": Word parsed");
 }
+
 
 /*
  ************************************************************
