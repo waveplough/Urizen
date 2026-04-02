@@ -238,7 +238,6 @@ void script(urizen_int terminator) {
 
 urizen_void command() {
 	psData.parsHistogram[BNF_command]++;
-
 	/* Special keywords */
 	if (lookahead.code == KW_T) {
 		switch (lookahead.attribute.codeType) {
@@ -267,7 +266,7 @@ urizen_void command() {
 
 /* For braced expressions (single value, like {$x > 0}) */
 urizen_void bracedExpression() {
-	printf("%s: Braced expression entered\n", STR_LANGNAME);
+	//printf("%s: Braced expression entered\n", STR_LANGNAME);
 	psData.parsHistogram[BNF_braced]++;
 	matchToken(LBR_T, NO_ATTR);
 
@@ -282,12 +281,12 @@ urizen_void bracedExpression() {
 
 /* For braced blocks (multiple commands, like { set x 10; puts $x }) */
 urizen_void bracedBlock() {
-	printf("%s: Braced block entered\n", STR_LANGNAME);
+	//printf("%s: Braced block entered\n", STR_LANGNAME);
 	psData.parsHistogram[BNF_braced]++;
 	matchToken(LBR_T, NO_ATTR);
 
 	/* Parse as a script of commands */
-	while (lookahead.code != RBR_T && lookahead.code != SEOF_T) {
+	while (lookahead.code != RBR_T && lookahead.code != SEOF_T) {				// enters brace -> adds that a command is there
 		while (lookahead.code == CMT_T) comment();
 		while (lookahead.code == NWL_T) matchToken(NWL_T, NO_ATTR);
 		if (lookahead.code == RBR_T || lookahead.code == SEOF_T) break;
@@ -299,7 +298,7 @@ urizen_void bracedBlock() {
 }
 
 urizen_void substWord() {
-	printf("%s%s\n", STR_LANGNAME, ": Command substitution entered");
+	//printf("%s%s\n", STR_LANGNAME, ": Command substitution entered");
 	psData.parsHistogram[BNF_subst]++;
 	matchToken(LSB_T, NO_ATTR);
 
@@ -312,7 +311,7 @@ urizen_void substWord() {
 }
 
 urizen_void parseWhile() {
-	printf("%s%s\n", STR_LANGNAME, ": While loop entered");
+	//printf("%s%s\n", STR_LANGNAME, ": While loop entered");
 	matchToken(KW_T, KW_while);
 
 	/* Condition */
@@ -351,7 +350,7 @@ urizen_void parseForeach() {
 }
 
 urizen_void parseProc() {
-	printf("%s: Procedure entered\n", STR_LANGNAME);
+	//printf("%s: Procedure entered\n", STR_LANGNAME);
 	matchToken(KW_T, KW_proc);		// match proc keyword
 
 	/* Procedure name */
@@ -399,7 +398,7 @@ urizen_void parseReturn() {
 }
 
 urizen_void parseIf() {
-	printf("%s%s\n", STR_LANGNAME, ": If statement entered");
+	//printf("%s%s\n", STR_LANGNAME, ": If statement entered");
 	matchToken(KW_T, KW_if);
 
 	/* Condition — could be braced or bare */
@@ -417,12 +416,12 @@ urizen_void parseIf() {
 
 	/* Then-body */
 	bracedBlock();
-
+	printf("%s%s\n", STR_LANGNAME, ": If statement parsed");
 
 	/* Optional elseif/else */
 	while (lookahead.code == KW_T) {
 		if (lookahead.attribute.codeType == KW_elseif) {
-			printf("%s%s\n", STR_LANGNAME, ": Elseif statement entered");
+			
 			matchToken(KW_T, KW_elseif);
 			if (lookahead.code == LBR_T) {
 				bracedExpression();
@@ -431,12 +430,13 @@ urizen_void parseIf() {
 				word();
 			}
 			bracedBlock();
+			printf("%s%s\n", STR_LANGNAME, ": Elseif statement parsed");
 		}
 		else if (lookahead.attribute.codeType == KW_else) {
-			printf("%s%s\n", STR_LANGNAME, ": Else statement entered");
 
 			matchToken(KW_T, KW_else);
 			bracedBlock();
+			printf("%s%s\n", STR_LANGNAME, ": Else statement parsed");
 			break;
 		}
 		else {
@@ -444,7 +444,7 @@ urizen_void parseIf() {
 		}
 	}
 
-	printf("%s%s\n", STR_LANGNAME, ": If statement parsed");
+	
 }
 
 urizen_void word() {
