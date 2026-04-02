@@ -58,7 +58,7 @@
  * ............................................................................
  */
 
- /* TO_DO: Adjust your language (cannot be "Sofia") */
+#include <stddef.h>
  /* Language name */
 #define STR_LANGNAME "Urizen"
 

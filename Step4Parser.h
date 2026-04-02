@@ -109,10 +109,10 @@ typedef struct parserData {
 } ParserData, * pParsData;
 
 /* Number of errors */
-urizen_int numParserErrors;
+extern urizen_int numParserErrors;
 
 /* Scanner data */
-ParserData psData;
+extern ParserData psData;
 
 /* Function definitions */
 urizen_void startParser();
@@ -166,6 +166,8 @@ urizen_void parseProc();
 urizen_void parseParameterList();
 urizen_void parseBody();
 urizen_void parseReturn();
+urizen_void comment();
+urizen_void command();
 
 
 

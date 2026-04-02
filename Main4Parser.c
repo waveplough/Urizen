@@ -109,7 +109,7 @@ extern ParserData psData;
  */
 
  /* Function declarations (prototypes) */
-extern urizen_void startParser(uirzen_void);
+extern urizen_void startParser(urizen_void);
 extern urizen_int startScanner(BufferPointer sc_buf);
 
 static urizen_void displayParser(BufferPointer ptrBuffer);
@@ -241,7 +241,7 @@ urizen_void displayParser(BufferPointer ptrBuffer) {
 ************************************************************
 */
 
-urizen_void callGarbageCollector(sofia_void) {
+urizen_void callGarbageCollector(urizen_void) {
 	if (syntaxErrorNumber)
 		printf("\nSyntax errors: %d\n", syntaxErrorNumber);
 	printf("\nCollecting garbage...\n");

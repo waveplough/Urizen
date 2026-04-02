@@ -90,8 +90,8 @@
  */
 
  /* Global objects - variables (used in other codes as external) */
-BufferPointer stringLiteralTable;	/* This buffer implements String Literal Table */
-urizen_int errorNumber;				/* Run-time error number = 0 by default (ANSI) */
+extern BufferPointer stringLiteralTable;	/* This buffer implements String Literal Table */
+extern urizen_int errorNumber;				/* Run-time error number = 0 by default (ANSI) */
 
 /* External objects */
 extern urizen_int line; /* Source code line numbers - defined in scanner.c */

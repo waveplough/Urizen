@@ -1,4 +1,59 @@
-﻿  Step4Parser.c
+﻿  Main4Parser.c
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(150,14): warning C4820: 'idAttibutes': '7' bytes padding added after data member 'flags'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step3Scanner.h(376,14): warning C4820: 'languageAttributes': '3' bytes padding added after data member 'indentationCharType'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(118,13): warning C4255: 'startParser': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(121,13): warning C4255: 'printError': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(158,13): warning C4255: 'word': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(159,13): warning C4255: 'bracedExpression': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(160,13): warning C4255: 'bracedBlock': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(161,13): warning C4255: 'substWord': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(162,13): warning C4255: 'parseIf': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(163,13): warning C4255: 'parseWhile': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(164,13): warning C4255: 'parseForeach': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(165,13): warning C4255: 'parseProc': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(166,13): warning C4255: 'parseParameterList': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(167,13): warning C4255: 'parseBody': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(168,13): warning C4255: 'parseReturn': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(169,13): warning C4255: 'comment': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(170,13): warning C4255: 'command': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Main4Parser.c')
+  
+  Step4Parser.c
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step2Reader.h(134,14): warning C4820: 'bufferReader': '4' bytes padding added after data member 'checkSum'
   (compiling source file 'Step4Parser.c')
   
@@ -47,30 +102,33 @@ C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(167,13): warnin
 C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(168,13): warning C4255: 'parseReturn': no function prototype given: converting '()' to '(void)'
   (compiling source file 'Step4Parser.c')
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(71,13): warning C4255: 'startParser': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(150,13): warning C4255: 'printError': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(151,9): warning C4431: missing type specifier - int assumed. Note: C no longer supports default-int
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(227,36): warning C4013: 'comment' undefined; assuming extern returning int
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(233,3): warning C4013: 'command' undefined; assuming extern returning int
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(239,13): warning C4255: 'command': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(268,13): warning C4255: 'bracedExpression': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(283,13): warning C4255: 'bracedBlock': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(290,35): warning C4013: 'comment' undefined; assuming extern returning int
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(300,13): warning C4255: 'substWord': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(313,13): warning C4255: 'parseWhile': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(331,13): warning C4255: 'parseForeach': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(352,13): warning C4255: 'parseProc': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(368,13): warning C4255: 'parseParameterList': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(382,13): warning C4255: 'parseBody': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(389,13): warning C4255: 'parseReturn': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(400,13): warning C4255: 'parseIf': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(450,13): warning C4255: 'word': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(508,13): warning C4255: 'comment': no function prototype given: converting '()' to '(void)'
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(531,37): warning C4459: declaration of 'psData' hides global declaration
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(169,13): warning C4255: 'comment': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Step4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.h(170,13): warning C4255: 'command': no function prototype given: converting '()' to '(void)'
+  (compiling source file 'Step4Parser.c')
+  
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(70,13): warning C4255: 'startParser': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(149,13): warning C4255: 'printError': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(238,13): warning C4255: 'command': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(267,13): warning C4255: 'bracedExpression': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(281,13): warning C4255: 'bracedBlock': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(297,13): warning C4255: 'substWord': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(309,13): warning C4255: 'parseWhile': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(326,13): warning C4255: 'parseForeach': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(347,13): warning C4255: 'parseProc': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(362,13): warning C4255: 'parseParameterList': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(376,13): warning C4255: 'parseBody': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(383,13): warning C4255: 'parseReturn': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(394,13): warning C4255: 'parseIf': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(443,13): warning C4255: 'word': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(501,13): warning C4255: 'comment': no function prototype given: converting '()' to '(void)'
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(524,37): warning C4459: declaration of 'psData' hides global declaration
       C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(62,19):
       see declaration of 'psData'
   
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(538,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(538,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(536) : note: index 'cont' range checked by comparison on this line
-C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(538,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(538) : note: feeds call on this line
+  Generating Code...
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(531,1): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(531,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(529) : note: index 'cont' range checked by comparison on this line
+C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(531,1): warning C5045: C:\Users\David Jacob\Compilers\source\repos\Urizen\Step4Parser.c(531) : note: feeds call on this line
   Urizen.vcxproj -> C:\Users\David Jacob\Compilers\source\repos\Urizen\x64\Debug\Urizen.exe

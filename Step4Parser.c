@@ -59,14 +59,14 @@
 #endif
 
 /* Parser data */
-extern ParserData psData; /* BNF statistics */
+ParserData psData; /* BNF statistics */
+urizen_int numParserErrors;    
 
 /*
 ************************************************************
  * Process Parser
  ***********************************************************
  */
-/* TO_DO: This is the function to start the parser - check your program definition */
 
 urizen_void startParser() {
 	/* TO_DO: Initialize Parser data */
@@ -148,7 +148,7 @@ urizen_void syncErrorHandler(urizen_int syncTokenCode) {
  */
 /* TO_DO: This is the function to error printing - adjust basically datatypes */
 urizen_void printError() {
-	extern numParserErrors;
+	//extern int numParserErrors;
 	Token t = lookahead;
 	printf("%s%s%3d\n", STR_LANGNAME, ": Syntax error:  Line:", line);
 	printf("*****  Token code:%3d Attribute: ", t.code);
@@ -266,7 +266,6 @@ urizen_void command() {
 
 /* For braced expressions (single value, like {$x > 0}) */
 urizen_void bracedExpression() {
-	//printf("%s: Braced expression entered\n", STR_LANGNAME);
 	psData.parsHistogram[BNF_braced]++;
 	matchToken(LBR_T, NO_ATTR);
 
@@ -281,7 +280,6 @@ urizen_void bracedExpression() {
 
 /* For braced blocks (multiple commands, like { set x 10; puts $x }) */
 urizen_void bracedBlock() {
-	//printf("%s: Braced block entered\n", STR_LANGNAME);
 	psData.parsHistogram[BNF_braced]++;
 	matchToken(LBR_T, NO_ATTR);
 
@@ -298,7 +296,6 @@ urizen_void bracedBlock() {
 }
 
 urizen_void substWord() {
-	//printf("%s%s\n", STR_LANGNAME, ": Command substitution entered");
 	psData.parsHistogram[BNF_subst]++;
 	matchToken(LSB_T, NO_ATTR);
 
@@ -311,7 +308,6 @@ urizen_void substWord() {
 }
 
 urizen_void parseWhile() {
-	//printf("%s%s\n", STR_LANGNAME, ": While loop entered");
 	matchToken(KW_T, KW_while);
 
 	/* Condition */
@@ -350,7 +346,6 @@ urizen_void parseForeach() {
 }
 
 urizen_void parseProc() {
-	//printf("%s: Procedure entered\n", STR_LANGNAME);
 	matchToken(KW_T, KW_proc);		// match proc keyword
 
 	/* Procedure name */
@@ -398,7 +393,6 @@ urizen_void parseReturn() {
 }
 
 urizen_void parseIf() {
-	//printf("%s%s\n", STR_LANGNAME, ": If statement entered");
 	matchToken(KW_T, KW_if);
 
 	/* Condition — could be braced or bare */
