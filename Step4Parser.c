@@ -27,7 +27,7 @@
 # ECHO "    @@                             @@    ”
 # ECHO "    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    ”
 # ECHO "                                         "
-# ECHO "[SCANNER SCRIPT ........................]"
+# ECHO "[PARSER SCRIPT ........................]"
 # ECHO "                                         "
 */
 
@@ -80,7 +80,7 @@ urizen_void startParser() {
 		script(SEOF_T);
 	}
 	matchToken(SEOF_T, NO_ATTR);
-	printf("%s%s\n", STR_LANGNAME, ": Source file parsed");
+	printf("%s%s\n", STR_LANGNAME, ": Script parsed");
 }
 
 
@@ -233,7 +233,6 @@ void script(urizen_int terminator) {
 		command();
 	}
 
-	printf("Urizen: Exiting script\n");
 }
 
 urizen_void command() {
@@ -485,7 +484,6 @@ urizen_void word() {
 		matchToken(LOG_T, NO_ATTR);
 		break;
 	default:
-		printError();
 		syncErrorHandler(SEOF_T);
 		break;
 	}

@@ -17,12 +17,21 @@ echo '--------------------------------------------'
 echo COMPILER LOADING....
 
 del ENCRYPTED.txt DECRYPTED.txt out.txt err.txt 2>nul
-gcc Main1Coder.c Main2Reader.c Compilers.c Step1Coder.c Step2Reader.c main3Scanner.c Step3Scanner.c Main4Parser.c Step4Parser.c -o Urizen
+gcc -Wall -Wextra -Wpedantic Main1Coder.c Main2Reader.c Compilers.c Step1Coder.c Step2Reader.c main3Scanner.c Step3Scanner.c Main4Parser.c Step4Parser.c -o Urizen
 timeout /t 1 /nobreak >nul 
+
 Urizen 1 1 CLEAR.txt ENCRYPTED.txt > out.txt 2> err.txt
 timeout /t 1 /nobreak >nul
 Urizen 4 ENCRYPTED.txt  >> out.txt 2>> err.txt
 timeout /t 1 /nobreak >nul
+
+Urizen 4 EMPTY.txt  >> out.txt 2>> err.txt
+timeout /t 1 /nobreak >nul
+
+Urizen 1 1 HelloWorld.txt ENCRYPTED.txt >> out.txt 2>> err.txt
+timeout /t 1 /nobreak >nul
+Urizen 4 ENCRYPTED.txt  >> out.txt 2>> err.txt
+
 dir out.txt err.txt
 type out.txt
 pause
