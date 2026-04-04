@@ -64,12 +64,12 @@
 #endif
 
 /* Global vars */
-static Token			lookahead;
+extern Token			lookahead;
 extern BufferPointer	stringLiteralTable;
 extern urizen_int		line;
 extern Token			tokenizer(urizen_void);
 extern urizen_str		keywordTable[KWT_SIZE];
-static urizen_int		syntaxErrorNumber = 0;
+extern urizen_int		syntaxErrorNumber;
 
 /* TO_DO: Create ALL constants for keywords (sequence given in table.h) */
 
@@ -139,19 +139,7 @@ enum BNF_RULES {
 
 
 /* TO_DO: Define the list of keywords */
-static urizen_str BNFStrTable[NUM_BNF_RULES] = {
-	"BNF_error",
-	"BNF_script",
-	"BNF_command",
-	"BNF_word",
-	"BNF_braced",
-	"BNF_subst",
-	"BNF_expression",
-	"BNF_comment",
-	"BNF_newline",
-	"BNF_parameterList",
-	"BNF_body"
-};
+extern urizen_str BNFStrTable[NUM_BNF_RULES];
 
 /* TO_DO: Place ALL non-terminal function declarations */
 urizen_void script(urizen_int terminator);

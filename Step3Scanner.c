@@ -101,6 +101,123 @@ ScannerData scData;
 static BufferPointer lexemeBuffer;			/* Pointer to temporary lexeme buffer */
 static BufferPointer sourceBuffer;			/* Pointer to input source buffer */
 
+
+urizen_str tokenStrTable[NUM_TOKENS] = {
+	"ERR_T",
+	"ID_T",
+	"INL_T",
+	"STR_T",
+	"LPR_T",
+	"RPR_T",
+	"LBR_T",
+	"RBR_T",
+	"KW_T",
+	"EOS_T",
+	"RTE_T",
+	"SEOF_T",
+	"CMT_T",
+	"LSB_T",
+	"RSB_T",
+	"VARSUB_T",
+	"ARITH_T",
+	"REL_T",
+	"LOG_T",
+	"ASSIGN_T",
+	"FPL_T",
+	"NWL_T"
+};
+
+urizen_int transitionTable[NUM_STATES][CHAR_CLASSES] = {
+	/*    [A-z],[0-9],    _,    \', SEOF,    #,  \n,	 .	  [eE]   +/-  other
+		   L(0), D(1), U(2),  Q(3), E(4), C(5),  N(6)	D(7)  E(8)  S(09) O(10) */
+		{     1,   10,    1,     4, ESWR,	  6,   0,	12,		1,	18,	  ESNR},		// S0: NOFS: Start State
+		{     1,    1,    1, 	 3,    3,   3,   ESNR,	ESNR,	1,	 3,		3},			// S1: NOFS: Building Identifier
+		{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S2: FSWR: (VID) Identifier Accepting State (unused/placeholder)
+		{    FS,   FS,   FS,     FS,   FS,	 FS, ESNR,	FS,		FS,	 FS,   FS},			// S3: FSWR: Keyword Accepting State (retract: char belongs to next token)
+		{     4,    4,    4,      5, ESWR,	  4,    4,	4,	    4,	  4,	4},			// S4: NOFS: (SL) Building String Literal
+		{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S5: FSNR: (SL) String Literal Accepting State (no retract)
+		{     6,    6,    6,      6,   7,	  6,    7,	6,		6,	  6,	6},			// S6: NOFS: (COM) Building Comment
+		{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S7: FSNR: (COM) Comment Accepting State (no retract)
+		{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S8: FSNR: (ES) Error, no retract
+		{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S9: FSWR: (ER) Error, with retract
+		{	 ESWR, 10, ESWR,   ESWR,   11,   ESWR, ESWR, 12,	14,	 ESWR, 11},			// S10: NOFS: Building Integer
+		{    FS,   FS,   FS,     FS,   FS,   FS,   FS,	FS,		FS,	 FS,   FS},			// S11: FSWR: Integer Accepting state (retract)
+		{    ESWR, 12,   ESWR,  ESWR,  13, ESWR, ESWR, ESNR,    14,	ESNR,  13},			// S12: NOFS: Building Float (digits after dot)
+		{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS},			// S13: FSWR: Float Accepting State
+		{	 ESWR, 16,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, 15, ESNR},		// S14: NOFS: Seen [eE], expecting sign or digit
+		{	 ESWR, 16,   ESWR,  ESWR,  ESWR, ESWR, ESWR, ESNR,  ESNR, ESNR, ESNR},		// S15: NOFS: Seen [eE][+-], expecting digit
+		{	 ESWR, 16,   ESWR,  ESWR,  17, ESWR, ESWR, ESNR,  ESNR,	 ESNR,  17},		// S16: NOFS: Building Exponent Digits
+		{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,    FS},		// S17: FSWR: Float with Exponent Accepting State
+		{    FS,   FS,   FS,     FS,   FS,	 FS,   FS,	FS,		FS,	 FS,   FS}			// S18: FSWR: Arithmetic Operator Accepting State
+
+};
+
+urizen_int stateType[NUM_STATES] = {
+	NOFS, /* 00 */
+	NOFS, /* 01 */
+	FSWR, /* 02 (ID) - Variable ID */ //originally retractable FSNR now FSWR
+	FSWR, /* 03 (KEY) */
+	NOFS, /* 04 */
+	FSNR, /* 05 (SL) */
+	NOFS, /* 06 */
+	FSNR, /* 07 (COM) */
+	FSNR, /* 08 (Err1 - no retract) */
+	FSWR,  /* 09 (Err2 - retract) */
+	NOFS, /* 10 Building number  (not accepting) */
+	FSWR, /* 11 number accepting */
+	NOFS, /* 12 Building float */
+	FSWR, /* 13 Accepting float */
+	NOFS, /* 14 Building Exponent */
+	NOFS, /* 15 Building SIGN */
+	NOFS, /* 16 Building Exponent Power */
+	FSWR, /* 17 Accepting Exponent */
+	FSNR /* 18 ARITHMETIC ACCEPTANCE STATE */
+};
+
+PTR_ACCFUN finalStateTable[NUM_STATES] = {
+	NULL,		/* -    [00] */
+	NULL,		/* -    [01] */
+	funcID,		/* MNID	[02] */
+	funcKEY,	/* KEY  [03] */
+	NULL,		/* -    [04] */
+	funcSL,		/* SL   [05] */
+	NULL,		/* -    [06] */
+	funcCMT,	/* COM  [07] */
+	funcErr,	/* ERR1 [06] */
+	funcErr,	/* ERR2 [07] */
+	NULL,		/* 10 - building number */
+	funcIL,     /* 11 - number accepting */
+	NULL,		/* 12 - building Float */
+	funcFPL,    /* 13 - float accepting */
+	NULL,		/* 14 - start building exponent */
+	NULL,		/*15 building exponent sign */
+	NULL,		/* 16 Building exponent power*/
+	funcFPL,    /* 17 - number accepting w/ exponent */
+	funcARITH	/* 18 - ARITHMETIC OPERATOR ACCEPTANCE STATE */
+};
+
+urizen_str keywordTable[KWT_SIZE] = {
+	/* Core (9) */
+	"set",      /* 00: Variable assignment */
+	"expr",     /* 01: Expression evaluation */
+	"puts",     /* 02: Output */
+	"proc",     /* 03: Procedure definition */
+	"return",   /* 04: Return from proc */
+	"if",       /* 05: Conditional */
+	"else",     /* 06: Alternative */
+	"elseif",   /* 07: Chained conditional */
+	"while",    /* 08: While loop */
+
+	/* Loops and flow (4) */
+	"for",      /* 09: For loop */
+	"foreach",  /* 10: List iteration */
+	"break",    /* 11: Exit loop */
+	"continue", /* 12: Next iteration */
+	"then",		/* 13 */
+
+	/* String (1) */
+	"string"   /* 13: String ops */
+};
 /*
  ************************************************************
  * Intitializes scanner
@@ -158,7 +275,7 @@ Token tokenizer(urizen_void) {
 		c = readerGetChar(sourceBuffer);
 
 		// TO_DO: Defensive programming checks that character is within ASCII range
-		if (c < 0 || c >= NCHAR)
+		if (c < 0)
 			return currentToken;
 
 		/* ------------------------------------------------------------------------
@@ -513,7 +630,6 @@ Token funcFPL(urizen_str lexeme) {
 
 Token funcID(urizen_str lexeme) {
 	Token currentToken = { 0 };
-	size_t length = strlen(lexeme);
 
 	currentToken.code = ID_T;
 	scData.scanHistogram[currentToken.code]++;
@@ -535,7 +651,7 @@ Token funcID(urizen_str lexeme) {
 Token funcKEY(urizen_str lexeme) {
 	Token currentToken = { 0 };
 	urizen_int kwindex = -1, j = 0; /* kw index initialized as - 1 */
-	urizen_int len = (urizen_int)strlen(lexeme);
+
 	///lexeme[len - 1] = EOS_CHR;
 	for (j = 0; j < KWT_SIZE; j++)
 		if (strcmp(lexeme, &keywordTable[j][0]) == 0)

@@ -61,12 +61,28 @@
 /* Parser data */
 ParserData psData; /* BNF statistics */
 urizen_int numParserErrors;    
+urizen_int syntaxErrorNumber = 0;
+Token lookahead;
 
 /*
 ************************************************************
  * Process Parser
  ***********************************************************
  */
+
+urizen_str BNFStrTable[NUM_BNF_RULES] = {
+	"BNF_error",
+	"BNF_script",
+	"BNF_command",
+	"BNF_word",
+	"BNF_braced",
+	"BNF_subst",
+	"BNF_expression",
+	"BNF_comment",
+	"BNF_newline",
+	"BNF_parameterList",
+	"BNF_body"
+};
 
 urizen_void startParser() {
 	/* TO_DO: Initialize Parser data */
