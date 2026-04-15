@@ -101,7 +101,7 @@ enum KEYWORDS {
 };
 
 /* TO_DO: Define the number of BNF rules */
-#define NUM_BNF_RULES 11
+#define NUM_BNF_RULES 12
 
 /* Parser */
 typedef struct parserData {
@@ -132,8 +132,9 @@ enum BNF_RULES {
 	BNF_expression,      /* 6 */
 	BNF_comment,          /* 7 */
 	BNF_newline,			/* 8 */
-	BNF_parameterList,
-	BNF_body
+	BNF_parameterList,		/* 9 */
+	BNF_block,				/* 10 */
+	BNF_floatLiteral
 
 };
 

@@ -1,8 +1,17 @@
-# URIZEN scanner test
+# URIZEN parser test
 set x 42
 set y 3.14
 set big 1.2e+5
 set name "Hello World"
+
+set pi 3.14159
+set circumference [expr {$pi * 2.0}]
+puts "Circumference: $circumference"
+
+# Input/Output test
+puts "What is your name?"
+gets stdin name
+puts "Hello, $name!"
 
 proc add {a b} {
     return [expr {$a + $b}]

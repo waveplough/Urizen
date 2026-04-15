@@ -81,7 +81,8 @@ urizen_str BNFStrTable[NUM_BNF_RULES] = {
 	"BNF_comment",
 	"BNF_newline",
 	"BNF_parameterList",
-	"BNF_body"
+	"BNF_block",
+	"BNF_floatLiteral"
 };
 
 urizen_void startParser() {
@@ -281,7 +282,7 @@ urizen_void command() {
 
 /* For braced expressions (single value, like {$x > 0}) */
 urizen_void bracedExpression() {
-	psData.parsHistogram[BNF_braced]++;
+	psData.parsHistogram[BNF_expression]++;
 	matchToken(LBR_T, NO_ATTR);
 
 	/* Parse as a sequence of words/tokens (no commands) */
@@ -295,7 +296,7 @@ urizen_void bracedExpression() {
 
 /* For braced blocks (multiple commands, like { set x 10; puts $x }) */
 urizen_void bracedBlock() {
-	psData.parsHistogram[BNF_braced]++;
+	psData.parsHistogram[BNF_block]++;
 	matchToken(LBR_T, NO_ATTR);
 
 	/* Parse as a script of commands */
@@ -390,7 +391,7 @@ urizen_void parseParameterList() {
 }
 
 urizen_void parseBody() {
-	psData.parsHistogram[BNF_body]++;
+	psData.parsHistogram[BNF_block]++;
 	matchToken(LBR_T, NO_ATTR);
 
 }
@@ -470,6 +471,8 @@ urizen_void word() {
 		matchToken(INL_T, NO_ATTR);  
 		break;
 	case FPL_T:
+		psData.parsHistogram[BNF_floatLiteral]++;
+		printf("%s: Float literal parsed\n", STR_LANGNAME);
 		matchToken(FPL_T, NO_ATTR); 
 		break;
 	case STR_T:
@@ -517,7 +520,6 @@ urizen_void comment() {
 	psData.parsHistogram[BNF_comment]++;
 	matchToken(CMT_T, NO_ATTR);
 	printf("%s%s\n", STR_LANGNAME, ": Comment parsed");
-	//line++;
 }
 
 

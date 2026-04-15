@@ -262,17 +262,17 @@ Token tokenizer(urizen_void) {
 
 	urizen_int lexLength;	/* token length */
 	urizen_int i;			/* counter */
-	///sofia_char newc;		// new char
+
 
 	/* Starting lexeme */
 	urizen_str lexeme;	/* lexeme (to check the function) */
 	lexeme = (urizen_str)malloc(VID_LEN * sizeof(urizen_char));
 	if (!lexeme)
 		return currentToken;
-	lexeme[0] = EOS_CHR;
+	lexeme[0] = EOS_CHR; /* If something goes wrong and the lexeme is never filled, the string is still valid (empty string, not garbage) */
 
 	while (1) { /* endless loop broken by token returns it will generate a warning */
-		c = readerGetChar(sourceBuffer);
+		c = readerGetChar(sourceBuffer); /* passes and increments read value */
 
 		// TO_DO: Defensive programming checks that character is within ASCII range
 		if (c < 0)
@@ -384,16 +384,16 @@ Token tokenizer(urizen_void) {
 
 		default: // general case
 
-			state = nextState(state, c);
-			lexStart = readerGetPosRead(sourceBuffer) - 1; /* get char was used above to check for exceptional characters (operators, braces etc) so you have to move it back one if it isn't exceptional */
-			readerSetMark(sourceBuffer, lexStart);
+			state = nextState(state, c); /* state stored as an integer (state passed as 0 here first), uses that state and the found column (class) to return the next state */
+			lexStart = readerGetPosRead(sourceBuffer) - 1; /* readerGetChar (used above) increments the reader by 1 after storing, so you must decrement to get the current char */
+			readerSetMark(sourceBuffer, lexStart); /* set mark to the start of the lexeme */
 			int pos = 0;
-			while (stateType[state] == NOFS) { /* As long as the state isn't an accepting one, continue looping */
+			while (stateType[state] == NOFS) {   /* As long as the state isn't an accepting one, continue looping */
 				c = readerGetChar(sourceBuffer); /* Get the next character in the buffer */
-				state = nextState(state, c);	/* Determine the category of the character and return it's next state based on that input */
-				pos++;
+				state = nextState(state, c);	 /* From the current state, where would the newly scanned character go class-wise? */
+				pos++;							 
 			}
-			if (stateType[state] == FSWR)	/* If the current state is a final state that is retractbale, then retract the reader by one */
+			if (stateType[state] == FSWR)	     /* If the current state is a final state that is retractbale, then retract the reader by one */
 				readerRetract(sourceBuffer);
 			lexEnd = readerGetPosRead(sourceBuffer);	/* it would be pointing one past the accept state but this works to its advantage*/
 			lexLength = lexEnd - lexStart; /* Actual length */
@@ -412,7 +412,7 @@ Token tokenizer(urizen_void) {
 			readerAddChar(lexemeBuffer, READER_TERMINATOR); /* append null terminator at lexemeBuffer.length - 2 */
 			lexeme = readerGetContent(lexemeBuffer, 0); /* point lexeme variable to the first index of the readers contents */
 			// TO_DO: Defensive programming
-			if (!lexeme)
+			if (!lexeme) /* if it isn't a lexeme*/
 				return currentToken;
 			currentToken = (*finalStateTable[state])(lexeme);
 			readerRestore(lexemeBuffer);
@@ -662,7 +662,7 @@ Token funcKEY(urizen_str lexeme) {
 		currentToken.attribute.codeType = kwindex;
 	}
 	else {
-		currentToken = funcID(lexeme); // previously funcErr not funcID
+		currentToken = funcID(lexeme); // previously funcErr not funcID ... if it isn't a keyword then it is an id
 	}
 	return currentToken;
 }

@@ -174,10 +174,11 @@ urizen_int main3Scanner(urizen_int argc, urizen_str* argv) {
 	/* Testbed for the scanner and add SEOF to input program buffer*/
 	/* Initialize scanner input buffer */
 	if (startScanner(sourceBuffer)) {
-		printScannerError("%s%s", argv[0], ": Empty program buffer - scanning canceled");
+		printScannerError("%s%s", argv[0], ": Empty program buffer - scanning canceled"); /* clears everything */
 		exit(EXIT_FAILURE);
 	}
 
+	/* Identifies each token */
 	printf("\nScanning source file...\n\n");
 	printf("Token\t\tAttribute\n");
 	printf("----------------------------------\n");

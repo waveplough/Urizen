@@ -80,7 +80,7 @@ NOTE: Some types may not be directly used by your language,
 
 /* TO_DO: Define your typedefs */
 typedef char			urizen_char;
-typedef char* urizen_str;
+typedef char*			urizen_str;
 typedef int				urizen_int;
 typedef size_t			urizen_size;
 typedef float			urizen_float;
@@ -120,6 +120,7 @@ urizen_int main1Coder(urizen_int argc, urizen_str* argv);
 urizen_int main2Reader(urizen_int argc, urizen_str* argv);
 urizen_int main3Scanner(urizen_int argc, urizen_str* argv);
 urizen_int main4Parser(urizen_int argc, urizen_str* argv);
+urizen_int main5Writer(urizen_int argc, urizen_str* argv);
 
 urizen_void printLogo(urizen_void);
 urizen_void errorPrint(urizen_str fmt, ...);
