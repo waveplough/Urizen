@@ -1,0 +1,12 @@
+# Urizen Example 2: integer math, strings, booleans, chars
+set a 1
+set b [expr {$a * 2}]
+set c [expr {($a + $b) * 3}]
+puts $c
+set d "Paulo"
+puts $d
+puts "$d has $c years"
+set e true
+set f 'Z'
+puts $e
+puts $f

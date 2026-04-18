@@ -64,12 +64,12 @@
 #include <string.h>
 #include <ctype.h>
 
- /* ---------------------------------------------------------- */
- /*  Global state                                              */
- /* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+/*  Global state                                              */
+/* ---------------------------------------------------------- */
 
 Variable     variables[MAX_VARS];
-urizen_int   var_count = 0;
+urizen_int   var_count     = 0;
 urizen_int   initial_phase = 1;                                     /* unused in one-pass mode, kept for spec compatibility */
 urizen_char  output_buffer[MAX_EXPR_LEN * MAX_LINES] = { 0 };       /* collected puts output */
 
@@ -100,7 +100,7 @@ static urizen_int read_name(urizen_str* pp, urizen_char* out, urizen_int max) {
     urizen_int i = 0;
     if (!pp || !*pp || !out || max <= 0) return 0;
     while (**pp != EOS
-        && (isalnum((urizen_byte) * *pp) || **pp == '_')
+        && (isalnum((urizen_byte)**pp) || **pp == '_')
         && i < max - 1) {
         out[i++] = *(*pp)++;
     }
@@ -112,7 +112,7 @@ static urizen_int read_name(urizen_str* pp, urizen_char* out, urizen_int max) {
  * Matches nested braces and null-terminates `out`. Advances `*pp` past '}'. */
 static urizen_void extract_expr_block(urizen_str* pp, urizen_str out, urizen_int out_size) {
     urizen_int depth = 0;
-    urizen_int k = 0;
+    urizen_int k     = 0;
     if (!pp || !*pp || !out || out_size <= 0) return;
 
     out[0] = EOS;
@@ -244,7 +244,7 @@ static urizen_void format_variable_by_name(const urizen_str name, urizen_str dst
 /* Copy `src` to `dst`, replacing $name occurrences with the variable's text. */
 static urizen_void interpolate_string(const urizen_str src, urizen_str dst, urizen_int dst_size) {
     urizen_int di = 0;
-    urizen_int i = 0;
+    urizen_int i  = 0;
     if (!src || !dst || dst_size <= 0) return;
     while (src[i] != EOS && di < dst_size - 1) {
         if (src[i] == DOLLAR) {
@@ -292,7 +292,7 @@ static urizen_void interpolate_string(const urizen_str src, urizen_str dst, uriz
 
 static urizen_doub parse_factor(urizen_str* expr) {
     urizen_doub value = 0.0;
-    urizen_int  neg = 0;
+    urizen_int  neg   = 0;
 
     if (!expr || !*expr) return 0.0;
 
@@ -313,7 +313,7 @@ static urizen_doub parse_factor(urizen_str* expr) {
         read_name(expr, name, MAX_NAME_LEN);
         value = get_numeric_value(name);
     }
-    else if (isalpha((urizen_byte) * *expr) || **expr == '_') {
+    else if (isalpha((urizen_byte)**expr) || **expr == '_') {
         urizen_char name[MAX_NAME_LEN] = { 0 };
         read_name(expr, name, MAX_NAME_LEN);
         /* Bare identifier inside expr - treat as variable lookup. */
@@ -333,7 +333,7 @@ urizen_doub parse_term(urizen_str* expr) {
     for (;;) {
         *expr = skip_ws(*expr);
         if (**expr == MULT || **expr == DIV) {
-            urizen_char op = *(*expr)++;
+            urizen_char op  = *(*expr)++;
             urizen_doub rhs = parse_factor(expr);
             if (op == MULT) {
                 value *= rhs;
@@ -358,7 +358,7 @@ urizen_doub parse_expression(urizen_str* expr) {
     for (;;) {
         *expr = skip_ws(*expr);
         if (**expr == PLUS || **expr == MINUS) {
-            urizen_char op = *(*expr)++;
+            urizen_char op  = *(*expr)++;
             urizen_doub rhs = parse_term(expr);
             if (op == PLUS) value += rhs;
             else            value -= rhs;
@@ -386,7 +386,7 @@ urizen_doub parse_expression(urizen_str* expr) {
  *     number | expr       -> numeric (evaluated as an arithmetic expression)
  */
 urizen_void handle_set(urizen_str line) {
-    urizen_str  p = NULL;
+    urizen_str  p    = NULL;
     urizen_char name[MAX_NAME_LEN] = { 0 };
 
     if (!line) return;
@@ -411,7 +411,7 @@ urizen_void handle_set(urizen_str line) {
 
     /* String literal. */
     if (*p == QUOTES) {
-        urizen_char raw[MAX_STR_LEN] = { 0 };
+        urizen_char raw[MAX_STR_LEN]   = { 0 };
         urizen_char interp[MAX_STR_LEN] = { 0 };
         urizen_int  i = 0;
         p++;
@@ -487,9 +487,9 @@ urizen_void handle_set(urizen_str line) {
         }
         switch (variables[idx].type) {
         case NUMERIC: assign_numeric_variable(name, variables[idx].value.num_value); break;
-        case STRING:  assign_string_variable(name, variables[idx].value.str_value); break;
+        case STRING:  assign_string_variable (name, variables[idx].value.str_value); break;
         case BOOLEAN: assign_boolean_variable(name, variables[idx].value.bool_value); break;
-        case CHAR:    assign_char_variable(name, variables[idx].value.char_value); break;
+        case CHAR:    assign_char_variable   (name, variables[idx].value.char_value); break;
         }
         return;
     }
@@ -526,7 +526,7 @@ urizen_void handle_set(urizen_str line) {
  *     word                -> printed verbatim
  */
 urizen_void handle_puts(urizen_str line) {
-    urizen_str  p = NULL;
+    urizen_str  p   = NULL;
     urizen_char out[MAX_EXPR_LEN] = { 0 };
 
     if (!line) return;
@@ -622,7 +622,7 @@ urizen_void calculate(urizen_str expression) {
 static urizen_str* splitIntoLines(const urizen_str content, urizen_int* lineCount) {
     urizen_str* lines = NULL;
     const urizen_char* start = NULL;
-    const urizen_char* end = NULL;
+    const urizen_char* end   = NULL;
 
     if (!content || !lineCount) return NULL;
 
@@ -712,7 +712,7 @@ static urizen_void print_results(urizen_void) {
 }
 
 urizen_void process_file(const urizen_str filename) {
-    FILE* file = NULL;
+    FILE*       file = NULL;
     urizen_char line[MAX_EXPR_LEN] = { 0 };
 
     if (!filename) {
@@ -739,8 +739,8 @@ urizen_void process_file(const urizen_str filename) {
 
 urizen_void process_content(urizen_str fileContent) {
     urizen_int  lineCount = 0;
-    urizen_str* lines = NULL;
-    urizen_int  i = 0;
+    urizen_str* lines     = NULL;
+    urizen_int  i         = 0;
 
     if (!fileContent) {
         printf("Error: process_content received NULL content.\n");

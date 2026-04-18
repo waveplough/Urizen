@@ -128,26 +128,26 @@ typedef struct {
 urizen_int  find_variable(const urizen_str name);
 
 urizen_void assign_boolean_variable(const urizen_str name, urizen_int value);
-urizen_void assign_char_variable(const urizen_str name, urizen_char value);
+urizen_void assign_char_variable   (const urizen_str name, urizen_char value);
 urizen_void assign_numeric_variable(const urizen_str name, urizen_doub value);
-urizen_void assign_string_variable(const urizen_str name, const urizen_str value);
+urizen_void assign_string_variable (const urizen_str name, const urizen_str value);
 
 urizen_int  get_boolean_value(const urizen_str name);
-urizen_char get_char_value(const urizen_str name);
+urizen_char get_char_value   (const urizen_str name);
 urizen_doub get_numeric_value(const urizen_str name);
 const urizen_str get_string_value(const urizen_str name);
 
 /* ---------- Expression evaluation ---------- */
-urizen_doub parse_term(urizen_str* expr);
+urizen_doub parse_term      (urizen_str* expr);
 urizen_doub parse_expression(urizen_str* expr);
 
 /* ---------- Top-level interpreter ---------- */
-urizen_void handle_set(urizen_str line);
-urizen_void handle_puts(urizen_str line);
-urizen_void handle_write(urizen_str expression);  /* alias kept for spec */
-urizen_void calculate(urizen_str expression);
+urizen_void handle_set      (urizen_str line);
+urizen_void handle_puts     (urizen_str line);
+urizen_void handle_write    (urizen_str expression);  /* alias kept for spec */
+urizen_void calculate       (urizen_str expression);
 
-urizen_void process_file(const urizen_str filename);
-urizen_void process_content(urizen_str content);
+urizen_void process_file    (const urizen_str filename);
+urizen_void process_content (urizen_str content);
 
 #endif

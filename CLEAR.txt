@@ -1,34 +1,7 @@
-# URIZEN parser test
-set x 42
-set y 3.14
-set big 1.2e+5
-set name "Hello World"
+# Urizen Example 2:
 
-set pi 3.14159
-set circumference [expr {$pi * 2.0}]
-puts "Circumference: $circumference"
+set PI 3.14
+set r 2.0
+set Vol [expr {(4.0 / 3.0) * $PI * ($r * $r * $r)}]
 
-# Input/Output test
-puts "What is your name?"
-gets stdin name
-puts "Hello, $name!"
-
-proc add {a b} {
-    return [expr {$a + $b}]
-}
-
-if {$x > 0} {
-    set result [add $x $y]
-    puts "Result: $result"
-} else {
-    puts "Error"
-}
-
-while {$x < 50} {
-    set x [expr {$x + 1}]
-}
-
-foreach item {10 20 30} {
-    set y [expr {$y + $item}]
-}
-# End of test
+puts $Vol

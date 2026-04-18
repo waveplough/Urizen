@@ -1,45 +1,42 @@
-:: A4 SCRIPT
-echo off
-echo '--------------------------------------------'
-echo '-      ALGONQUIN COLLEGE - COM - 26W       -'
-echo '--------------------------------------------'
-echo '-                                          -'
-echo '-    ====                                  -'
-echo '-   =                                      -'
-echo '-  =       ==   = =  ==  = =   =   ==  ==  -'
-echo '-   =     =  = = = = = = = =   ==  =  ==   -'
-echo '-    ====  ==  = = = =   = === === =   ==  -'
-echo '- 					 -'
-echo '--------------------------------------------'
-echo '-  [A4: Parser - Team: David Jacob]   
-echo '--------------------------------------------'
-
-echo ***********************************************************
-echo This batch file will parse 3 source files in this order:
-echo floating point and expressions -^> empty file -^> Hello World
-echo ***********************************************************
-echo '-      ALGONQUIN COLLEGE - COM - 26W       -'
-echo '--------------------------------------------'
-
+@echo off
+echo --------------------------------------------
+echo -      ALGONQUIN COLLEGE - COM - 26W       -
+echo -  [A5: Writer - Team: David Jacob]        -
+echo --------------------------------------------
+echo Program reads floats, assigns variables, and prints them via puts.
+echo --------------------------------------------
 echo COMPILER LOADING....
 
-del ENCRYPTED.txt DECRYPTED.txt out.txt err.txt 2>nul
-gcc Main1Coder.c Main2Reader.c Compilers.c Step1Coder.c Step2Reader.c main3Scanner.c Step3Scanner.c Main4Parser.c Step4Parser.c -o Urizen
-timeout /t 1 /nobreak >nul 
+del ENCRYPTED.txt HELLO_ENC.txt MIXED_ENC.txt DECRYPTED.txt out.txt err.txt 2>nul
 
-Urizen 1 1 CLEAR.txt ENCRYPTED.txt > out.txt 2> err.txt
-timeout /t 1 /nobreak >nul
-Urizen 4 ENCRYPTED.txt  >> out.txt 2>> err.txt
-timeout /t 1 /nobreak >nul
+gcc Main1Coder.c Main2Reader.c Main3Scanner.c Main4Parser.c Main5Writer.c ^
+    Step1Coder.c Step2Reader.c Step3Scanner.c Step4Parser.c Step5Writer.c ^
+    Compilers.c -o Urizen.exe
+if errorlevel 1 ( echo Build failed. & pause & exit /b 1 )
 
-Urizen 4 EMPTY.txt  >> out.txt 2>> err.txt
-timeout /t 1 /nobreak >nul
+echo.
+echo ============================================
+echo  TEST 1 of 3 : Hello World
+echo ============================================
+Urizen 1 1 HelloWorld.txt HELLO_ENC.txt
+Urizen 5 HELLO_ENC.txt
 
-Urizen 1 1 HelloWorld.txt ENCRYPTED.txt >> out.txt 2>> err.txt
-timeout /t 1 /nobreak >nul
-Urizen 4 ENCRYPTED.txt  >> out.txt 2>> err.txt
+echo.
+echo ============================================
+echo  TEST 2 of 3 : Mixed Types (int/string/bool/char)
+echo ============================================
+Urizen 1 1 MixedTypes.txt MIXED_ENC.txt
+Urizen 5 MIXED_ENC.txt
 
-dir out.txt err.txt
-type out.txt
+echo.
+echo ============================================
+echo  TEST 3 of 3 : Float Arithmetic (sphere volume)
+echo ============================================
+Urizen 1 1 CLEAR.txt ENCRYPTED.txt
+Urizen 5 ENCRYPTED.txt
+
+echo.
+echo --------------------------------------------
+echo  All tests complete.
+echo --------------------------------------------
 pause
-exit

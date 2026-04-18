@@ -1,2 +1,4 @@
-# Tcl Hello World example
-puts "Hello World!"
+# Urizen - Hello World
+set greeting "Hello, World!"
+puts $greeting
+puts "Welcome to Urizen."

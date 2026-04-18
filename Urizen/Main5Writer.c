@@ -61,20 +61,20 @@
 #include "Step5Writer.h"
 #endif
 
- /*
- ************************************************************
- * Main function from the Writer
- *   argc / argv - command line arguments
- *                 expected: <program> 5 <sourceFile>
- * Return value:
- *	Success operation.
- ************************************************************
- */
+/*
+************************************************************
+* Main function from the Writer
+*   argc / argv - command line arguments
+*                 expected: <program> 5 <sourceFile>
+* Return value:
+*	Success operation.
+************************************************************
+*/
 urizen_int main5Writer(urizen_int argc, urizen_str* argv) {
 
-	urizen_str  source = NULL;
+	urizen_str  source  = NULL;
 	urizen_str  content = NULL;
-	urizen_int  size = 0;
+	urizen_int  size    = 0;
 
 	/* Defensive: require at least <program> 5 <sourceFile>. */
 	if (argc < 3) {
